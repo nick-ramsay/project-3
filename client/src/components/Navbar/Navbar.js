@@ -10,8 +10,8 @@ function Navbar(props) {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
-                    <a className="nav-item nav-link" href="/">Search</a>
-                    <a className="nav-item nav-link" href="/saved">Saved</a>
+                    <a className="nav-item nav-link" href="/user-profile"><img src="../src/images/profile.PNG" alt="User Profile"/></a>
+                    <a className="nav-item nav-link" href="/account-settings"><img src="" alt="Account Settings"/></a>
                 </div>
             </div>
         </nav>
