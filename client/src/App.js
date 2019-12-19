@@ -4,6 +4,10 @@ import logo from './logo.svg';
 import Login from './pages/Login/Login'
 import './App.css';
 import CreateAccount from './pages/CreateAccount/CreateAccount';
+import Account from './pages/Account/Account';
+import Settings from './pages/Settings/Settings';
+import Billing from './pages/Billing/Billing';
+import Inventory from './pages/Inventory/Inventory';
 import Home from './pages/Home/Home';
 
 function App() {
@@ -14,6 +18,10 @@ function App() {
           <Route exact path="/" component={Login} />
           <Route exact path="/create-account" component={CreateAccount} />
           <Route exact path="/home" component={Home} />
+          <Route exact path="/account" component={Account} />
+          <Route exact path="/settings" component={Settings} />
+          <Route exact path="/billing" component={Billing} />
+          <Route exact path="/inventory" component={Inventory} />
         </Switch>
       </div>
     </Router>
