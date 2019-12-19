@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import "./style.css";
+import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
 
 class Home extends Component {
     state = {
@@ -42,6 +43,7 @@ class Home extends Component {
                         </div>
                     </div>
                 </div>
+            <NewProjectModal />
             </div>
         )
     }

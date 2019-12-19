@@ -9,6 +9,8 @@ import Settings from './pages/Settings/Settings';
 import Billing from './pages/Billing/Billing';
 import Inventory from './pages/Inventory/Inventory';
 import Home from './pages/Home/Home';
+import Customers from './pages/Customers/Customers';
+import Projects from './pages/Projects/Projects';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route exact path="/settings" component={Settings} />
           <Route exact path="/billing" component={Billing} />
           <Route exact path="/inventory" component={Inventory} />
+          <Route exact path="/customers" component={Customers} />
+          <Route exact path="/Projects" component={Projects} />
         </Switch>
       </div>
     </Router>
