@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Chart from 'chart.js';
 import Navbar from "../../components/Navbar/Navbar";
 import "./style.css";
 import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
@@ -6,6 +7,45 @@ import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
 class Home extends Component {
     state = {
 
+    }
+
+    renderChart = () => {
+        var ctx = document.getElementById('myChart');
+        ctx.height = 150;
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Revenue', 'Expenses', 'Profit'],
+                datasets: [{
+                    label: 'Dollar Amounts ($)',
+                    data: [10000, 8000, 2000],
+                    backgroundColor: [
+                        'Green',
+                        'Red',
+                        'Blue'
+                    ],
+                    borderColor: [
+                        'Green',
+                        'Red',
+                        'Blue'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+
+    componentDidMount() {
+        this.renderChart();
     }
 
     render() {
@@ -38,12 +78,12 @@ class Home extends Component {
                         </div>
                         <div className="row text-center">
                             <div className="col-md-12">
-                                <h3>Charts</h3>
+                                <canvas id="myChart" width="400" height="400"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
-            <NewProjectModal />
+                <NewProjectModal />
             </div>
         )
     }
