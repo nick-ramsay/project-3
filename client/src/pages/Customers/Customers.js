@@ -15,29 +15,39 @@ class Customers extends Component {
                     <div className="col-md-12 my-5 mb-4 px-5 bg-white rounded">
                         <div className="row text-center">
                             <div className="col-md-12">
-                                <h2><strong>Nick's Carpentry Shop</strong></h2>
+                                <h2><strong>Customers</strong></h2>
                             </div>
                         </div>
                         <div className="row text-center">
-                            <div className="col-md-5 bg-danger text-white rounded mb-1 mt-2">
-                                <h3>Expenses</h3>
-                                <p>-$8,000.00</p>
-                            </div>
-                            <div className="col-md-2"></div>
-                            <div className="col-md-5 bg-success text-white rounded mb-1 mt-2">
-                                <h3>Revenue</h3>
-                                <p className="">$10,000.00</p>
+                            <div className="col-md-12 p-2 d-flex justify-content-center">
+                                <td><button className="btn btn-success addInventoryBtn"><span><img src={require("../../images/new-icon.jpg")} alt="Add a Customer" /> Add a Customer</span></button></td>
                             </div>
                         </div>
-                        <div className="row text-center bg-primary text-white rounded">
+                        <div class="row">
                             <div className="col-md-12">
-                                <h3>Margin</h3>
-                                <h4>$2,000</h4>
-                            </div>
-                        </div>
-                        <div className="row text-center">
-                            <div className="col-md-12">
-                                <h3>Charts</h3>
+                                <div class="card mb-2">
+                                    <h5 className="card-header" id="customerHeader1">
+                                        <span><strong>Nick Ramsay</strong></span>
+                                        <button className="btn btn-primary m-1 float-right editInventoryBtn"><img src={require("../../images/edit-icon.png")} alt="Edit Item" /></button>
+                                        <button className="btn btn-danger m-1 float-right deleteInventoryBtn"><img src={require("../../images/delete-icon.png")} alt="Delete Item" /></button>
+
+                                    </h5>
+                                    <div className="card-body">
+                                        <p><strong>Phone: </strong>0404470705</p>
+                                        <p><strong>Suburb: </strong>Newtown</p>
+                                        <button className="btn btn-dark m-1 customerDetails" type="button" data-toggle="collapse" id="customer1" data-target="#customerDetails1">Show All Details</button>
+                                        <div id="customerDetails1" class="collapse" aria-labelledby="headingOne" data-parent="#customer1">
+                                            <div class="card-body">
+                                                <h6>Customer Since: [DATE]</h6>
+                                                <p>Street Address</p>
+                                                <p>Suburb</p>
+                                                <p>Post Code</p>
+                                                <p>Phone Number</p>
+                                                <p>Email</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
