@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../../components/Navbar/Navbar";
+import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
 import "./style.css";
 
 class Inventory extends Component {
@@ -51,6 +52,7 @@ class Inventory extends Component {
                         </table>
                     </div>
                 </div>
+                <NewProjectModal />
             </div>
         )
     }
