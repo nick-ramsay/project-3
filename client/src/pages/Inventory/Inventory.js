@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
+import NewInventoryModal from "../../components/NewInventoryModal/NewInventoryModal";
 import "./style.css";
 
 class Inventory extends Component {
@@ -21,7 +22,7 @@ class Inventory extends Component {
                         </div>
                         <div className="row text-center">
                             <div className="col-md-12 p-2 d-flex justify-content-center">
-                            <td><button className="btn btn-success addInventoryBtn"><span><img src={require("../../images/new-icon.jpg")} alt="Add New Item" /> Add Item</span></button></td>
+                            <td><button className="btn btn-success addInventoryBtn" data-toggle="modal" data-target="#newInventoryModal"><span><img src={require("../../images/new-icon.jpg")} alt="Add New Item" /> Add Item</span></button></td>
                             </div>
                         </div>
                         <table className="table table-striped col-md-12">
@@ -53,6 +54,7 @@ class Inventory extends Component {
                     </div>
                 </div>
                 <NewProjectModal />
+                <NewInventoryModal />
             </div>
         )
     }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
+import NewCustomerModal from "../../components/NewCustomerModal/NewCustomerModal";
 import "./style.css";
 
 class Customers extends Component {
@@ -21,7 +22,7 @@ class Customers extends Component {
                         </div>
                         <div className="row text-center">
                             <div className="col-md-12 p-2 d-flex justify-content-center">
-                                <td><button className="btn btn-success addInventoryBtn"><span><img src={require("../../images/new-icon.jpg")} alt="Add a Customer" /> Add a Customer</span></button></td>
+                                <td><button className="btn btn-success addInventoryBtn" data-toggle="modal" data-target="#newCustomerModal"><span><img src={require("../../images/new-icon.jpg")} alt="Add a Customer" /> Add a Customer</span></button></td>
                             </div>
                         </div>
                         <div class="row">
@@ -53,6 +54,7 @@ class Customers extends Component {
                     </div>
                 </div>
                 <NewProjectModal />
+                <NewCustomerModal />
             </div>
         )
     }
