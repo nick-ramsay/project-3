@@ -56,7 +56,7 @@ function NewCustomerForm(props) {
                             </div>
                             <div className="form-group col-md-6">
                                 <label for="addCustomerPostcode">Postcode</label>
-                                <input type="number" placeholder="2000" min="0001" max="9999" className="form-control" id="addCustomerPostcode" placeholder="Postcode" />
+                                <input type="number" placeholder="2000" min="0001" max="9999" className="form-control" id="addCustomerPostcode" />
                             </div>
                         </div>
                     </form>
