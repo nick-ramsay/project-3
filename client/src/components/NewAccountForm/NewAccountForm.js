@@ -12,74 +12,74 @@ function NewAccountForm(props) {
                         <div className="form-row">
                             <div className="form-group col-md-12">
                                 <label for="createBusinessName">Business Name</label>
-                                <input type="text" className="form-control" id="createBusinessName" placeholder="Business Name" />
+                                <input type="text" className="form-control" id="createBusinessName" placeholder="Business Name"  name="businessName" onChange={props.handleFormUpdate}/>
                             </div>
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-12">
                                 <label for="createOwnerName">Owner Name</label>
-                                <input type="text" className="form-control" id="createOwnerName" placeholder="Owner Name" />
+                                <input type="text" className="form-control" id="createOwnerName" placeholder="Owner Name" name="ownerName" onChange={props.handleFormUpdate} />
                             </div>
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-6">
                                 <label for="createBusinessPhone">Phone</label>
-                                <input type="phone" className="form-control" id="createBusinessPhone" placeholder="Phone" />
+                                <input type="phone" className="form-control" id="createBusinessPhone" placeholder="Phone" name="phone" onChange={props.handleFormUpdate} />
                             </div>
                             <div className="form-group col-md-6">
                                 <label for="createBusinessEmail">Email</label>
-                                <input type="email" className="form-control" id="createBusinessEmail" placeholder="Email" />
+                                <input type="email" className="form-control" id="createBusinessEmail" placeholder="Email" name="email" onChange={props.handleFormUpdate} />
                             </div>
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-6">
                                 <label for="createPassword">Password</label>
-                                <input type="password" className="form-control" id="createPassword" placeholder="Password" />
+                                <input type="password" className="form-control" id="createPassword" placeholder="Password" name="password" onChange={props.handleFormUpdate}/>
                             </div>
                             <div className="form-group col-md-6">
                                 <label for="createPasswordConfirm">Confirm Password</label>
-                                <input type="password" className="form-control" id="createPasswordConfirm" placeholder="Confirm" />
+                                <input type="password" className="form-control" id="createPasswordConfirm" placeholder="Confirm" name="confirmedPassword" onChange={props.handleFormUpdate} />
                             </div>
                         </div>
                         <div className="form-group">
                             <label for="createBusinessAddress1">Address</label>
-                            <input type="text" className="form-control" id="createBusinessAddress1" placeholder="1234 Main St" />
+                            <input type="text" className="form-control" id="createBusinessAddress1" placeholder="1234 Main St" name="address" onChange={props.handleFormUpdate}/>
                         </div>
                         <div className="form-group">
                             <label for="createBusinessAddress2">Address 2</label>
-                            <input type="text" className="form-control" id="createBusinessAddress2" placeholder="Apartment, studio, or floor" />
+                            <input type="text" className="form-control" id="createBusinessAddress2" placeholder="Apartment, studio, or floor" name="address2" onChange={props.handleFormUpdate}/>
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-6">
                                 <label for="createBusinessCity">City</label>
-                                <input type="text" className="form-control" id="createBusinessCity" />
+                                <input type="text" className="form-control" id="createBusinessCity" name="city" onChange={props.handleFormUpdate}/>
                             </div>
                             <div className="form-group col-md-4">
                                 <label for="createBusinessState">State</label>
-                                <select id="createBusinessState" className="form-control">
+                                <select id="createBusinessState" className="form-control" name="state" onChange={props.handleFormUpdate}>
                                     <option selected>Choose state...</option>
                                     <option>New South Wales</option>
                                 </select>
                             </div>
                             <div className="form-group col-md-2">
                                 <label for="createBusinessPostcode">Postcode</label>
-                                <input type="text" className="form-control" id="createBusinessPostcode" placeholder="Postcode" />
+                                <input type="text" className="form-control" id="createBusinessPostcode" placeholder="Postcode" name="postcode" onChange={props.handleFormUpdate}/>
                             </div>
                         </div>
                         <h5 className="text-left">Service Details</h5>
                         <div className="form-row">
                             <div className="form-group col-md-6">
                                 <label for="createBusinessRate">Standard Hourly Rate</label>
-                                <input type="number" placeholder="10.00" step="0.01" min="0" className="form-control" id="createBusinessRate" />
+                                <input type="number" placeholder="10.00" step="0.01" min="0" className="form-control" id="createBusinessRate" name="hourlyRate" onChange={props.handleFormUpdate}/>
                             </div>
                             <div className="form-group col-md-6">
                                 <label for="createBusinessSpecialty">Specialties</label>
-                                <select id="createBusinessSpecialty" className="custom-select" multiple>
+                                <select id="createBusinessSpecialty" className="custom-select" multiple name="specialties" onChange={props.handleFormUpdate}>
                                     <option>Carpentry</option>
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" className="btn btn-primary mb-1 float-right" id="createAccountBtn">Create Account</button>
+                        <button type="button" className="btn btn-primary mb-1 float-right" id="createAccountBtn" name="createAccountBtn" onClick={props.handleNewAccountSubmit}>Create Account</button>
                     </form>
                 </div>
             </div>
