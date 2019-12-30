@@ -7,7 +7,6 @@ import "./style.css";
 
 class NewAccount extends Component {
     state = {
-
     }
 
     handleFormUpdate = event => {
@@ -15,10 +14,6 @@ class NewAccount extends Component {
         this.setState({
             [name]: value
         });
-        console.log(this.state);
-        if (this.state.password) {
-            console.log(sha256(this.state.password))
-        };
     }
 
     handleNewAccountSubmit = event => {
@@ -45,7 +40,6 @@ class NewAccount extends Component {
                 hourlyRate: this.state.hourlyRate,
                 specialty: this.state.specialty
             }
-            console.log(newAccountInfo);
             API.createAccount(newAccountInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/
         } else if (this.state.password !== this.state.confirmedPassword) {
             console.log("Form complete but password and confirmed password differ")

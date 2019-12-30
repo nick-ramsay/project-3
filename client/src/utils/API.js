@@ -4,7 +4,6 @@ const apiURL = process.env.NODE_ENV === 'production'? '' : '//localhost:3001'
 
 export default {
     createAccount: function (newAccountInfo) {
-        console.log("Create Acccounts API Called...");
         return axios({method:"post", url: apiURL + "/api/crafter/create-account", data: newAccountInfo})
     }
     /*

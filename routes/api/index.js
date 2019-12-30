@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const bookRoutes = require("./crafterRoutes");
+const crafterRoutes = require("./crafterRoutes");
 
 // Book routes
 router.use("/crafter", crafterRoutes);

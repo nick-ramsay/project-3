@@ -2,7 +2,7 @@ const db = require("../models");
 
 module.exports = {
     createAccount: function(req,res) {
-        db.createAccount
+        db.Accounts
         .create(req.body)
         .then(dbModel => res.json(dbModel))
         .then(console.log(req.body))
