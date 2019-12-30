@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const apiUrl = process.env.NODE_ENV === 'production'? '' : '//localhost:3001'
+const apiURL = process.env.NODE_ENV === 'production'? '' : '//localhost:3001'
 
 export default {
-    createAccount: function (query) {
+    createAccount: function (newAccountInfo) {
         console.log("Create Acccounts API Called...");
-        return axios({method:"post", url: apiURL + "/api/create-account", data: newAccountData})
+        return axios({method:"post", url: apiURL + "/api/crafter/create-account", data: newAccountInfo})
     }
     /*
     getBookResults: function (query) {

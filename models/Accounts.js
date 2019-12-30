@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Accounts = new Schema({
+const AccountsSchema = new Schema({
     businessName: { type: String },
     ownerName: { type: String },
     phone: { type: Number },
@@ -13,9 +13,9 @@ const Accounts = new Schema({
     state: { type: String },
     postcode: { type: Number },
     hourlyRate: { type: Number },
-    specialties: {  type: Array }
+    specialty: {  type: String }
 })
 
-const Accounts = mongoose.model("Accounts", Accounts);
+const Accounts = mongoose.model("Accounts", AccountsSchema);
 
 module.exports = Accounts;

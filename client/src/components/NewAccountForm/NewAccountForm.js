@@ -12,7 +12,7 @@ function NewAccountForm(props) {
                         <div className="form-row">
                             <div className="form-group col-md-12">
                                 <label for="createBusinessName">Business Name</label>
-                                <input type="text" className="form-control" id="createBusinessName" placeholder="Business Name"  name="businessName" onChange={props.handleFormUpdate}/>
+                                <input type="text" className="form-control" id="createBusinessName" placeholder="Business Name" name="businessName" onChange={props.handleFormUpdate} />
                             </div>
                         </div>
                         <div className="form-row">
@@ -34,7 +34,7 @@ function NewAccountForm(props) {
                         <div className="form-row">
                             <div className="form-group col-md-6">
                                 <label for="createPassword">Password</label>
-                                <input type="password" className="form-control" id="createPassword" placeholder="Password" name="password" onChange={props.handleFormUpdate}/>
+                                <input type="password" className="form-control" id="createPassword" placeholder="Password" name="password" onChange={props.handleFormUpdate} />
                             </div>
                             <div className="form-group col-md-6">
                                 <label for="createPasswordConfirm">Confirm Password</label>
@@ -43,39 +43,50 @@ function NewAccountForm(props) {
                         </div>
                         <div className="form-group">
                             <label for="createBusinessAddress1">Address</label>
-                            <input type="text" className="form-control" id="createBusinessAddress1" placeholder="1234 Main St" name="address" onChange={props.handleFormUpdate}/>
+                            <input type="text" className="form-control" id="createBusinessAddress1" placeholder="1234 Main St" name="address" onChange={props.handleFormUpdate} />
                         </div>
                         <div className="form-group">
                             <label for="createBusinessAddress2">Address 2</label>
-                            <input type="text" className="form-control" id="createBusinessAddress2" placeholder="Apartment, studio, or floor" name="address2" onChange={props.handleFormUpdate}/>
+                            <input type="text" className="form-control" id="createBusinessAddress2" placeholder="Apartment, studio, or floor" name="address2" onChange={props.handleFormUpdate} />
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-6">
                                 <label for="createBusinessCity">City</label>
-                                <input type="text" className="form-control" id="createBusinessCity" name="city" onChange={props.handleFormUpdate}/>
+                                <input type="text" className="form-control" id="createBusinessCity" name="city" onChange={props.handleFormUpdate} />
                             </div>
                             <div className="form-group col-md-4">
-                                <label for="createBusinessState">State</label>
-                                <select id="createBusinessState" className="form-control" name="state" onChange={props.handleFormUpdate}>
+                                <label for="addCustomerState">State</label>
+                                <select id="addCustomerState" className="form-control" name="state" onChange={props.handleFormUpdate}>
                                     <option selected>Choose state...</option>
                                     <option>New South Wales</option>
+                                    <option>Victoria</option>
+                                    <option>Queensland</option>
+                                    <option>Tasmania</option>
+                                    <option>Northern Territory</option>
+                                    <option>South Australia</option>
+                                    <option>Western Australia</option>
                                 </select>
                             </div>
                             <div className="form-group col-md-2">
                                 <label for="createBusinessPostcode">Postcode</label>
-                                <input type="text" className="form-control" id="createBusinessPostcode" placeholder="Postcode" name="postcode" onChange={props.handleFormUpdate}/>
+                                <input type="text" className="form-control" id="createBusinessPostcode" placeholder="Postcode" name="postcode" onChange={props.handleFormUpdate} />
                             </div>
                         </div>
                         <h5 className="text-left">Service Details</h5>
                         <div className="form-row">
                             <div className="form-group col-md-6">
                                 <label for="createBusinessRate">Standard Hourly Rate</label>
-                                <input type="number" placeholder="10.00" step="0.01" min="0" className="form-control" id="createBusinessRate" name="hourlyRate" onChange={props.handleFormUpdate}/>
+                                <input type="number" placeholder="10.00" step="0.01" min="0" className="form-control" id="createBusinessRate" name="hourlyRate" onChange={props.handleFormUpdate} />
                             </div>
                             <div className="form-group col-md-6">
-                                <label for="createBusinessSpecialty">Specialties</label>
-                                <select id="createBusinessSpecialty" className="custom-select" multiple name="specialties" onChange={props.handleFormUpdate}>
+                                <label for="createBusinessSpecialty">Specialty</label>
+                                <select id="createBusinessSpecialty" className="form-control" name="specialty" onChange={props.handleFormUpdate}>
+                                    <option selected>Choose specialty...</option>
+                                    <option>Arts and Crafts</option>
+                                    <option>Auto Repair</option>
                                     <option>Carpentry</option>
+                                    <option>House Painting</option>
+                                    <option>Other</option>
                                 </select>
                             </div>
                         </div>
