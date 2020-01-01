@@ -1,7 +1,8 @@
 import React from "react";
 import "./style.css";
 
-function Navbar(props) {
+function NavbarComponent(props) {
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <a className="navbar-brand" href="/home"><span><img src={require("../../images/home.png")} alt="Home" /><strong> crafter</strong></span></a>
@@ -19,10 +20,11 @@ function Navbar(props) {
                     <a className="nav-item nav-link" href="/inventory"><img src={require("../../images/inventory.jpg")} alt="Inventory" /> Inventory</a>
                     <a className="nav-item nav-link" href="/account"><img src={require("../../images/profile.jpg")} alt="Account" /> Account</a>
                     <a className="nav-item nav-link" href="/settings"><img src={require("../../images/settings.jpg")} alt="Settings" /> Settings</a>
+                    <a className="nav-item nav-link" href="#" name="logout" onClick={props.handleLogout}><img src={require("../../images/logout_icon.jpg")} alt="Logout" /> Log Out</a>
                 </div>
             </div>
         </nav>
     )
 }
 
-export default Navbar;
+export default NavbarComponent;

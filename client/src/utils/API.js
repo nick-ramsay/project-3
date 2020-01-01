@@ -5,6 +5,9 @@ const apiURL = process.env.NODE_ENV === 'production'? '' : '//localhost:3001'
 export default {
     createAccount: function (newAccountInfo) {
         return axios({method:"post", url: apiURL + "/api/crafter/create-account", data: newAccountInfo})
+    },
+    login: function(credentials) {
+        return axios({method:"post", url: apiURL + "/api/crafter/login", data: credentials})
     }
     /*
     getBookResults: function (query) {

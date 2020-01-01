@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Navbar from "../../components/Navbar/Navbar";
+import Navbar from "../Navbar/Navbar";
 import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
 import "./style.css";
 
@@ -17,7 +17,7 @@ class Settings extends Component {
                         <div className="row text-center">
                             <div className="col-md-12">
                                 <h2><strong>Settings</strong></h2>
-                                <p>NOTE: May note be needed, account can likely suffice...</p>
+                                <p>NOTE: May not be needed, account can likely suffice...</p>
                             </div>
                         </div>
                     </div>

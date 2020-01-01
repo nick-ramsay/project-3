@@ -40,12 +40,16 @@ class NewAccount extends Component {
                 hourlyRate: this.state.hourlyRate,
                 specialty: this.state.specialty
             }
-            API.createAccount(newAccountInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/
+            API.createAccount(newAccountInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
+            window.location.href = "/";
+
         } else if (this.state.password !== this.state.confirmedPassword) {
-            console.log("Form complete but password and confirmed password differ")
+            console.log("Form complete but password and confirmed password differ");
+            alert("Form complete but password and confirmed password differ");
         } 
         else {
-            console.log("Sorry... form not complete.")
+            console.log("Sorry... form not complete.");
+            alert("Sorry... form not complete.");
         }
 
     }

@@ -1,12 +1,18 @@
 const db = require("../models");
 
 module.exports = {
-    createAccount: function(req,res) {
+    createAccount: function (req, res) {
         db.Accounts
-        .create(req.body)
-        .then(dbModel => res.json(dbModel))
-        .then(console.log(req.body))
-        .catch(err => res.status(422).json(err));
+            .create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .then(console.log(req.body))
+            .catch(err => res.status(422).json(err));
+    },
+    login: function (req, res) {
+        db.Accounts
+            .find({ email: req.body.loginEmail, password: req.body.loginPassword })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
     }
     /*
     getSavedBooks: function (req, res) {

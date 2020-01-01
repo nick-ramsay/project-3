@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Navbar from "../../components/Navbar/Navbar";
+import Navbar from "../Navbar/Navbar";
 import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
 import NewInventoryModal from "../../components/NewInventoryModal/NewInventoryModal";
 import "./style.css";

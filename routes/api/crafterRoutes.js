@@ -10,6 +10,10 @@ const crafterController = require("../../controllers/crafterController");
 router
   .route("/create-account")
   .post(crafterController.createAccount);
+
+router
+  .route("/login")
+  .post(crafterController.login);
 /*
 router
   .route("/delete/:id")

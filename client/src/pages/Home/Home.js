@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Chart from 'chart.js';
-import Navbar from "../../components/Navbar/Navbar";
+import Navbar from "../Navbar/Navbar"
 import "./style.css";
 import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
 

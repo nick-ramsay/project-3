@@ -1,9 +1,42 @@
 import React, { Component } from "react";
+import { sha256, sha224 } from 'js-sha256';
 import LoginNavbar from "../../components/LoginNavbar/LoginNavbar";
+import LoginForm from "../../components/LoginForm/LoginForm";
+import API from "../../utils/API"
 import "./style.css";
 
 class Login extends Component {
     state = {
+    }
+
+    handleFormUpdate = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    }
+
+    loginSuccess = (crafterClient,crafterToken) => {
+        localStorage.setItem("crafterClient",crafterClient);
+        localStorage.setItem("crafterToken", crafterToken);
+        window.location = "/home";
+    }
+
+    handleLoginAttempt = event => {
+        event.preventDefault();
+
+        var credentials;
+        console.log("Clicked login!");
+        if (this.state.loginEmail && this.state.loginPassword) {
+            credentials = {
+                loginEmail: this.state.loginEmail,
+                loginPassword: sha256(this.state.loginPassword)
+            }
+            alert("You completed the form...");
+            API.login(credentials).then(res => (res.data[0] !== undefined) ? this.loginSuccess(res.data[0]._id, res.data[0].password) : alert("Sorry... not a valid account, password combination"))
+        } else {
+            alert("Please enter both a username and a password.");
+        }
 
     }
 
@@ -11,26 +44,10 @@ class Login extends Component {
         return (
             <div>
                 <LoginNavbar />
-                <div className="container">
-                    <div className="row h-70 justify-content-center align-items-center">
-                        <div className="col-md-6 mt-4">
-                            <form class="my-5 mb-4 py-5 px-5 bg-white rounded">
-                                <div className="form-group">
-                                    <h1 class="mb-3"><strong>Account Login</strong></h1>
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                                </div>
-                                <div className="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
-                                </div>
-                                <button type="submit" className="btn btn-primary mb-5">Log In</button>
-                                <p>New to Crafter? <a href="/create-account"><strong>Create an account here!</strong></a></p>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <LoginForm 
+                 handleFormUpdate={this.handleFormUpdate}
+                 handleLoginAttempt={this.handleLoginAttempt}
+                />
             </div>
         )
     }
