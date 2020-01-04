@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import moment from "moment";
-import mongoose from "mongoose";
 import Navbar from "../Navbar/Navbar";
 import CustomerList from "../../components/CustomerList/CustomerList"
 import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
 import NewCustomerModal from "../../components/NewCustomerModal/NewCustomerModal";
+import EditCustomerModal from "../../components/EditCustomerModal/EditCustomerModal";
 import API from "../../utils/API"
 import "./style.css";
 
 class Customers extends Component {
     state = {
-        customers: []
+        customers: [],
+        editedCustomer: {}
     }
 
     componentDidMount() {
@@ -25,10 +26,11 @@ class Customers extends Component {
 
     editCustomer = event => {
         var editedCustomer = event.currentTarget.dataset.customerStateIndex;
-        var editedCustomerInfo = {
-            customerID: this.state.customers[editedCustomer]
-        }
+        var editedCustomerInfo = this.state.customers[editedCustomer]
         console.log(editedCustomerInfo);
+
+        this.setState({ editedCustomer: editedCustomerInfo });
+        
         //API.cancelCustomer(cancelledCustomerInfo).then(res => console.log(res));
         //window.location.href = "/customers";
     }
@@ -129,6 +131,11 @@ class Customers extends Component {
                 <NewCustomerModal
                     handleFormUpdate={this.handleFormUpdate}
                     handleNewCustomerSubmit={this.handleNewCustomerSubmit}
+                />
+                <EditCustomerModal
+                    handleFormUpdate={this.handleFormUpdate}
+                    handleEditCustomerSubmit={this.handleEditCustomerSubmit}
+                    customerDetails={this.state.editedCustomer}
                 />
                 <NewProjectModal />
             </div>
