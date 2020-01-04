@@ -23,13 +23,24 @@ class Customers extends Component {
 
     }
 
+    editCustomer = event => {
+        var editedCustomer = event.currentTarget.dataset.customerStateIndex;
+        var editedCustomerInfo = {
+            customerID: this.state.customers[editedCustomer]
+        }
+        console.log(editedCustomerInfo);
+        //API.cancelCustomer(cancelledCustomerInfo).then(res => console.log(res));
+        //window.location.href = "/customers";
+    }
+
     cancelCustomer = event => {
         var cancelledCustomerInfo = {
             customerID: event.currentTarget.dataset.cancelCustomerId,
             cancelledDate: new Date()
         }
         console.log(cancelledCustomerInfo);
-        API.cancelCustomer(cancelledCustomerInfo).then(res => console.log(res))
+        API.cancelCustomer(cancelledCustomerInfo).then(res => console.log(res));
+        window.location.href = "/customers";
     }
 
     handleFormUpdate = event => {
@@ -93,9 +104,10 @@ class Customers extends Component {
                                 <td><button className="btn btn-success addInventoryBtn" data-toggle="modal" data-target="#newCustomerModal"><span><img src={require("../../images/new-icon.jpg")} alt="Add a Customer" /> Add a Customer</span></button></td>
                             </div>
                         </div>
-                        {this.state.customers.map(customer => (
+                        {this.state.customers.map((customer,index) => (
                             <CustomerList
                                 customerID={customer._id}
+                                customerStateIndex={index}
                                 created={customer.created}
                                 cancelled={customer.cancelled}
                                 firstName={customer.firstName}
@@ -108,6 +120,7 @@ class Customers extends Component {
                                 state={customer.state}
                                 postcode={customer.postcode}
                                 cancelCustomer={this.cancelCustomer}
+                                editCustomer={this.editCustomer}
                             />
                         ))
                         }

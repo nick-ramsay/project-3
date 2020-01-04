@@ -14,6 +14,7 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+    //START: Customer controllers...
     getCustomers: function (req, res) {
         db.Customers
             .find({})
@@ -22,7 +23,6 @@ module.exports = {
     },
     createCustomer: function (req, res) {
         console.log("Create customer controller called...");
-        console.log(req.body);
         db.Customers
             .create(req.body)
             .then(dbModel => res.json(dbModel))
@@ -38,6 +38,7 @@ module.exports = {
             .then(console.log(req.body))
             .catch(err => res.status(422).json(err));
     },
+    //END: ...Customer controllers
     createInventoryItem: function (req, res) {
         console.log("Create inventory controller called...");
         console.log(req.body);
@@ -48,19 +49,6 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     }
     /*
-    getSavedBooks: function (req, res) {
-        db.SavedBooks.find()
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-    },
-
-    saveBook: function (req, res) {
-        db.SavedBooks
-            .create(req.body)
-            .then(dbModel => res.json(dbModel))
-            .then(console.log(req.body))
-            .catch(err => res.status(422).json(err));
-    },
     deleteBook: function (req, res) {
         db.SavedBooks
             .findById({ _id: req.params.id })

@@ -12,7 +12,7 @@ function CustomerList(props) {
                     <p><strong>Phone: </strong>{props.phone && props.phone}</p>
                     <p><strong>Suburb: </strong>{props.city && props.city}</p>
                     <button className="btn btn-dark m-1 customerDetails" type="button" data-toggle="collapse" id={props.customerID && "customer" + props.customerID} data-target={props.customerID && "#customerDetails" + props.customerID}>Details</button>
-                    <button className="btn btn-primary m-1 float-right" id="editCustomerBtn"><img src={require("../../images/edit-icon.png")} alt="Edit Customer" onClick={props.editCustomer}/></button>
+                    <button className="btn btn-primary m-1 float-right" id="editCustomerBtn" data-customer-state-index={props.customerStateIndex} onClick={props.editCustomer}><img src={require("../../images/edit-icon.png")} alt="Edit Customer" /></button>
                     {!props.cancelled && <button className="btn btn-danger m-1 float-right" id="deleteCustomerBtn" data-cancel-customer-id={props.customerID} name="deleteCustomerBtn" onClick={props.cancelCustomer}><img src={require("../../images/delete-icon.png")} alt="End Date Customer" /></button>}
                     <div id={props.customerID && "customerDetails" + props.customerID} class="collapse" aria-labelledby="headingOne" data-parent={props.customerID && "#customer" + props.customerID}>
                         <div class="card-body">
