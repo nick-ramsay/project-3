@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import moment from "moment";
+import mongoose from "mongoose";
 import Navbar from "../Navbar/Navbar";
 import CustomerList from "../../components/CustomerList/CustomerList"
 import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
@@ -13,11 +15,21 @@ class Customers extends Component {
 
     componentDidMount() {
         this.getCustomers();
+        console.log(moment().format());
     }
 
     getCustomers = () => {
         API.getCustomers().then(res => this.setState({ customers: res.data }))
 
+    }
+
+    cancelCustomer = event => {
+        var cancelledCustomerInfo = {
+            customerID: event.currentTarget.dataset.cancelCustomerId,
+            cancelledDate: new Date()
+        }
+        console.log(cancelledCustomerInfo);
+        API.cancelCustomer(cancelledCustomerInfo).then(res => console.log(res))
     }
 
     handleFormUpdate = event => {
@@ -39,6 +51,7 @@ class Customers extends Component {
         ) {
             newCustomerInfo = {
                 contextID: localStorage.getItem("crafterClient"),
+                created: new Date(),
                 firstName: this.state.addCustomerFirstName,
                 lastName: this.state.addCustomerLastName,
                 phone: this.state.addCustomerPhone,
@@ -83,6 +96,8 @@ class Customers extends Component {
                         {this.state.customers.map(customer => (
                             <CustomerList
                                 customerID={customer._id}
+                                created={customer.created}
+                                cancelled={customer.cancelled}
                                 firstName={customer.firstName}
                                 lastName={customer.lastName}
                                 phone={customer.phone}
@@ -92,6 +107,7 @@ class Customers extends Component {
                                 city={customer.city}
                                 state={customer.state}
                                 postcode={customer.postcode}
+                                cancelCustomer={this.cancelCustomer}
                             />
                         ))
                         }

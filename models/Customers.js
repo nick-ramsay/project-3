@@ -3,6 +3,8 @@ const Schema = mongoose.Schema;
 
 const CustomersSchema = new Schema({
     contextID: {type: String},
+    created: {type: Date},
+    cancelled: {type: Date},
     firstName: { type: String },
     lastName: { type: String },
     phone: { type: Number },

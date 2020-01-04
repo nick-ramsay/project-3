@@ -29,6 +29,15 @@ module.exports = {
             .then(console.log(req.body))
             .catch(err => res.status(422).json(err));
     },
+    cancelCustomer: function (req, res) {
+        console.log("Cancel customer controller called...");
+        console.log(req.body);
+        db.Customers
+            .update({_id: req.body.customerID},{cancelled: req.body.cancelledDate})
+            .then(dbModel => res.json(dbModel))
+            .then(console.log(req.body))
+            .catch(err => res.status(422).json(err));
+    },
     createInventoryItem: function (req, res) {
         console.log("Create inventory controller called...");
         console.log(req.body);

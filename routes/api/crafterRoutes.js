@@ -23,6 +23,10 @@ router
   .route("/create-customer")
   .post(crafterController.createCustomer)
 
+  router
+  .route("/cancel-customer")
+  .post(crafterController.cancelCustomer)
+
 router
   .route("/create-inventory-item")
   .post(crafterController.createInventoryItem)
