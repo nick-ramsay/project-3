@@ -2,10 +2,44 @@ import React, { Component } from "react";
 import Navbar from "../Navbar/Navbar";
 import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
 import NewInventoryModal from "../../components/NewInventoryModal/NewInventoryModal";
+import API from "../../utils/API";
 import "./style.css";
 
 class Inventory extends Component {
     state = {
+    }
+
+    handleFormUpdate = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+        console.log(this.state);
+    }
+
+    handleNewInventoryItemSubmit = event => {
+        event.preventDefault();
+        var newInventoryItemInfo;
+
+        if (
+            (this.state.addInventoryName && this.state.addInventoryQuantity) && this.state.addInventoryQuantity >= 0
+        ) {
+            newInventoryItemInfo = {
+                contextID: localStorage.getItem("crafterClient"),
+                itemName: this.state.addInventoryName,
+                quantity: this.state.addInventoryQuantity
+            }
+            API.createInventoryItem(newInventoryItemInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
+            window.location.href = "/inventory";
+
+        } else if (this.state.addInventoryQuantity < 0) {
+            console.log("Inventory quantity must be greater than or equal to zero");
+            alert("Inventory quantity must be greater than or equal to zero");
+        } 
+        else {
+            console.log("Sorry... form not complete.");
+            alert("Sorry... form not complete.");
+        }
 
     }
 
@@ -54,7 +88,10 @@ class Inventory extends Component {
                     </div>
                 </div>
                 <NewProjectModal />
-                <NewInventoryModal />
+                <NewInventoryModal 
+                    handleFormUpdate = {this.handleFormUpdate}
+                    handleNewInventoryItemSubmit = {this.handleNewInventoryItemSubmit}
+                />
             </div>
         )
     }

@@ -13,6 +13,30 @@ module.exports = {
             .find({ email: req.body.loginEmail, password: req.body.loginPassword })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
+    },
+    getCustomers: function (req, res) {
+        db.Customers
+            .find({})
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    createCustomer: function (req, res) {
+        console.log("Create customer controller called...");
+        console.log(req.body);
+        db.Customers
+            .create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .then(console.log(req.body))
+            .catch(err => res.status(422).json(err));
+    },
+    createInventoryItem: function (req, res) {
+        console.log("Create inventory controller called...");
+        console.log(req.body);
+        db.Inventory
+            .create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .then(console.log(req.body))
+            .catch(err => res.status(422).json(err));
     }
     /*
     getSavedBooks: function (req, res) {

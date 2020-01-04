@@ -8,7 +8,23 @@ export default {
     },
     login: function(credentials) {
         return axios({method:"post", url: apiURL + "/api/crafter/login", data: credentials})
+    },
+    //START: Customer API calls...
+    getCustomers: function () {
+        console.log("Called get customers API");
+        return axios({method:"get", url: apiURL + "/api/crafter/get-customers"});
+    },
+    createCustomer: function (newCustomerInfo) {
+        return axios({method:"post", url: apiURL + "/api/crafter/create-customer", data: newCustomerInfo})
+    },
+    //END: ... Customer API Calls
+    //START: Inventory API Calls...
+
+    createInventoryItem: function (newInventoryItemInfo) {
+        return axios({method:"post", url: apiURL + "/api/crafter/create-inventory-item", data: newInventoryItemInfo})
     }
+
+    //END: ... Inventory API Calls
     /*
     getBookResults: function (query) {
         return axios.get("https://www.googleapis.com/books/v1/volumes?q=" + query + "&key="+keys.google_books.apiKey)

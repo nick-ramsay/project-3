@@ -14,6 +14,18 @@ router
 router
   .route("/login")
   .post(crafterController.login);
+
+router
+  .route("/get-customers")
+  .get(crafterController.getCustomers);
+
+router
+  .route("/create-customer")
+  .post(crafterController.createCustomer)
+
+router
+  .route("/create-inventory-item")
+  .post(crafterController.createInventoryItem)
 /*
 router
   .route("/delete/:id")

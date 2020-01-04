@@ -1,6 +1,5 @@
 import React from "react";
 import "./style.css";
-import NewInventoryForm from "../NewInventoryForm/NewInventoryForm"
 
 function NewInventoryModal(props) {
     return (
@@ -14,11 +13,31 @@ function NewInventoryModal(props) {
                         </button>
                     </div>
                     <div className="modal-body">
-                        <NewInventoryForm />
+                        <div className="container">
+                            <div className="row h-70 justify-content-center align-items-center">
+                                <div className="col-md-12">
+                                    <form>
+                                        <h5 className="text-left">Inventory Details</h5>
+                                        <div className="form-row">
+                                            <div className="form-group col-md-12">
+                                                <label for="addItemName">Add Inventory Item Name</label>
+                                                <input type="text" className="form-control" id="addInventoryName" placeholder="Item Name" name="addInventoryName" onChange={props.handleFormUpdate}/>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="form-group col-md-12">
+                                                <label for="addInventoryQuantity">Add Item Quantity</label>
+                                                <input type="number" placeholder="0" min="0" className="form-control" id="addInventoryQuantity" name="addInventoryQuantity" onChange={props.handleFormUpdate}/>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary addInventoryItemBtn">Add Inventory Item</button>
+                        <button type="button" className="btn btn-primary" id="addInventoryItemBtn" name="addInventoryItemBtn" onClick={props.handleNewInventoryItemSubmit}>Add Inventory Item</button>
                     </div>
                 </div>
             </div>

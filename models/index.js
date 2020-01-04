@@ -1,4 +1,6 @@
 module.exports = {
-    Accounts: require("./Accounts")
+    Accounts: require("./Accounts"),
+    Customers: require("./Customers"),
+    Inventory: require("./Inventory")
   };
   
