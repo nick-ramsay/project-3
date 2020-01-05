@@ -17,6 +17,9 @@ export default {
     createCustomer: function (newCustomerInfo) {
         return axios({method:"post", url: apiURL + "/api/crafter/create-customer", data: newCustomerInfo})
     },
+    editCustomer: function (editedCustomerInfo) {
+        return axios({method:"post", url: apiURL + "/api/crafter/edit-customer", data: editedCustomerInfo})
+    },
     cancelCustomer: function (cancelledCustomerInfo) {
         return axios({method:"post", url: apiURL + "/api/crafter/cancel-customer", data: cancelledCustomerInfo})
     },

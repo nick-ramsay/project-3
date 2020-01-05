@@ -21,6 +21,10 @@ router
   .get(crafterController.getCustomers);
 
 router
+  .route("/edit-customer")
+  .post(crafterController.editCustomer)
+
+router
   .route("/create-customer")
   .post(crafterController.createCustomer)
 

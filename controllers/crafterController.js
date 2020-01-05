@@ -29,6 +29,25 @@ module.exports = {
             .then(console.log(req.body))
             .catch(err => res.status(422).json(err));
     },
+    editCustomer: function (req, res) {
+        console.log("Edit customer controller called...");
+        console.log(req.body);
+        db.Customers
+            .updateOne({_id: req.body.customerID},{
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                phone: req.body.phone,
+                email: req.body.email,
+                address: req.body.address,
+                address2: req.body.address2,
+                city: req.body.city,
+                state: req.body.state,
+                postcode: req.body.postcode
+            })
+            .then(dbModel => res.json(dbModel))
+            .then(console.log(req.body))
+            .catch(err => res.status(422).json(err));
+    },
     cancelCustomer: function (req, res) {
         console.log("Cancel customer controller called...");
         console.log(req.body);

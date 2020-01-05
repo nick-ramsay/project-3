@@ -16,7 +16,6 @@ class Customers extends Component {
 
     componentDidMount() {
         this.getCustomers();
-        console.log(moment().format());
     }
 
     
@@ -25,23 +24,58 @@ class Customers extends Component {
         this.setState({
             [name]: value
         });
-        console.log(this.state);
     }
 
     getCustomers = () => {
         API.getCustomers().then(res => this.setState({ customers: res.data }))
-
     }
 
     editCustomer = event => {
         var editedCustomer = event.currentTarget.dataset.customerStateIndex;
         var editedCustomerInfo = this.state.customers[editedCustomer]
-        console.log(editedCustomerInfo);
 
-        this.setState({ editedCustomer: editedCustomerInfo });
-        
-        //API.cancelCustomer(cancelledCustomerInfo).then(res => console.log(res));
-        //window.location.href = "/customers";
+        this.setState({
+            editCustomerID: editedCustomerInfo._id,
+            editCustomerFirstName: editedCustomerInfo.firstName,
+            editCustomerLastName: editedCustomerInfo.lastName,
+            editCustomerPhone: editedCustomerInfo.phone,
+            editCustomerEmail: editedCustomerInfo.email,
+            editCustomerAddress1: editedCustomerInfo.address,
+            editCustomerAddress2: editedCustomerInfo.address2,
+            editCustomerCity: editedCustomerInfo.city,
+            editCustomerState: editedCustomerInfo.state,
+            editCustomerPostcode: editedCustomerInfo.postcode,
+            editCustomerCancelled: editedCustomerInfo.cancelled
+        })
+    }
+
+    handleEditCustomerSubmit = event => {
+        event.preventDefault();
+
+        var editCustomerInfo;
+
+        if (
+            (this.state.editCustomerFirstName && this.state.editCustomerLastName && this.state.editCustomerPhone && this.state.editCustomerEmail && this.state.editCustomerAddress1
+            && this.state.editCustomerCity && this.state.editCustomerState && this.state.editCustomerPostcode)
+        ) {
+            editCustomerInfo = {
+                customerID: this.state.editedCustomer._id,
+                firstName: this.state.editCustomerFirstName,
+                lastName: this.state.editCustomerLastName,
+                phone: this.state.editCustomerPhone,
+                email: this.state.editCustomerEmail,
+                address: this.state.editCustomerAddress1,
+                address2: this.state.editCustomerAddress2,
+                city: this.state.editCustomerCity,
+                state: this.state.editCustomerState,
+                postcode: this.state.editCustomerPostcode
+            }
+            API.editCustomer(editCustomerInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
+            window.location.href = "/customers";
+        }
+        else {
+            alert("Sorry... form not complete.");
+        }
     }
 
     cancelCustomer = event => {
@@ -50,7 +84,6 @@ class Customers extends Component {
             customerID: event.currentTarget.dataset.cancelCustomerId,
             cancelledDate: new Date()
         }
-        console.log(cancelledCustomerInfo);
         API.cancelCustomer(cancelledCustomerInfo).then(res => console.log(res));
         window.location.href = "/customers";
     }
@@ -60,9 +93,6 @@ class Customers extends Component {
         var reactivateCustomerInfo = {
             customerID: event.currentTarget.dataset.reactivateCustomerId
         }
-        console.log("Clicked to reactivate customer!");
-
-        console.log(reactivateCustomerInfo);
 
         API.reactivateCustomer(reactivateCustomerInfo).then(res => console.log(res));
         window.location.href = "/customers";
@@ -95,11 +125,9 @@ class Customers extends Component {
             window.location.href = "/customers";
 
         } else if (this.state.addCustomerState === "Choose state...") {
-            console.log("Please choose a valid state...");
             alert("Please choose a valid state...");
         }
         else {
-            console.log("Sorry... form not complete.");
             alert("Sorry... form not complete.");
         }
 
@@ -150,8 +178,18 @@ class Customers extends Component {
                 <EditCustomerModal
                     handleFormUpdate={this.handleFormUpdate}
                     handleEditCustomerSubmit={this.handleEditCustomerSubmit}
-                    customerDetails={this.state.editedCustomer}
                     reactivateCustomer={this.reactivateCustomer}
+                    editCustomerID={this.state.editCustomerID}
+                    editCustomerFirstName={this.state.editCustomerFirstName}
+                    editCustomerLastName={this.state.editCustomerLastName}
+                    editCustomerPhone={this.state.editCustomerPhone}
+                    editCustomerEmail={this.state.editCustomerEmail}
+                    editCustomerAddress1={this.state.editCustomerAddress1}
+                    editCustomerAddress2={this.state.editCustomerAddress2}
+                    editCustomerCity={this.state.editCustomerCity}
+                    editCustomerState={this.state.editCustomerState}
+                    editCustomerPostcode={this.state.editCustomerPostcode}
+                    editCustomerCancelled={this.state.editCustomerCancelled}
                 />
                 <NewProjectModal />
             </div>
