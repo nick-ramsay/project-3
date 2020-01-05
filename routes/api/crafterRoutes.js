@@ -36,10 +36,22 @@ router
   .route("/reactivate-customer")
   .post(crafterController.reactivateCustomer)
 //END: ... Customer Routes
-
+//Start: Inventory Routes...
 router
   .route("/create-inventory-item")
   .post(crafterController.createInventoryItem)
+//
+router
+  .route("/get-inventory")
+  .get(crafterController.getInventory);
+
+router
+  .route("/cancel-inventory")
+  .post(crafterController.cancelInventory)
+
+router
+  .route("/reactivate-inventory")
+  .post(crafterController.reactivateInventory)
 /*
 router
   .route("/delete/:id")

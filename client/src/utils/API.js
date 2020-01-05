@@ -31,6 +31,16 @@ export default {
 
     createInventoryItem: function (newInventoryItemInfo) {
         return axios({method:"post", url: apiURL + "/api/crafter/create-inventory-item", data: newInventoryItemInfo})
+    },
+    getInventory: function () {
+        console.log("Called get-inventory API");
+        return axios({method:"get", url: apiURL + "/api/crafter/get-inventory"});
+    },
+    cancelInventory: function (cancelledInventoryInfo) {
+        return axios({method:"post", url: apiURL + "/api/crafter/cancel-inventory", data: cancelledInventoryInfo})
+    },
+    reactivateInventory: function (reactivateInventoryInfo) {
+        return axios({method:"post", url: apiURL + "/api/crafter/reactivate-inventory", data: reactivateInventoryInfo})
     }
 
     //END: ... Inventory API Calls

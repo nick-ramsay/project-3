@@ -67,6 +67,7 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     //END: ...Customer controllers
+    //START: Inventory controllers...
     createInventoryItem: function (req, res) {
         console.log("Create inventory controller called...");
         console.log(req.body);
@@ -75,14 +76,30 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .then(console.log(req.body))
             .catch(err => res.status(422).json(err));
-    }
-    /*
-    deleteBook: function (req, res) {
-        db.SavedBooks
-            .findById({ _id: req.params.id })
-            .then(dbModel => dbModel.remove())
+    },
+    getInventory: function (req, res) {
+        db.Inventory
+            .find({}).sort({itemName: 1, manufacturer: 1})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
+    },
+    cancelInventory: function (req, res) {
+        console.log("Cancel inventory controller called...");
+        console.log(req.body);
+        db.Inventory
+            .updateOne({_id: req.body.inventoryID},{cancelled: req.body.cancelledDate})
+            .then(dbModel => res.json(dbModel))
+            .then(console.log(req.body))
+            .catch(err => res.status(422).json(err));
+    },
+    reactivateInventory: function (req, res) {
+        console.log("Reactivate inventory controller called...");
+        console.log(req.body);
+        db.Inventory
+            .updateOne({_id: req.body.inventoryID},{$unset: {cancelled:""}})
+            .then(dbModel => res.json(dbModel))
+            .then(console.log(req.body))
+            .catch(err => res.status(422).json(err));
     }
-    */
+    //END:...Inventory controllers
 };

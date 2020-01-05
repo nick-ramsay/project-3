@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../Navbar/Navbar";
+import InventoryList from "../../components/InventoryList/InventoryList";
 import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
 import NewInventoryModal from "../../components/NewInventoryModal/NewInventoryModal";
 import API from "../../utils/API";
@@ -7,6 +8,11 @@ import "./style.css";
 
 class Inventory extends Component {
     state = {
+        inventory: []
+    }
+
+    componentDidMount() {
+        this.getInventory();
     }
 
     handleFormUpdate = event => {
@@ -17,31 +23,51 @@ class Inventory extends Component {
         console.log(this.state);
     }
 
+    getInventory = () => {
+        API.getInventory().then(res => this.setState({ inventory: res.data }))
+    }
+
     handleNewInventoryItemSubmit = event => {
         event.preventDefault();
         var newInventoryItemInfo;
 
-        if (
-            (this.state.addInventoryName && this.state.addInventoryQuantity) && this.state.addInventoryQuantity >= 0
-        ) {
+        if (this.state.addInventoryName && this.state.addManufacturerName) {
             newInventoryItemInfo = {
                 contextID: localStorage.getItem("crafterClient"),
                 itemName: this.state.addInventoryName,
-                quantity: this.state.addInventoryQuantity
+                manufacturer: this.state.addManufacturerName,
+                quantity: 0 //Always set initial quantity to zero... clients must add inventory with an inventory purchase
             }
             API.createInventoryItem(newInventoryItemInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
             window.location.href = "/inventory";
 
-        } else if (this.state.addInventoryQuantity < 0) {
-            console.log("Inventory quantity must be greater than or equal to zero");
-            alert("Inventory quantity must be greater than or equal to zero");
-        } 
+        }
         else {
             console.log("Sorry... form not complete.");
             alert("Sorry... form not complete.");
         }
-
     }
+
+    cancelInventory = event => {
+        event.preventDefault();
+        var cancelledInventoryInfo = {
+            inventoryID: event.currentTarget.dataset.cancelInventoryId,
+            cancelledDate: new Date()
+        }
+        API.cancelInventory(cancelledInventoryInfo).then(res => console.log(res));
+        window.location.href = "/inventory";
+    }
+
+    reactivateInventory = event => {
+        event.preventDefault();
+        var reactivateInventoryInfo = {
+            customerID: event.currentTarget.dataset.reactivateInventoryId
+        }
+
+        API.reactivateInventory(reactivateInventoryInfo).then(res => console.log(res));
+        window.location.href = "/inventory";
+    }
+
 
     render() {
         return (
@@ -56,41 +82,26 @@ class Inventory extends Component {
                         </div>
                         <div className="row text-center">
                             <div className="col-md-12 p-2 d-flex justify-content-center">
-                            <td><button className="btn btn-success addInventoryBtn" data-toggle="modal" data-target="#newInventoryModal"><span><img src={require("../../images/new-icon.jpg")} alt="Add New Item" /> Add Item</span></button></td>
+                                <td><button className="btn btn-success addInventoryBtn" data-toggle="modal" data-target="#newInventoryModal"><span><img src={require("../../images/new-icon.jpg")} alt="Add New Item" /> Add Item</span></button></td>
                             </div>
                         </div>
-                        <table className="table table-striped col-md-12">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Item Name</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Nails</td>
-                                    <td>5</td>
-                                    <td className = "d-flex justify-content-end"><button className="btn btn-primary m-1 editInventoryBtn"><img src={require("../../images/edit-icon.png")} alt="Edit Item" /></button>
-                                    <button className="btn btn-danger m-1 deleteInventoryBtn"><img src={require("../../images/delete-icon.png")} alt="Delete Item" /></button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Duct Tape</td>
-                                    <td>3</td>
-                                    <td className = "d-flex justify-content-end"><button className="btn btn-primary m-1 editInventoryBtn"><img src={require("../../images/edit-icon.png")} alt="Edit Item" /></button>
-                                    <button className="btn btn-danger m-1 deleteInventoryBtn"><img src={require("../../images/delete-icon.png")} alt="Delete Item" /></button></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        {this.state.inventory.map((inventory, index) => (
+                            <InventoryList
+                                inventoryID={inventory._id}
+                                itemName={inventory.itemName}
+                                manufacturer={inventory.manufacturer}
+                                quantity={inventory.quantity}
+                                cancelled={inventory.cancelled}
+                                cancelInventory={this.cancelInventory}
+                            />
+                        ))
+                        }
                     </div>
                 </div>
                 <NewProjectModal />
-                <NewInventoryModal 
-                    handleFormUpdate = {this.handleFormUpdate}
-                    handleNewInventoryItemSubmit = {this.handleNewInventoryItemSubmit}
+                <NewInventoryModal
+                    handleFormUpdate={this.handleFormUpdate}
+                    handleNewInventoryItemSubmit={this.handleNewInventoryItemSubmit}
                 />
             </div>
         )
