@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Navbar from "../Navbar/Navbar";
 import InventoryList from "../../components/InventoryList/InventoryList";
 import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
+import EditInventoryModal from "../../components/EditInventoryModal/EditInventoryModal";
 import NewInventoryModal from "../../components/NewInventoryModal/NewInventoryModal";
 import API from "../../utils/API";
 import "./style.css";
@@ -61,13 +62,42 @@ class Inventory extends Component {
     reactivateInventory = event => {
         event.preventDefault();
         var reactivateInventoryInfo = {
-            customerID: event.currentTarget.dataset.reactivateInventoryId
+            inventoryID: event.currentTarget.dataset.reactivateInventoryId
         }
 
         API.reactivateInventory(reactivateInventoryInfo).then(res => console.log(res));
         window.location.href = "/inventory";
     }
 
+    editInventory = event => {
+        var editedInventoryItem = event.currentTarget.dataset.inventoryStateIndex;
+        var editedInventoryInfo = this.state.inventory[editedInventoryItem]
+
+        this.setState({
+            editInventoryID: editedInventoryInfo._id,
+            editInventoryItemName: editedInventoryInfo.itemName,
+            editInventoryManufacturer: editedInventoryInfo.manufacturer
+        })
+    }
+
+    handleEditInventorySubmit = event => {
+        event.preventDefault();
+
+        var editInventoryInfo;
+
+        if (this.state.editInventory.itemName && this.state.editInventory.manufacturer) {
+            editInventoryInfo = {
+                inventoryID: this.state.editedInventory._id,
+                itemName: this.state.editedInventory.itemName,
+                manufacturer: this.state.editedInventory.manufacturer
+            }
+            API.editInventory(editInventoryInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
+            window.location.href = "/inventory";
+        }
+        else {
+            alert("Sorry... form not complete.");
+        }
+    }
 
     render() {
         return (
@@ -87,6 +117,8 @@ class Inventory extends Component {
                         </div>
                         {this.state.inventory.map((inventory, index) => (
                             <InventoryList
+                                editInventory={this.editInventory}
+                                inventoryStateIndex={index}
                                 inventoryID={inventory._id}
                                 itemName={inventory.itemName}
                                 manufacturer={inventory.manufacturer}
@@ -99,6 +131,12 @@ class Inventory extends Component {
                     </div>
                 </div>
                 <NewProjectModal />
+                <EditInventoryModal
+                    handleFormUpdate={this.handleFormUpdate}
+                    handleEditInventorySubmit={this.handleEditInventorySubmit}
+                    editInventoryItemName={this.state.editInventoryItemName}
+                    editInventoryManufacturer={this.state.editInventoryManufacturer}
+                />
                 <NewInventoryModal
                     handleFormUpdate={this.handleFormUpdate}
                     handleNewInventoryItemSubmit={this.handleNewInventoryItemSubmit}
