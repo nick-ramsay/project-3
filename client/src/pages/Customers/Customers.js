@@ -19,6 +19,15 @@ class Customers extends Component {
         console.log(moment().format());
     }
 
+    
+    handleFormUpdate = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+        console.log(this.state);
+    }
+
     getCustomers = () => {
         API.getCustomers().then(res => this.setState({ customers: res.data }))
 
@@ -36,6 +45,7 @@ class Customers extends Component {
     }
 
     cancelCustomer = event => {
+        event.preventDefault();
         var cancelledCustomerInfo = {
             customerID: event.currentTarget.dataset.cancelCustomerId,
             cancelledDate: new Date()
@@ -45,12 +55,17 @@ class Customers extends Component {
         window.location.href = "/customers";
     }
 
-    handleFormUpdate = event => {
-        const { name, value } = event.target;
-        this.setState({
-            [name]: value
-        });
-        console.log(this.state);
+    reactivateCustomer = event => {
+        event.preventDefault();
+        var reactivateCustomerInfo = {
+            customerID: event.currentTarget.dataset.reactivateCustomerId
+        }
+        console.log("Clicked to reactivate customer!");
+
+        console.log(reactivateCustomerInfo);
+
+        API.reactivateCustomer(reactivateCustomerInfo).then(res => console.log(res));
+        window.location.href = "/customers";
     }
 
     handleNewCustomerSubmit = event => {
@@ -103,15 +118,15 @@ class Customers extends Component {
                         </div>
                         <div className="row text-center">
                             <div className="col-md-12 p-2 d-flex justify-content-center">
-                                <td><button className="btn btn-success addInventoryBtn" data-toggle="modal" data-target="#newCustomerModal"><span><img src={require("../../images/new-icon.jpg")} alt="Add a Customer" /> Add a Customer</span></button></td>
+                                <td><button className="btn btn-success" id="addCustomerBtn" data-toggle="modal" data-target="#newCustomerModal"><span><img src={require("../../images/new-icon.jpg")} alt="Add a Customer" /> Add a Customer</span></button></td>
                             </div>
                         </div>
                         {this.state.customers.map((customer,index) => (
                             <CustomerList
                                 customerID={customer._id}
                                 customerStateIndex={index}
-                                created={customer.created}
-                                cancelled={customer.cancelled}
+                                created={moment(customer.created).format('DD/MM/YYYY hh:mm A')}
+                                cancelled={customer.cancelled && moment(customer.cancelled).format('DD/MM/YYYY hh:mm A')}
                                 firstName={customer.firstName}
                                 lastName={customer.lastName}
                                 phone={customer.phone}
@@ -136,6 +151,7 @@ class Customers extends Component {
                     handleFormUpdate={this.handleFormUpdate}
                     handleEditCustomerSubmit={this.handleEditCustomerSubmit}
                     customerDetails={this.state.editedCustomer}
+                    reactivateCustomer={this.reactivateCustomer}
                 />
                 <NewProjectModal />
             </div>

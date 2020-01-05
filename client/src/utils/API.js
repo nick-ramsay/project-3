@@ -20,6 +20,9 @@ export default {
     cancelCustomer: function (cancelledCustomerInfo) {
         return axios({method:"post", url: apiURL + "/api/crafter/cancel-customer", data: cancelledCustomerInfo})
     },
+    reactivateCustomer: function (reactivateCustomerInfo) {
+        return axios({method:"post", url: apiURL + "/api/crafter/reactivate-customer", data: reactivateCustomerInfo})
+    },
     //END: ... Customer API Calls
     //START: Inventory API Calls...
 

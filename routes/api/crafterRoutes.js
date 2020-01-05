@@ -15,6 +15,7 @@ router
   .route("/login")
   .post(crafterController.login);
 
+//START: Customer Routes...
 router
   .route("/get-customers")
   .get(crafterController.getCustomers);
@@ -23,9 +24,14 @@ router
   .route("/create-customer")
   .post(crafterController.createCustomer)
 
-  router
+router
   .route("/cancel-customer")
   .post(crafterController.cancelCustomer)
+
+router
+  .route("/reactivate-customer")
+  .post(crafterController.reactivateCustomer)
+//END: ... Customer Routes
 
 router
   .route("/create-inventory-item")

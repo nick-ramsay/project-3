@@ -17,7 +17,7 @@ module.exports = {
     //START: Customer controllers...
     getCustomers: function (req, res) {
         db.Customers
-            .find({})
+            .find({}).sort({lastName: 1, firstName: 1})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
@@ -33,7 +33,16 @@ module.exports = {
         console.log("Cancel customer controller called...");
         console.log(req.body);
         db.Customers
-            .update({_id: req.body.customerID},{cancelled: req.body.cancelledDate})
+            .updateOne({_id: req.body.customerID},{cancelled: req.body.cancelledDate})
+            .then(dbModel => res.json(dbModel))
+            .then(console.log(req.body))
+            .catch(err => res.status(422).json(err));
+    },
+    reactivateCustomer: function (req, res) {
+        console.log("Reactivate customer controller called...");
+        console.log(req.body);
+        db.Customers
+            .updateOne({_id: req.body.customerID},{$unset: {cancelled:""}})
             .then(dbModel => res.json(dbModel))
             .then(console.log(req.body))
             .catch(err => res.status(422).json(err));
