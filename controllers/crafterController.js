@@ -83,6 +83,18 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+    editInventory: function (req, res) {
+        console.log("Edit inventory controller called...");
+        console.log(req.body);
+        db.Inventory
+            .updateOne({_id: req.body.inventoryID},{
+                itemName: req.body.itemName,
+                manufacturer: req.body.manufacturer
+            })
+            .then(dbModel => res.json(dbModel))
+            .then(console.log(req.body))
+            .catch(err => res.status(422).json(err));
+    },
     cancelInventory: function (req, res) {
         console.log("Cancel inventory controller called...");
         console.log(req.body);

@@ -76,7 +76,8 @@ class Inventory extends Component {
         this.setState({
             editInventoryID: editedInventoryInfo._id,
             editInventoryItemName: editedInventoryInfo.itemName,
-            editInventoryManufacturer: editedInventoryInfo.manufacturer
+            editInventoryManufacturer: editedInventoryInfo.manufacturer,
+            editInventoryCancelled: editedInventoryInfo.cancelled
         })
     }
 
@@ -85,11 +86,11 @@ class Inventory extends Component {
 
         var editInventoryInfo;
 
-        if (this.state.editInventory.itemName && this.state.editInventory.manufacturer) {
+        if (this.state.editInventoryItemName && this.state.editInventoryManufacturer) {
             editInventoryInfo = {
-                inventoryID: this.state.editedInventory._id,
-                itemName: this.state.editedInventory.itemName,
-                manufacturer: this.state.editedInventory.manufacturer
+                inventoryID: this.state.editInventoryID,
+                itemName: this.state.editInventoryItemName,
+                manufacturer: this.state.editInventoryManufacturer
             }
             API.editInventory(editInventoryInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
             window.location.href = "/inventory";
@@ -133,9 +134,12 @@ class Inventory extends Component {
                 <NewProjectModal />
                 <EditInventoryModal
                     handleFormUpdate={this.handleFormUpdate}
+                    reactivateInventory={this.reactivateInventory}
                     handleEditInventorySubmit={this.handleEditInventorySubmit}
+                    editInventoryID={this.state.editInventoryID}
                     editInventoryItemName={this.state.editInventoryItemName}
                     editInventoryManufacturer={this.state.editInventoryManufacturer}
+                    editInventoryCancelled={this.state.editInventoryCancelled}
                 />
                 <NewInventoryModal
                     handleFormUpdate={this.handleFormUpdate}

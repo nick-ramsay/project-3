@@ -45,6 +45,11 @@ router
   .route("/get-inventory")
   .get(crafterController.getInventory);
 
+  router
+  .route("/edit-inventory")
+  .post(crafterController.editInventory)
+
+
 router
   .route("/cancel-inventory")
   .post(crafterController.cancelInventory)

@@ -32,6 +32,9 @@ export default {
     createInventoryItem: function (newInventoryItemInfo) {
         return axios({method:"post", url: apiURL + "/api/crafter/create-inventory-item", data: newInventoryItemInfo})
     },
+    editInventory: function (editedInventoryInfo) {
+        return axios({method:"post", url: apiURL + "/api/crafter/edit-inventory", data: editedInventoryInfo})
+    },
     getInventory: function () {
         console.log("Called get-inventory API");
         return axios({method:"get", url: apiURL + "/api/crafter/get-inventory"});
