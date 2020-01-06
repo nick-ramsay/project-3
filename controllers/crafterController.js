@@ -89,7 +89,8 @@ module.exports = {
         db.Inventory
             .updateOne({_id: req.body.inventoryID},{
                 itemName: req.body.itemName,
-                manufacturer: req.body.manufacturer
+                manufacturer: req.body.manufacturer,
+                price: req.body.price
             })
             .then(dbModel => res.json(dbModel))
             .then(console.log(req.body))

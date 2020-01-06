@@ -24,12 +24,16 @@ function EditInventoryModal(props) {
                                     <h5 className="text-left">Inventory Details</h5>
                                     <div className="form-row">
                                         <div className="form-group col-md-12">
-                                            <label for="editInventoryFirstName">Item Name</label>
+                                            <label for="editInventoryItemName">Item Name</label>
                                             <input type="text" className="form-control" id="editInventoryItemName" defaultValue={props.editInventoryItemName} name="editInventoryItemName" onChange={props.handleFormUpdate} />
                                         </div>
                                         <div className="form-group col-md-12">
-                                            <label for="editInventoryLastName">Manufacturer</label>
+                                            <label for="editInventoryManufacturer">Manufacturer</label>
                                             <input type="text" className="form-control" id="editInventoryManufacturer" defaultValue={props.editInventoryManufacturer} name="editInventoryManufacturer" onChange={props.handleFormUpdate} />
+                                        </div>
+                                        <div className="form-group col-md-12">
+                                            <label for="editInventoryPrice">Price</label>
+                                            <input type="number" min="0" step="0.01" className="form-control" id="editInventoryPrice" defaultValue={props.editInventoryPrice} name="editInventoryPrice" onChange={props.handleFormUpdate} />
                                         </div>
                                     </div>
                                 </form>

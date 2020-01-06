@@ -3,6 +3,8 @@ import Navbar from "../Navbar/Navbar";
 import InventoryList from "../../components/InventoryList/InventoryList";
 import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
 import EditInventoryModal from "../../components/EditInventoryModal/EditInventoryModal";
+import PurchaseInventoryModal from "../../components/PurchaseInventoryModal/PurchaseInventoryModal";
+//import ReturnInventoryModal from "../../components/ReturnInventoryModal/ReturnInventoryModal";
 import NewInventoryModal from "../../components/NewInventoryModal/NewInventoryModal";
 import API from "../../utils/API";
 import "./style.css";
@@ -30,6 +32,7 @@ class Inventory extends Component {
 
     handleNewInventoryItemSubmit = event => {
         event.preventDefault();
+
         var newInventoryItemInfo;
 
         if (this.state.addInventoryName && this.state.addManufacturerName) {
@@ -37,7 +40,8 @@ class Inventory extends Component {
                 contextID: localStorage.getItem("crafterClient"),
                 itemName: this.state.addInventoryName,
                 manufacturer: this.state.addManufacturerName,
-                quantity: 0 //Always set initial quantity to zero... clients must add inventory with an inventory purchase
+                quantity: 0, //Always set initial quantity to zero... clients must add inventory with an inventory purchase,
+                price: this.state.addInventoryPrice
             }
             API.createInventoryItem(newInventoryItemInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
             window.location.href = "/inventory";
@@ -77,7 +81,8 @@ class Inventory extends Component {
             editInventoryID: editedInventoryInfo._id,
             editInventoryItemName: editedInventoryInfo.itemName,
             editInventoryManufacturer: editedInventoryInfo.manufacturer,
-            editInventoryCancelled: editedInventoryInfo.cancelled
+            editInventoryCancelled: editedInventoryInfo.cancelled,
+            editInventoryPrice: editedInventoryInfo.price
         })
     }
 
@@ -86,11 +91,12 @@ class Inventory extends Component {
 
         var editInventoryInfo;
 
-        if (this.state.editInventoryItemName && this.state.editInventoryManufacturer) {
+        if (this.state.editInventoryItemName && this.state.editInventoryManufacturer && this.state.editInventoryPrice) {
             editInventoryInfo = {
                 inventoryID: this.state.editInventoryID,
                 itemName: this.state.editInventoryItemName,
-                manufacturer: this.state.editInventoryManufacturer
+                manufacturer: this.state.editInventoryManufacturer,
+                price: this.state.editInventoryPrice
             }
             API.editInventory(editInventoryInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
             window.location.href = "/inventory";
@@ -98,6 +104,16 @@ class Inventory extends Component {
         else {
             alert("Sorry... form not complete.");
         }
+    }
+
+    purchaseInventory = event => {
+        var purchasedInventoryItem = event.currentTarget.dataset.inventoryStateIndex;
+        var purchasedInventoryInfo = this.state.inventory[purchasedInventoryItem]
+
+        this.setState({
+            purchaseInventoryID: purchasedInventoryInfo._id,
+            purchaseInventoryItemName: purchasedInventoryInfo.itemName
+        })
     }
 
     render() {
@@ -119,6 +135,7 @@ class Inventory extends Component {
                         {this.state.inventory.map((inventory, index) => (
                             <InventoryList
                                 editInventory={this.editInventory}
+                                purchaseInventory={this.purchaseInventory}
                                 inventoryStateIndex={index}
                                 inventoryID={inventory._id}
                                 itemName={inventory.itemName}
@@ -126,12 +143,18 @@ class Inventory extends Component {
                                 quantity={inventory.quantity}
                                 cancelled={inventory.cancelled}
                                 cancelInventory={this.cancelInventory}
+                                price={inventory.price}
                             />
                         ))
                         }
                     </div>
                 </div>
                 <NewProjectModal />
+                <NewInventoryModal
+                    handleFormUpdate={this.handleFormUpdate}
+                    handleNewInventoryItemSubmit={this.handleNewInventoryItemSubmit}
+                    addInventoryPrice={"5.00"}
+                />
                 <EditInventoryModal
                     handleFormUpdate={this.handleFormUpdate}
                     reactivateInventory={this.reactivateInventory}
@@ -139,11 +162,11 @@ class Inventory extends Component {
                     editInventoryID={this.state.editInventoryID}
                     editInventoryItemName={this.state.editInventoryItemName}
                     editInventoryManufacturer={this.state.editInventoryManufacturer}
+                    editInventoryPrice={this.state.editInventoryPrice}
                     editInventoryCancelled={this.state.editInventoryCancelled}
                 />
-                <NewInventoryModal
-                    handleFormUpdate={this.handleFormUpdate}
-                    handleNewInventoryItemSubmit={this.handleNewInventoryItemSubmit}
+                <PurchaseInventoryModal
+                    purchaseInventoryItemName={this.state.purchaseInventoryItemName}
                 />
             </div>
         )

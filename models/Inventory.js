@@ -6,7 +6,8 @@ const InventorySchema = new Schema({
     cancelled: {type: Date},
     itemName: {type: String},
     manufacturer: {type: String},
-    quantity: {type: Number}
+    quantity: {type: Number},
+    price: {type: Number}
 })
 
 const Inventory = mongoose.model("Inventory", InventorySchema);
