@@ -4,7 +4,7 @@ import InventoryList from "../../components/InventoryList/InventoryList";
 import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
 import EditInventoryModal from "../../components/EditInventoryModal/EditInventoryModal";
 import PurchaseInventoryModal from "../../components/PurchaseInventoryModal/PurchaseInventoryModal";
-//import ReturnInventoryModal from "../../components/ReturnInventoryModal/ReturnInventoryModal";
+import ReturnInventoryModal from "../../components/ReturnInventoryModal/ReturnInventoryModal";
 import NewInventoryModal from "../../components/NewInventoryModal/NewInventoryModal";
 import API from "../../utils/API";
 import "./style.css";
@@ -116,6 +116,16 @@ class Inventory extends Component {
         })
     }
 
+    returnInventory = event => {
+        var returnedInventoryItem = event.currentTarget.dataset.inventoryStateIndex;
+        var returnedInventoryInfo = this.state.inventory[returnedInventoryItem]
+
+        this.setState({
+            returnedInventoryID: returnedInventoryInfo._id,
+            returnedInventoryItemName: returnedInventoryInfo.itemName
+        })
+    }
+
     render() {
         return (
             <div>
@@ -136,6 +146,7 @@ class Inventory extends Component {
                             <InventoryList
                                 editInventory={this.editInventory}
                                 purchaseInventory={this.purchaseInventory}
+                                returnInventory={this.returnInventory}
                                 inventoryStateIndex={index}
                                 inventoryID={inventory._id}
                                 itemName={inventory.itemName}
@@ -167,6 +178,9 @@ class Inventory extends Component {
                 />
                 <PurchaseInventoryModal
                     purchaseInventoryItemName={this.state.purchaseInventoryItemName}
+                />
+                <ReturnInventoryModal
+                    returnInventoryItemName={this.state.returnedInventoryItemName}
                 />
             </div>
         )
