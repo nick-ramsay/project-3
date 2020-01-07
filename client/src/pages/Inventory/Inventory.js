@@ -142,7 +142,7 @@ class Inventory extends Component {
 
             API.inventoryTransaction(inventoryInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
             API.postTransaction(transactionInfo).then(res => console.log(res))
-            //window.location.href = "/inventory";
+            window.location.href = "/inventory";
         }
         else {
             alert("Sorry... form not complete.");
@@ -184,7 +184,7 @@ class Inventory extends Component {
             }
             API.inventoryTransaction(inventoryInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
             API.postTransaction(transactionInfo).then(res => console.log(res))
-            //window.location.href = "/inventory";
+            window.location.href = "/inventory";
         }
         else {
             alert("Sorry... form not complete.");

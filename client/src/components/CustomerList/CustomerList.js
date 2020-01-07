@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import moment from "moment";
 
 function CustomerList(props) {
     return (
@@ -16,7 +17,7 @@ function CustomerList(props) {
                     {!props.cancelled && <button className="btn btn-danger m-1 float-right" id="deleteCustomerBtn" data-cancel-customer-id={props.customerID} name="deleteCustomerBtn" onClick={props.cancelCustomer}><img src={require("../../images/delete-icon.png")} alt="End Date Customer" /></button>}
                     <div id={props.customerID && "customerDetails" + props.customerID} class="collapse" aria-labelledby="headingOne" data-parent={props.customerID && "#customer" + props.customerID}>
                         <div class="card-body">
-                            <h6>Customer Since: {props.created}</h6>
+                            <h6>Customer Since: {moment(props.created).format("DD/MM/YYYY hh:mm a")}</h6>
                             <p>Street Address: {props.address && props.address}{props.address2 && ", "}{props.address2 && props.address2}</p>
                             <p>Suburb: {props.city && props.city}</p>
                             <p>Postcode: {props.postcode && props.postcode}</p>
