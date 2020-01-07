@@ -22,13 +22,13 @@ function ReturnInventoryModal(props) {
                                     <div className="form-row">
                                         <div className="form-group col-md-12">
                                             <label for="returnInventoryCost">Cost Per Unit ($)</label>
-                                            <input type="number" min="0" step="0.01" className="form-control" id="returnInventoryCost" defaultValue="0.00" name="returnInventoryPrice" onChange={props.handleFormUpdate} />
+                                            <input type="number" min="0" step="0.01" className="form-control" id="returnInventoryCost" defaultValue="0.00" name="returnInventoryCost" onChange={props.handleFormUpdate} />
                                         </div>
                                     </div>
                                     <div className="form-row">
                                         <div className="form-group col-md-12">
                                             <label for="returnInventoryQuantity">Quantity Returned</label>
-                                            <input type="number" min="0" step="0" className="form-control" id="returnInventoryQuantity" defaultValue="0" name="returnInventoryPrice" onChange={props.handleFormUpdate} />
+                                            <input type="number" min="0" step="0" className="form-control" id="returnInventoryQuantity" defaultValue="0" name="returnInventoryQuantity" onChange={props.handleFormUpdate} />
                                         </div>
                                     </div>
                                 </form>
@@ -37,7 +37,7 @@ function ReturnInventoryModal(props) {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" id="returnInventorySubmitBtn" name="returnInventorySubmitBtn" onClick={props.handlereturnInventorySubmit}>return</button>
+                        <button type="button" className="btn btn-primary" id="returnInventorySubmitBtn" name="returnInventorySubmitBtn" onClick={props.handleReturnInventorySubmit}>Return</button>
                     </div>
                 </div>
             </div>

@@ -22,13 +22,13 @@ function PurchaseInventoryModal(props) {
                                     <div className="form-row">
                                         <div className="form-group col-md-12">
                                             <label for="purchaseInventoryCost">Cost Per Unit ($)</label>
-                                            <input type="number" min="0" step="0.01" className="form-control" id="purchaseInventoryCost" defaultValue="0.00" name="purchaseInventoryPrice" onChange={props.handleFormUpdate} />
+                                            <input type="number" min="0" step="0.01" className="form-control" id="purchaseInventoryCost" defaultValue="0.00" name="purchaseInventoryCost" onChange={props.handleFormUpdate} />
                                         </div>
                                     </div>
                                     <div className="form-row">
                                         <div className="form-group col-md-12">
                                             <label for="purchaseInventoryQuantity">Quantity Purchased</label>
-                                            <input type="number" min="0" step="0" className="form-control" id="purchaseInventoryQuantity" defaultValue="0" name="purchaseInventoryPrice" onChange={props.handleFormUpdate} />
+                                            <input type="number" min="0" step="0" className="form-control" id="purchaseInventoryQuantity" defaultValue="0" name="purchaseInventoryQuantity" onChange={props.handleFormUpdate} />
                                         </div>
                                     </div>
                                 </form>

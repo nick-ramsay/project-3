@@ -45,9 +45,13 @@ router
   .route("/get-inventory")
   .get(crafterController.getInventory);
 
-  router
+router
   .route("/edit-inventory")
   .post(crafterController.editInventory)
+
+router
+  .route("/inventory-transaction")
+  .post(crafterController.inventoryTransaction)
 
 
 router
@@ -57,6 +61,14 @@ router
 router
   .route("/reactivate-inventory")
   .post(crafterController.reactivateInventory)
+//END: ...Inventory Routes
+//START: Transaction Routes...
+
+router
+  .route("/post-transaction")
+  .post(crafterController.postTransaction)
+
+//END: ...Transaction Routes
 /*
 router
   .route("/delete/:id")

@@ -116,14 +116,79 @@ class Inventory extends Component {
         })
     }
 
+    handlePurchaseInventorySubmit = event => {
+        event.preventDefault();
+
+        var inventoryInfo;
+        var transactionInfo;
+
+        if (this.state.purchaseInventoryCost && this.state.purchaseInventoryQuantity) {
+            inventoryInfo = {
+                inventoryID: this.state.purchaseInventoryID,
+                cost: this.state.purchaseInventoryCost,
+                quantity: this.state.purchaseInventoryQuantity
+            }
+
+            transactionInfo = {
+                contextID: localStorage.getItem("crafterClient"),
+                inventoryID: this.state.purchaseInventoryID,
+                projectID: -1,
+                transactionDate: new Date(),
+                transactionType: "inventory_purchase", //inventory_purchase or project_revenue
+                transactionQuantity: this.state.purchaseInventoryQuantity,
+                transactionUnitAmount: this.state.purchaseInventoryCost,
+                totalAmount: (this.state.purchaseInventoryQuantity * this.state.purchaseInventoryCost)
+            }
+
+            API.inventoryTransaction(inventoryInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
+            API.postTransaction(transactionInfo).then(res => console.log(res))
+            window.location.href = "/inventory";
+        }
+        else {
+            alert("Sorry... form not complete.");
+        }
+    }
+
     returnInventory = event => {
         var returnedInventoryItem = event.currentTarget.dataset.inventoryStateIndex;
         var returnedInventoryInfo = this.state.inventory[returnedInventoryItem]
 
         this.setState({
-            returnedInventoryID: returnedInventoryInfo._id,
-            returnedInventoryItemName: returnedInventoryInfo.itemName
+            returnInventoryID: returnedInventoryInfo._id,
+            returnInventoryItemName: returnedInventoryInfo.itemName
         })
+    }
+
+    handleReturnInventorySubmit = event => {
+        event.preventDefault();
+
+        var inventoryInfo;
+        var transactionInfo;
+
+        if (this.state.returnInventoryCost && this.state.returnInventoryQuantity) {
+            inventoryInfo = {
+                inventoryID: this.state.returnInventoryID,
+                cost: this.state.returnInventoryCost,
+                quantity: (this.state.returnInventoryQuantity * -1)
+            }
+
+            transactionInfo = {
+                contextID: localStorage.getItem("crafterClient"),
+                inventoryID: this.state.purchaseInventoryID,
+                projectID: -1,
+                transactionDate: new Date(),
+                transactionType: "inventory_return", //inventory_purchase or project_revenue
+                transactionQuantity: this.state.returnInventoryQuantity,
+                transactionUnitAmount: this.state.returnInventoryCost,
+                totalAmount: (this.state.returnInventoryQuantity * this.state.returnInventoryCost * -1)
+            }
+            API.inventoryTransaction(inventoryInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
+            API.postTransaction(transactionInfo).then(res => console.log(res))
+            window.location.href = "/inventory";
+        }
+        else {
+            alert("Sorry... form not complete.");
+        }
     }
 
     render() {
@@ -177,10 +242,14 @@ class Inventory extends Component {
                     editInventoryCancelled={this.state.editInventoryCancelled}
                 />
                 <PurchaseInventoryModal
+                    handleFormUpdate={this.handleFormUpdate}
                     purchaseInventoryItemName={this.state.purchaseInventoryItemName}
+                    handlePurchaseInventorySubmit={this.handlePurchaseInventorySubmit}
                 />
                 <ReturnInventoryModal
-                    returnInventoryItemName={this.state.returnedInventoryItemName}
+                    handleFormUpdate={this.handleFormUpdate}
+                    returnInventoryItemName={this.state.returnInventoryItemName}
+                    handleReturnInventorySubmit={this.handleReturnInventorySubmit}
                 />
             </div>
         )

@@ -35,6 +35,9 @@ export default {
     editInventory: function (editedInventoryInfo) {
         return axios({method:"post", url: apiURL + "/api/crafter/edit-inventory", data: editedInventoryInfo})
     },
+    inventoryTransaction: function (inventoryInfo) {
+        return axios({method:"post", url: apiURL + "/api/crafter/inventory-transaction", data: inventoryInfo})
+    },
     getInventory: function () {
         console.log("Called get-inventory API");
         return axios({method:"get", url: apiURL + "/api/crafter/get-inventory"});
@@ -44,9 +47,17 @@ export default {
     },
     reactivateInventory: function (reactivateInventoryInfo) {
         return axios({method:"post", url: apiURL + "/api/crafter/reactivate-inventory", data: reactivateInventoryInfo})
-    }
+    },
 
     //END: ... Inventory API Calls
+
+    //START: Transaction API calls
+
+    postTransaction: function (transactionInfo) {
+        return axios({method:"post", url: apiURL + "/api/crafter/post-transaction", data: transactionInfo})
+    }
+
+    //END: Transaction API Calls
     /*
     getBookResults: function (query) {
         return axios.get("https://www.googleapis.com/books/v1/volumes?q=" + query + "&key="+keys.google_books.apiKey)
