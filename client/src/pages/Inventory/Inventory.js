@@ -137,12 +137,12 @@ class Inventory extends Component {
                 transactionType: "inventory_purchase", //inventory_purchase or project_revenue
                 transactionQuantity: this.state.purchaseInventoryQuantity,
                 transactionUnitAmount: this.state.purchaseInventoryCost,
-                totalAmount: (this.state.purchaseInventoryQuantity * this.state.purchaseInventoryCost)
+                totalAmount: (this.state.purchaseInventoryQuantity * this.state.purchaseInventoryCost * -1)
             }
 
             API.inventoryTransaction(inventoryInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
             API.postTransaction(transactionInfo).then(res => console.log(res))
-            window.location.href = "/inventory";
+            //window.location.href = "/inventory";
         }
         else {
             alert("Sorry... form not complete.");
@@ -180,11 +180,11 @@ class Inventory extends Component {
                 transactionType: "inventory_return", //inventory_purchase or project_revenue
                 transactionQuantity: this.state.returnInventoryQuantity,
                 transactionUnitAmount: this.state.returnInventoryCost,
-                totalAmount: (this.state.returnInventoryQuantity * this.state.returnInventoryCost * -1)
+                totalAmount: (this.state.returnInventoryQuantity * this.state.returnInventoryCost)
             }
             API.inventoryTransaction(inventoryInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
             API.postTransaction(transactionInfo).then(res => console.log(res))
-            window.location.href = "/inventory";
+            //window.location.href = "/inventory";
         }
         else {
             alert("Sorry... form not complete.");
