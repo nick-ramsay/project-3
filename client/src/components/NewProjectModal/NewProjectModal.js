@@ -3,7 +3,7 @@ import "./style.css";
 
 function NewProjectModal(props) {
     return (
-        <div className="modal fade" id="newProjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="addProjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -16,14 +16,14 @@ function NewProjectModal(props) {
                         <form>
                             <div className="form-row">
                                 <div className="form-group col-md-12">
-                                    <label for="newProjectName">Project Name</label>
-                                    <input type="text" className="form-control" id="newProjectName" placeholder="Project Name" name="newProjectName" onChange={props.handleFormUpdate} />
+                                    <label for="addProjectName">Project Name</label>
+                                    <input type="text" className="form-control" id="addProjectName" placeholder="Project Name" name="ProjectName" onChange={props.handleFormUpdate} />
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="form-group col-md-12">
-                                    <label for="newProjectStatus">Status</label>
-                                    <select id="newProjectStatus" className="form-control" name="newProjectStatus" onChange={props.handleFormUpdate}>
+                                    <label for="addProjectStatus">Status</label>
+                                    <select id="addProjectStatus" className="form-control" name="addProjectStatus" onChange={props.handleFormUpdate}>
                                         <option selected>New</option>
                                         <option>In Progress</option>
                                         <option>Hold</option>
@@ -34,14 +34,14 @@ function NewProjectModal(props) {
                             </div>
                             <div className="form-row">
                                 <div className="form-group col-md-12">
-                                    <label for="newProjectHours">Hours Logged</label>
-                                    <input type="number" step="0.1" min="0" className="form-control" id="newProjectHours" defaultValue="0.0" placeholder="0.0" name="newProjectHours" onChange={props.handleFormUpdate} />
+                                    <label for="addProjectHours">Hours Logged</label>
+                                    <input type="number" step="0.1" min="0" className="form-control" id="addProjectHours" defaultValue="0.0" placeholder="0.0" name="addProjectHours" onChange={props.handleFormUpdate} />
                                 </div>
                             </div>
                             <div className="form-row">
                                 <div className="form-group col-md-12">
-                                    <label for="newProjectAddItem">Log Supplies Used</label>
-                                    <select id="newProjectStatus" className="form-control" name="newProjectStatus" onChange={props.handleFormUpdate}>
+                                    <label for="addProjectAddItem">Log Supplies Used</label>
+                                    <select id="addProjectStatus" className="form-control" name="addProjectStatus" onChange={props.handleFormUpdate}>
                                         <option selected>To be populated w/ active inventory</option>
                                         <option>Placeholder 2</option>
                                     </select>
@@ -59,7 +59,7 @@ function NewProjectModal(props) {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Save Project</button>
+                        <button type="button" className="btn btn-primary" onClick={props.handleSubmitProject}>Save Project</button>
                     </div>
                 </div>
             </div>

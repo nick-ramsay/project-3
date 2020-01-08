@@ -10,6 +10,7 @@ class Projects extends Component {
 
     }
 
+
     componentDidMount() {
         this.getProjects();
     }
@@ -26,6 +27,40 @@ class Projects extends Component {
         API.getProjects().then(res => this.setState({ projects: res.data }))
     }
 
+    handleSubmitProject = event => {
+        event.preventDefault();
+        console.log("Called create project!");
+
+        var projectInfo = {
+            contextID: localStorage.getItem("crafterClient"),
+            name: "",
+            status: "",
+            createdDate: "",
+            hours: 0,
+            items: [],
+            comments: []
+        }
+
+        if (this.state.addProjectName && this.state.addProjectStatus && this.state.addProjectHours) {
+            projectInfo = {
+                contextID: localStorage.getItem("crafterClient"),
+                name: this.state.addProjectName,
+                status: this.state.addProjectStatus,
+                createdDate: new Date(),
+                hours: this.state.addProjectHours,
+                items: [],
+                comments: []
+            }
+            //API.createProject(projectInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
+            //window.location.href = "/projects";
+
+        }
+        else {
+            console.log("Sorry... form not complete.");
+            alert("Sorry... form not complete.");
+        }
+    }
+
     render() {
         return (
             <div>
@@ -39,7 +74,7 @@ class Projects extends Component {
                         </div>
                         <div className="row text-center">
                             <div className="col-md-12 p-2 d-flex justify-content-center">
-                                <td><button data-toggle="modal" data-target="#newProjectModal" className="btn btn-success newProjectBtn"><span><img src={require("../../images/new-icon.jpg")} alt="New Project" /> New Project</span></button></td>
+                                <td><button data-toggle="modal" data-target="#addProjectModal" className="btn btn-success" id="addProjectBtn"><span><img src={require("../../images/new-icon.jpg")} alt="New Project" /> New Project</span></button></td>
                             </div>
                         </div>
                         <div class="row">
@@ -47,7 +82,10 @@ class Projects extends Component {
                         </div>
                     </div>
                 </div>
-                <NewProjectModal />
+                <NewProjectModal
+                    handleFormUpdate={this.handleFormUpdate}
+                    handleSubmitProject={this.handleSubmitProject}
+                />
             </div>
         )
     }
