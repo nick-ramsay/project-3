@@ -75,6 +75,10 @@ router
   .route("/create-project")
   .post(crafterController.createProject)
 
+router
+  .route("/get-projects")
+  .post(crafterController.getProjects)
+
 //END: ...Project Routes
 
 module.exports = router;

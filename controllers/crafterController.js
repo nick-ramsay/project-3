@@ -150,6 +150,12 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .then(console.log(req.body))
             .catch(err => res.status(422).json(err));
+    },
+    getProjects: function (req, res) {
+        db.Projects
+            .find({}).sort({ createdDate: 1, name: 1 })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
     }
 
     //END:...ProjectControllers

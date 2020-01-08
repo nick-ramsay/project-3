@@ -2,11 +2,28 @@ import React, { Component } from "react";
 import Navbar from "../Navbar/Navbar";
 import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
 import ProjectList from "../../components/ProjectList/ProjectList";
+import API from "../../utils/API";
 import "./style.css";
 
 class Projects extends Component {
     state = {
 
+    }
+
+    componentDidMount() {
+        this.getProjects();
+    }
+
+    handleFormUpdate = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+        console.log(this.state);
+    }
+
+    getProjects = () => {
+        API.getProjects().then(res => this.setState({ projects: res.data }))
     }
 
     render() {
