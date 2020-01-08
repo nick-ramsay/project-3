@@ -69,15 +69,12 @@ router
   .post(crafterController.postTransaction)
 
 //END: ...Transaction Routes
-/*
-router
-  .route("/delete/:id")
-  .delete(booksController.deleteBook)
-*/
+//START: Project Routes...
 
-// Matches with "/api/books/:id"
-// router
-//   .route("/:id")
-//   .delete(booksController.removeSavedBook);
+router
+  .route("/create-project")
+  .post(crafterController.createProject)
+
+//END: ...Project Routes
 
 module.exports = router;

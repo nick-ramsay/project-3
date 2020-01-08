@@ -137,7 +137,20 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .then(console.log(req.body))
             .catch(err => res.status(422).json(err));
-    }
+    },
 
     //END:...TransactionControllers
+    //START: Project controllers...
+
+    createProject: function (req, res) {
+        console.log("Create project controller called...");
+        console.log(req.body);
+        db.Projects
+            .create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .then(console.log(req.body))
+            .catch(err => res.status(422).json(err));
+    }
+
+    //END:...ProjectControllers
 };

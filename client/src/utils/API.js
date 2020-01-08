@@ -55,24 +55,15 @@ export default {
 
     postTransaction: function (transactionInfo) {
         return axios({method:"post", url: apiURL + "/api/crafter/post-transaction", data: transactionInfo})
+    },
+
+    //END: Transaction API Calls
+
+    //START: Transaction API calls
+
+    createProject: function (projectInfo) {
+        return axios({method:"post", url: apiURL + "/api/crafter/create-project", data: projectInfo})
     }
 
     //END: Transaction API Calls
-    /*
-    getBookResults: function (query) {
-        return axios.get("https://www.googleapis.com/books/v1/volumes?q=" + query + "&key="+keys.google_books.apiKey)
-    },
-    getSavedBooks: function() {
-        console.log("Called get saved books API!");
-        return axios.get(apiUrl + "/api/books/saved");
-    },
-    deleteBook: function(deletedBook) {
-        console.log("Called delete book API!");
-        return axios({method:"delete", url: apiUrl + "/api/books/delete/" + deletedBook});
-    },
-    saveBook: function(bookData) {
-        console.log(bookData);
-        return axios({method:"post", url: apiUrl + "/api/books", data: bookData })
-    }
-    */
 };
