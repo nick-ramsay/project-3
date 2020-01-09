@@ -18,7 +18,7 @@ router
 //START: Customer Routes...
 router
   .route("/get-customers")
-  .get(crafterController.getCustomers);
+  .post(crafterController.getCustomers);
 
 router
   .route("/edit-customer")
@@ -43,7 +43,7 @@ router
 //
 router
   .route("/get-inventory")
-  .get(crafterController.getInventory);
+  .post(crafterController.getInventory);
 
 router
   .route("/edit-inventory")
@@ -77,7 +77,7 @@ router
 
 router
   .route("/get-projects")
-  .get(crafterController.getProjects)
+  .post(crafterController.getProjects)
 
 //END: ...Project Routes
 

@@ -10,9 +10,9 @@ export default {
         return axios({method:"post", url: apiURL + "/api/crafter/login", data: credentials})
     },
     //START: Customer API calls...
-    getCustomers: function () {
+    getCustomers: function (contextID) {
         console.log("Called get customers API");
-        return axios({method:"get", url: apiURL + "/api/crafter/get-customers"});
+        return axios({method:"post", url: apiURL + "/api/crafter/get-customers", data: contextID});
     },
     createCustomer: function (newCustomerInfo) {
         return axios({method:"post", url: apiURL + "/api/crafter/create-customer", data: newCustomerInfo})
@@ -38,9 +38,9 @@ export default {
     inventoryTransaction: function (inventoryInfo) {
         return axios({method:"post", url: apiURL + "/api/crafter/inventory-transaction", data: inventoryInfo})
     },
-    getInventory: function () {
+    getInventory: function (contextID) {
         console.log("Called get-inventory API");
-        return axios({method:"get", url: apiURL + "/api/crafter/get-inventory"});
+        return axios({method:"post", url: apiURL + "/api/crafter/get-inventory", data: contextID});
     },
     cancelInventory: function (cancelledInventoryInfo) {
         return axios({method:"post", url: apiURL + "/api/crafter/cancel-inventory", data: cancelledInventoryInfo})

@@ -16,8 +16,9 @@ module.exports = {
     },
     //START: Customer controllers...
     getCustomers: function (req, res) {
+        console.log(req.body);
         db.Customers
-            .find({}).sort({ lastName: 1, firstName: 1 })
+            .find({ contextID: req.body.contextID }).sort({ lastName: 1, firstName: 1 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
@@ -79,7 +80,7 @@ module.exports = {
     },
     getInventory: function (req, res) {
         db.Inventory
-            .find({}).sort({ itemName: 1, manufacturer: 1 })
+            .find({ contextID: req.body.contextID }).sort({ itemName: 1, manufacturer: 1 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
@@ -152,8 +153,9 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     getProjects: function (req, res) {
+        console.log(req.body);
         db.Projects
-            .find({}).sort({ createdDate: 1, name: 1 })
+            .find({ contextID: req.body.contextID }).sort({ createdDate: 1, name: 1 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     }

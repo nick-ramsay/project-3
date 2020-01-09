@@ -5,6 +5,10 @@ import ProjectList from "../../components/ProjectList/ProjectList";
 import API from "../../utils/API";
 import "./style.css";
 
+var client = {
+    contextID: localStorage.getItem("crafterClient")
+};
+
 class Projects extends Component {
     state = {
 
@@ -20,13 +24,23 @@ class Projects extends Component {
 
     componentDidMount() {
         this.getProjects();
+        this.getInventory();
+        this.getCustomers();
     }
 
-
-
     getProjects = () => {
-        API.getProjects().then(res => this.setState({ projects: res.data }))
-        console.log("Get projects caled!")
+        API.getProjects(client).then(res => this.setState({ projects: res.data }))
+        console.log("Get projects called!")
+    }
+
+    getInventory = () => {
+        API.getInventory(client).then(res => this.setState({ inventory: res.data }))
+        console.log("Get inventory called!")
+    }
+
+    getCustomers = () => {
+        API.getCustomers(client).then(res => this.setState({ customers: res.data }))
+        console.log("Get customers called!")
     }
 
     handleSubmitProject = event => {

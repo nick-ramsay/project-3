@@ -9,6 +9,10 @@ import NewInventoryModal from "../../components/NewInventoryModal/NewInventoryMo
 import API from "../../utils/API";
 import "./style.css";
 
+var client = {
+    contextID: localStorage.getItem("crafterClient")
+};
+
 class Inventory extends Component {
     state = {
         inventory: []
@@ -27,7 +31,7 @@ class Inventory extends Component {
     }
 
     getInventory = () => {
-        API.getInventory().then(res => this.setState({ inventory: res.data }))
+        API.getInventory(client).then(res => this.setState({ inventory: res.data }))
     }
 
     handleNewInventoryItemSubmit = event => {

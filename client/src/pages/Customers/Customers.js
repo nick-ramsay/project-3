@@ -8,6 +8,10 @@ import EditCustomerModal from "../../components/EditCustomerModal/EditCustomerMo
 import API from "../../utils/API"
 import "./style.css";
 
+var client = {
+    contextID: localStorage.getItem("crafterClient")
+};
+
 class Customers extends Component {
     state = {
         customers: [],
@@ -27,7 +31,7 @@ class Customers extends Component {
     }
 
     getCustomers = () => {
-        API.getCustomers().then(res => this.setState({ customers: res.data }))
+        API.getCustomers(client).then(res => this.setState({ customers: res.data }))
     }
 
     editCustomer = event => {
