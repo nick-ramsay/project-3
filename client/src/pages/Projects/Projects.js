@@ -23,9 +23,15 @@ class Projects extends Component {
     }
 
     componentDidMount() {
+        this.getAccountData();
         this.getProjects();
         this.getInventory();
         this.getCustomers();
+    }
+
+    getAccountData = () => {
+        API.getAccountData(client).then(res => this.setState({ accountData: res.data }))
+        console.log("Get projects called!")
     }
 
     getProjects = () => {

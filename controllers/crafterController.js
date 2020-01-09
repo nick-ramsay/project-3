@@ -8,6 +8,12 @@ module.exports = {
             .then(console.log(req.body))
             .catch(err => res.status(422).json(err));
     },
+    getAccountData: function (req, res) {
+        db.Accounts
+            .find({ _id: req.body.contextID }).sort({ lastName: 1, firstName: 1 })
+            .then(dbModel => res.json(dbModel[0].hourlyRate))
+            .catch(err => res.status(422).json(err));
+    },
     login: function (req, res) {
         db.Accounts
             .find({ email: req.body.loginEmail, password: req.body.loginPassword })

@@ -7,6 +7,11 @@ const crafterController = require("../../controllers/crafterController");
   .get(booksController.getSavedBooks)
   .post(booksController.saveBook);
 */
+
+router
+  .route("/get-account-data")
+  .post(crafterController.getAccountData);
+
 router
   .route("/create-account")
   .post(crafterController.createAccount);

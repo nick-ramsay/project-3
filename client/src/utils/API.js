@@ -3,6 +3,10 @@ import axios from "axios";
 const apiURL = process.env.NODE_ENV === 'production'? '' : '//localhost:3001'
 
 export default {
+    getAccountData: function (contextID) {
+        console.log("Called get customers API");
+        return axios({method:"post", url: apiURL + "/api/crafter/get-account-data", data: contextID});
+    },
     createAccount: function (newAccountInfo) {
         return axios({method:"post", url: apiURL + "/api/crafter/create-account", data: newAccountInfo})
     },
@@ -65,9 +69,9 @@ export default {
         console.log("Called create project API");
         return axios({method:"post", url: apiURL + "/api/crafter/create-project", data: projectInfo})
     },
-    getProjects: function () {
+    getProjects: function (contextID) {
         console.log("Called get-project API");
-        return axios({method:"get", url: apiURL + "/api/crafter/get-projects"});
+        return axios({method:"post", url: apiURL + "/api/crafter/get-projects", data: contextID});
     }
 
     //END: Transaction API Calls
