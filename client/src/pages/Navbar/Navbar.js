@@ -21,7 +21,6 @@ class Navbar extends Component {
                 <NavbarComponent
                     handleLogout={this.handleLogout}
                 />
-                <NewProjectModal />
             </div>
         )
     }

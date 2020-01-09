@@ -77,7 +77,7 @@ router
 
 router
   .route("/get-projects")
-  .post(crafterController.getProjects)
+  .get(crafterController.getProjects)
 
 //END: ...Project Routes
 

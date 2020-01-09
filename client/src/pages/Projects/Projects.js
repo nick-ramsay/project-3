@@ -10,11 +10,6 @@ class Projects extends Component {
 
     }
 
-
-    componentDidMount() {
-        this.getProjects();
-    }
-
     handleFormUpdate = event => {
         const { name, value } = event.target;
         this.setState({
@@ -23,8 +18,15 @@ class Projects extends Component {
         console.log(this.state);
     }
 
+    componentDidMount() {
+        this.getProjects();
+    }
+
+
+
     getProjects = () => {
         API.getProjects().then(res => this.setState({ projects: res.data }))
+        console.log("Get projects caled!")
     }
 
     handleSubmitProject = event => {
@@ -51,8 +53,9 @@ class Projects extends Component {
                 items: [],
                 comments: []
             }
-            //API.createProject(projectInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
-            //window.location.href = "/projects";
+            
+            API.createProject(projectInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
+            window.location.href = "/projects";
 
         }
         else {

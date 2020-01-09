@@ -17,7 +17,7 @@ function NewProjectModal(props) {
                             <div className="form-row">
                                 <div className="form-group col-md-12">
                                     <label for="addProjectName">Project Name</label>
-                                    <input type="text" className="form-control" id="addProjectName" placeholder="Project Name" name="ProjectName" onChange={props.handleFormUpdate} />
+                                    <input type="text" className="form-control" id="addProjectName" placeholder="Project Name" name="addProjectName" onChange={props.handleFormUpdate} />
                                 </div>
                             </div>
                             <div className="row">
@@ -59,7 +59,7 @@ function NewProjectModal(props) {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" onClick={props.handleSubmitProject}>Save Project</button>
+                        <button type="button" className="btn btn-primary" id="submitProjectBtn" name="submitProjectBtn" onClick={props.handleSubmitProject}>Save Project</button>
                     </div>
                 </div>
             </div>

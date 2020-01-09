@@ -43,7 +43,7 @@ function NewInventoryModal(props) {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" id="addInventoryItemBtn" name="addInventoryItemBtn" onClick={props.handleNewInventoryItemSubmit}>Add Inventory Item</button>
+                        <button type="button" className="btn btn-primary" id="addInventoryItemBtn" name="addInventoryItemBtn" onClick={props.handleNewInventoryItemSubmit} >Add Inventory Item</button>
                     </div>
                 </div>
             </div>

@@ -62,6 +62,7 @@ export default {
     //START: Transaction API calls
 
     createProject: function (projectInfo) {
+        console.log("Called create project API");
         return axios({method:"post", url: apiURL + "/api/crafter/create-project", data: projectInfo})
     },
     getProjects: function () {
