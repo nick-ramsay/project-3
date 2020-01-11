@@ -11,7 +11,8 @@ var client = {
 
 class Projects extends Component {
     state = {
-        customers:[]
+        customers:[],
+        inventory: []
     }
 
     handleFormUpdate = event => {
@@ -49,6 +50,24 @@ class Projects extends Component {
         console.log("Get customers called!");
     }
 
+    handleAddItem = event => {
+        event.preventDefault();
+
+        var newProjectItemInfo = {
+            newItemID: event.currentTarget.dataset.inventoryid,
+            newItemName: this.state.addProjectItem,
+            newItemQuantity: this.state.addProjectItemQuantity
+        }
+
+        console.log(newProjectItemInfo);
+    }
+
+    handleAddComment = event => {
+        event.preventDefault();
+        console.log("Add commment clicked!");
+        console.log(this.state.addProjectComment);
+    }
+
     handleSubmitProject = event => {
         event.preventDefault();
         console.log("Called create project!");
@@ -59,6 +78,7 @@ class Projects extends Component {
             status: "",
             createdDate: "",
             hours: 0,
+            customer: "",
             items: [],
             comments: []
         }
@@ -68,6 +88,7 @@ class Projects extends Component {
                 contextID: localStorage.getItem("crafterClient"),
                 name: this.state.addProjectName,
                 status: this.state.addProjectStatus,
+                customer: this.state.addProjectCustomer,
                 createdDate: new Date(),
                 hours: this.state.addProjectHours,
                 items: [],
@@ -110,7 +131,10 @@ console.log(this.state);
                 <NewProjectModal
                     handleFormUpdate={this.handleFormUpdate}
                     handleSubmitProject={this.handleSubmitProject}
+                    handleAddItem={this.handleAddItem}
+                    handleAddComment={this.handleAddComment}
                     customers={this.state.customers}
+                    inventory={this.state.inventory}
                 />
             </div>
         )

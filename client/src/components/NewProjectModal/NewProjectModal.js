@@ -52,31 +52,42 @@ function NewProjectModal(props) {
                                 </div>
                             </div>
                             <div className="form-row">
-                                <div className="form-group col-md-12">
-                                    <label for="addProjectAddItem">Log Supplies Used</label>
-                                    <select id="addProjectStatus" className="form-control" name="addProjectStatus" onChange={props.handleFormUpdate}>
-                                        <option selected>To be populated w/ active inventory</option>
-                                        <option>Placeholder 2</option>
+                                <div className="form-group col-md-8">
+                                    <label for="addProjectItem">Log Supplies Used</label>
+                                    <select id="addProjectItem" className="form-control" name="addProjectItem" onChange={props.handleFormUpdate}>
+                                        <option selected>Choose an Item...</option>
+                                        {props.inventory.map((inventory, index) => (
+                                            <option data-test="123">{inventory.itemName}</option>
+                                        ))
+                                        }
                                     </select>
-                                    <button type="button" className="btn btn-success mt-1">Add Item</button>
+                                </div>
+                                <div className="form-group col-md-4">
+                                    <label for="addProjectItemQuantity">Log Supplies Used</label>
+                                    <input type="number" step="1" min="0" className="form-control" id="addProjectItemQuantity" defaultValue="0" placeholder="0" name="addProjectItemQuantity" onChange={props.handleFormUpdate} />
+                                </div>
+                                <div className="form-group col-md-12 text-center">
+                                    <button type="button" className="btn btn-success mt-1" onClick={props.handleAddItem}>Add Item</button>
                                 </div>
                             </div>
                             <div className="form-row">
                                 <div className="form-group col-md-12">
                                     <label for="addProjectComment">Add a Comment</label>
                                     <input type="text" className="form-control" id="addProjectComment" placeholder="Comment" name="addProjectComment" onChange={props.handleFormUpdate} />
-                                    <button type="button" className="btn btn-dark mt-1">Add Comment</button>
                                 </div>
                             </div>
+                            <div className="form-group col-md-12 text-center">
+                                <button type="button" className="btn btn-dark mt-1" onClick={props.handleAddComment}>Add Comment</button>
+                            </div>
                         </form>
-                    </div>
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" id="submitProjectBtn" name="submitProjectBtn" onClick={props.handleSubmitProject}>Save Project</button>
-                    </div>
+                </div>
+                <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-primary" id="submitProjectBtn" name="submitProjectBtn" onClick={props.handleSubmitProject}>Save Project</button>
                 </div>
             </div>
         </div>
+        </div >
     )
 }
 
