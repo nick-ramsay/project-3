@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import moment from "moment";
 import Navbar from "../Navbar/Navbar";
-import CustomerList from "../../components/CustomerList/CustomerList"
-import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
+import CustomerList from "../../components/CustomerList/CustomerList";
 import NewCustomerModal from "../../components/NewCustomerModal/NewCustomerModal";
 import EditCustomerModal from "../../components/EditCustomerModal/EditCustomerModal";
 import API from "../../utils/API"
@@ -195,7 +194,6 @@ class Customers extends Component {
                     editCustomerPostcode={this.state.editCustomerPostcode}
                     editCustomerCancelled={this.state.editCustomerCancelled}
                 />
-                <NewProjectModal />
             </div>
         )
     }

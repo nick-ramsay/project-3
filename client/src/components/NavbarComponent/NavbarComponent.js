@@ -10,9 +10,6 @@ function NavbarComponent(props) {
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div className="navbar-nav mr-auto">
-                    <span className="nav-item nav-link" data-toggle="modal" data-target="#addProjectModal"><img src={require("../../images/new-icon.jpg")} alt="New Project" /> New Project</span>
-                </div>
                 <div className="navbar-nav ml-auto">
                     <a className="nav-item nav-link" href="/projects"><img src={require("../../images/projects.jpg")} alt="Projects" /> Projects</a>
                     <a className="nav-item nav-link" href="/customers"><img src={require("../../images/customers.jpg")} alt="Customers" /> Customers</a>

@@ -2,6 +2,7 @@ import React from "react";
 import "./style.css";
 
 function NewProjectModal(props) {
+    console.log(props)
     return (
         <div className="modal fade" id="addProjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
@@ -36,6 +37,18 @@ function NewProjectModal(props) {
                                 <div className="form-group col-md-12">
                                     <label for="addProjectHours">Hours Logged</label>
                                     <input type="number" step="0.1" min="0" className="form-control" id="addProjectHours" defaultValue="0.0" placeholder="0.0" name="addProjectHours" onChange={props.handleFormUpdate} />
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group col-md-12">
+                                    <label for="addProjectCustomer">Choose a Customer</label>
+                                    <select id="addProjectCustomer" className="form-control" name="addProjectCustomer" onChange={props.handleFormUpdate}>
+                                        <option selected>Choose a customer...</option>
+                                        {props.customers.map((customer, index) => (
+                                            <option data-customer-id={customer._id}>{customer.firstName} {customer.lastName}</option>
+                                        ))
+                                        }
+                                    </select>
                                 </div>
                             </div>
                             <div className="form-row">

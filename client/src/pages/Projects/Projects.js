@@ -11,7 +11,7 @@ var client = {
 
 class Projects extends Component {
     state = {
-
+        customers:[]
     }
 
     handleFormUpdate = event => {
@@ -46,7 +46,7 @@ class Projects extends Component {
 
     getCustomers = () => {
         API.getCustomers(client).then(res => this.setState({ customers: res.data }))
-        console.log("Get customers called!")
+        console.log("Get customers called!");
     }
 
     handleSubmitProject = event => {
@@ -85,6 +85,8 @@ class Projects extends Component {
     }
 
     render() {
+console.log(this.state);        
+
         return (
             <div>
                 <Navbar />
@@ -108,6 +110,7 @@ class Projects extends Component {
                 <NewProjectModal
                     handleFormUpdate={this.handleFormUpdate}
                     handleSubmitProject={this.handleSubmitProject}
+                    customers={this.state.customers}
                 />
             </div>
         )

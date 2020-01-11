@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../Navbar/Navbar";
 import InventoryList from "../../components/InventoryList/InventoryList";
-import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
 import EditInventoryModal from "../../components/EditInventoryModal/EditInventoryModal";
 import PurchaseInventoryModal from "../../components/PurchaseInventoryModal/PurchaseInventoryModal";
 import ReturnInventoryModal from "../../components/ReturnInventoryModal/ReturnInventoryModal";
@@ -229,7 +228,6 @@ class Inventory extends Component {
                         }
                     </div>
                 </div>
-                <NewProjectModal />
                 <NewInventoryModal
                     handleFormUpdate={this.handleFormUpdate}
                     handleNewInventoryItemSubmit={this.handleNewInventoryItemSubmit}

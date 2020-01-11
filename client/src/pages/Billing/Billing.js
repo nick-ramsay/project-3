@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Navbar from "../Navbar/Navbar";
-import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
 import "./style.css";
 
 class Billing extends Component {
@@ -21,7 +20,6 @@ class Billing extends Component {
                         </div>
                     </div>
                 </div>
-                <NewProjectModal />
             </div>
         )
     }

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../Navbar/Navbar";
 import UpdateAccountForm from "../../components/UpdateAccountForm/UpdateAccountForm";
-import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
 import "./style.css";
 
 class Account extends Component {
@@ -23,7 +22,6 @@ class Account extends Component {
                         </div>
                     </div>
                 </div>
-                <NewProjectModal />
             </div>
         )
     }
