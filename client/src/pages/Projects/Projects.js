@@ -16,7 +16,8 @@ class Projects extends Component {
         inventory: [],
         selectedProjectItem: {},
         projectItems: [],
-        projectComments: []
+        projectComments: [],
+        projects: []
     }
 
     handleFormUpdate = event => {
@@ -171,9 +172,26 @@ class Projects extends Component {
                                 <td><button data-toggle="modal" data-target="#addProjectModal" className="btn btn-success" id="addProjectBtn"><span><img src={require("../../images/new-icon.jpg")} alt="New Project" /> New Project</span></button></td>
                             </div>
                         </div>
-                        <div class="row">
-                            <ProjectList />
-                        </div>
+                        
+                        {this.state.projects.map((project, index) => (
+                            <ProjectList
+                               // editInventory={this.editInventory}
+                                //purchaseInventory={this.purchaseInventory}
+                                //returnInventory={this.returnInventory}
+                                projectStateIndex={index}
+                                projectID={project._id}
+                                projectName={project.name}
+                                projectStatus={project.status}
+                                projectCustomer={project.customer}
+                                projectCreated={project.createdDate}
+                                projectHours={project.hours}
+                                projectRate={project.hourlyRate}
+                                projectItems={project.items}
+                                projectComments={project.comments}
+                            />
+                        ))
+                        }
+            
                     </div>
                 </div>
                 <NewProjectModal

@@ -6,6 +6,7 @@ const ProjectSchema = new Schema({
     name: {type: String},
     status: {type: String},
     createdDate: {type: Date},
+    customer: {type: String},
     hours: {type: Number}, //inventory_purchase or project_revenue
     hourlyRate: {type: Number},
     items: {type: Array},
