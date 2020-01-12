@@ -10,12 +10,13 @@ var client = {
 };
 
 class Projects extends Component {
-    
+
     state = {
-        customers:[],
+        customers: [],
         inventory: [],
         selectedProjectItem: {},
-        projectItems: []
+        projectItems: [],
+        projectComments: []
     }
 
     handleFormUpdate = event => {
@@ -53,7 +54,7 @@ class Projects extends Component {
 
         var selectedProjectItemIndex = event.target.value;
         var selectedProjectItemInfo = this.state.inventory[selectedProjectItemIndex];
-        this.setState({selectedProjectItem: selectedProjectItemInfo});
+        this.setState({ selectedProjectItem: selectedProjectItemInfo });
 
         // Each time item is selected for project, info is saved to state.
     }
@@ -64,25 +65,49 @@ class Projects extends Component {
         var newProjectItemInfo = {};
 
         var currentProjectItems = this.state.projectItems;
-
-        newProjectItemInfo = {
-            newItemID: this.state.selectedProjectItem._id,
-            newItemName: this.state.selectedProjectItem.itemName,
-            newItemQuantity: this.state.addProjectItemQuantity,
-            newItemPrice: this.state.selectedProjectItem.price,
-            newItemTotal: (this.state.addProjectItemQuantity * this.state.selectedProjectItem.price),
-        }
-
-        currentProjectItems.push(newProjectItemInfo);
-
-        this.setState({projectItems: currentProjectItems});
-
+        
+        if (this.state.selectedProjectItem !== undefined && this.state.addProjectItemQuantity && this.state.addProjectItemQuantity > 0 && Object.keys(this.state.selectedProjectItem).length !== 0) {
+                
+                  newProjectItemInfo = {
+                      newItemID: this.state.selectedProjectItem._id,
+                      newItemName: this.state.selectedProjectItem.itemName,
+                      newItemQuantity: this.state.addProjectItemQuantity,
+                      newItemPrice: this.state.selectedProjectItem.price,
+                      newItemTotal: (this.state.addProjectItemQuantity * this.state.selectedProjectItem.price),
+                  }
+      
+                  currentProjectItems.push(newProjectItemInfo);
+                  this.setState({ projectItems: currentProjectItems });
+                  console.log(this.state.projectItems);
+              } else {
+                  alert("Please complete project item info. Quantity must be greater than zero.");
+              }
     }
 
     handleAddComment = event => {
         event.preventDefault();
         console.log("Add commment clicked!");
         console.log(this.state.addProjectComment);
+
+        event.preventDefault();
+
+        var newProjectComment = {};
+
+        var currentProjectComments = this.state.projectComments;
+        
+        if (this.state.addProjectComment && this.state.addProjectComment !== undefined) {
+                
+                  newProjectComment = {
+                      comment: this.state.addProjectComment,
+                      created: new Date()
+                  }
+      
+                  currentProjectComments.push(newProjectComment);
+                  this.setState({ projectComments: currentProjectComments });
+                  console.log(this.state.projectComments);
+              } else {
+                  alert("Please complete project item info. Quantity must be greater than zero.");
+              }
     }
 
     handleSubmitProject = event => {
@@ -100,7 +125,7 @@ class Projects extends Component {
             comments: []
         }
 
-        if (this.state.addProjectName && this.state.addProjectStatus && this.state.addProjectHours) {
+        if (this.state.addProjectName && this.state.addProjectStatus) {
             projectInfo = {
                 contextID: localStorage.getItem("crafterClient"),
                 name: this.state.addProjectName,
@@ -108,10 +133,11 @@ class Projects extends Component {
                 customer: this.state.addProjectCustomer,
                 createdDate: new Date(),
                 hours: this.state.addProjectHours,
-                items: [],
-                comments: []
+                hourlyRate: this.state.accountData,
+                items: this.state.projectItems,
+                comments: this.state.projectComments
             }
-            
+
             API.createProject(projectInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
             window.location.href = "/projects";
 
@@ -123,7 +149,7 @@ class Projects extends Component {
     }
 
     render() {
-        var itemOptions = [];      
+        var itemOptions = [];
         itemOptions = this.state.inventory.map((inventory, index) => (
             <option key={inventory._id} value={index} data-inventory-id={inventory._id} defaultValue={inventory.itemName}>
                 {inventory.itemName}
