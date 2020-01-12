@@ -14,7 +14,8 @@ class Projects extends Component {
     state = {
         customers:[],
         inventory: [],
-        selectedProjectItem: {}
+        selectedProjectItem: {},
+        projectItems: []
     }
 
     handleFormUpdate = event => {
@@ -60,13 +61,22 @@ class Projects extends Component {
     handleAddItem = event => {
         event.preventDefault();
 
-        var newProjectItemInfo = {
-            newItemID: event.currentTarget.dataset.inventoryid,
-            newItemName: this.state.addProjectItem,
-            newItemQuantity: this.state.addProjectItemQuantity
+        var newProjectItemInfo = {};
+
+        var currentProjectItems = this.state.projectItems;
+
+        newProjectItemInfo = {
+            newItemID: this.state.selectedProjectItem._id,
+            newItemName: this.state.selectedProjectItem.itemName,
+            newItemQuantity: this.state.addProjectItemQuantity,
+            newItemPrice: this.state.selectedProjectItem.price,
+            newItemTotal: (this.state.addProjectItemQuantity * this.state.selectedProjectItem.price),
         }
 
-        console.log(newProjectItemInfo);
+        currentProjectItems.push(newProjectItemInfo);
+
+        this.setState({projectItems: currentProjectItems});
+
     }
 
     handleAddComment = event => {
