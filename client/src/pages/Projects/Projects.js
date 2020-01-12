@@ -14,7 +14,7 @@ class Projects extends Component {
     state = {
         customers:[],
         inventory: [],
-        selectedItem: ""
+        selectedProjectItem: {}
     }
 
     handleFormUpdate = event => {
@@ -50,15 +50,11 @@ class Projects extends Component {
     selectedProjectItem = event => {
         event.preventDefault();
 
-        console.log("Selected an item!");
-        const { options } = event.target;
-        const selected = options[event.target.selectedIndex];
-        console.log(selected);
+        var selectedProjectItemIndex = event.target.value;
+        var selectedProjectItemInfo = this.state.inventory[selectedProjectItemIndex];
+        this.setState({selectedProjectItem: selectedProjectItemInfo});
 
-        const { selectedItem } = selected;
-
-        console.log(selectedItem);
-
+        // Each time item is selected for project, info is saved to state.
     }
 
     handleAddItem = event => {
@@ -119,7 +115,7 @@ class Projects extends Component {
     render() {
         var itemOptions = [];      
         itemOptions = this.state.inventory.map((inventory, index) => (
-            <option key={inventory._id} data-inventory-id={inventory._id} defaultValue={inventory.itemName}>
+            <option key={inventory._id} value={index} data-inventory-id={inventory._id} defaultValue={inventory.itemName}>
                 {inventory.itemName}
             </option>
         ))
