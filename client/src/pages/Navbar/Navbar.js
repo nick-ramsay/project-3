@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import NavbarComponent from "../../components/NavbarComponent/NavbarComponent";
-import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
 import "./style.css";
 
 class Navbar extends Component {

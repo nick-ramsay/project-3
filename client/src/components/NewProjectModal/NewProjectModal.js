@@ -54,12 +54,9 @@ function NewProjectModal(props) {
                             <div className="form-row">
                                 <div className="form-group col-md-8">
                                     <label for="addProjectItem">Log Supplies Used</label>
-                                    <select id="addProjectItem" className="form-control" name="addProjectItem" onChange={props.handleFormUpdate}>
-                                        <option selected>Choose an Item...</option>
-                                        {props.inventory.map((inventory, index) => (
-                                            <option data-test="123">{inventory.itemName}</option>
-                                        ))
-                                        }
+                                    <select id="addProjectItem" className="form-control" name="addProjectItem" onClick={props.selectedProjectItem} onChange={props.handleFormUpdate}>
+                                        <option key="-1" data-inventory-id="0" selected>Choose an Item...</option>
+                                        {props.itemOptions}
                                     </select>
                                 </div>
                                 <div className="form-group col-md-4">
@@ -80,13 +77,13 @@ function NewProjectModal(props) {
                                 <button type="button" className="btn btn-dark mt-1" onClick={props.handleAddComment}>Add Comment</button>
                             </div>
                         </form>
-                </div>
-                <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" className="btn btn-primary" id="submitProjectBtn" name="submitProjectBtn" onClick={props.handleSubmitProject}>Save Project</button>
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" className="btn btn-primary" id="submitProjectBtn" name="submitProjectBtn" onClick={props.handleSubmitProject}>Save Project</button>
+                    </div>
                 </div>
             </div>
-        </div>
         </div >
     )
 }

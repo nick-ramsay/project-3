@@ -10,9 +10,11 @@ var client = {
 };
 
 class Projects extends Component {
+    
     state = {
         customers:[],
-        inventory: []
+        inventory: [],
+        selectedItem: ""
     }
 
     handleFormUpdate = event => {
@@ -20,7 +22,6 @@ class Projects extends Component {
         this.setState({
             [name]: value
         });
-        console.log(this.state);
     }
 
     componentDidMount() {
@@ -32,22 +33,32 @@ class Projects extends Component {
 
     getAccountData = () => {
         API.getAccountData(client).then(res => this.setState({ accountData: res.data }))
-        console.log("Get projects called!")
     }
 
     getProjects = () => {
         API.getProjects(client).then(res => this.setState({ projects: res.data }))
-        console.log("Get projects called!")
     }
 
     getInventory = () => {
         API.getInventory(client).then(res => this.setState({ inventory: res.data }))
-        console.log("Get inventory called!")
     }
 
     getCustomers = () => {
         API.getCustomers(client).then(res => this.setState({ customers: res.data }))
-        console.log("Get customers called!");
+    }
+
+    selectedProjectItem = event => {
+        event.preventDefault();
+
+        console.log("Selected an item!");
+        const { options } = event.target;
+        const selected = options[event.target.selectedIndex];
+        console.log(selected);
+
+        const { selectedItem } = selected;
+
+        console.log(selectedItem);
+
     }
 
     handleAddItem = event => {
@@ -106,7 +117,12 @@ class Projects extends Component {
     }
 
     render() {
-console.log(this.state);        
+        var itemOptions = [];      
+        itemOptions = this.state.inventory.map((inventory, index) => (
+            <option key={inventory._id} data-inventory-id={inventory._id} defaultValue={inventory.itemName}>
+                {inventory.itemName}
+            </option>
+        ))
 
         return (
             <div>
@@ -131,10 +147,12 @@ console.log(this.state);
                 <NewProjectModal
                     handleFormUpdate={this.handleFormUpdate}
                     handleSubmitProject={this.handleSubmitProject}
+                    selectedProjectItem={this.selectedProjectItem}
                     handleAddItem={this.handleAddItem}
                     handleAddComment={this.handleAddComment}
                     customers={this.state.customers}
                     inventory={this.state.inventory}
+                    itemOptions={itemOptions}
                 />
             </div>
         )

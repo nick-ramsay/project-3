@@ -17,7 +17,7 @@ function NavbarComponent(props) {
                     <a className="nav-item nav-link" href="/inventory"><img src={require("../../images/inventory.jpg")} alt="Inventory" /> Inventory</a>
                     <a className="nav-item nav-link" href="/account"><img src={require("../../images/profile.jpg")} alt="Account" /> Account</a>
                     <a className="nav-item nav-link" href="/settings"><img src={require("../../images/settings.jpg")} alt="Settings" /> Settings</a>
-                    <a className="nav-item nav-link" href="#" name="logout" onClick={props.handleLogout}><img src={require("../../images/logout_icon.jpg")} alt="Logout" /> Log Out</a>
+                    <span className="nav-item nav-link" id="logout" name="logout" onClick={props.handleLogout}><img src={require("../../images/logout_icon.jpg")} alt="Logout" /> Log Out</span>
                 </div>
             </div>
         </nav>

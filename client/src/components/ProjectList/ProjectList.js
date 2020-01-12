@@ -1,6 +1,5 @@
 import React from "react";
 import "./style.css";
-import moment from "moment";
 
 function ProjectList(props) {
     return (
