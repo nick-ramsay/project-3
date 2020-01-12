@@ -11,6 +11,7 @@ function ProjectList(props) {
                 </h5>
                 <div className="card-body">
                     <button className="btn btn-dark m-1 customerDetails" type="button" data-toggle="collapse" id="customer1" data-target="#customerDetails1">Details</button>
+                    {props.projectStatus === "Complete" && <button className="btn btn-warning m-1 float-right" id="generateProjectInvoice" data-project-index={props.projectStateIndex} name="generateProjectInvoice" onClick={props.generateProjectInvoice}>$</button>}
                     <button className="btn btn-primary m-1 float-right editInventoryBtn"><img src={require("../../images/edit-icon.png")} alt="Edit Item" /></button>
                     <button className="btn btn-danger m-1 float-right deleteInventoryBtn"><img src={require("../../images/delete-icon.png")} alt="Delete Item" /></button>
                     <div id="customerDetails1" class="collapse" aria-labelledby="headingOne" data-parent="#customer1">

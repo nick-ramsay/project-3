@@ -5,6 +5,9 @@ import ProjectList from "../../components/ProjectList/ProjectList";
 import API from "../../utils/API";
 import "./style.css";
 
+import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+
+
 var client = {
     contextID: localStorage.getItem("crafterClient")
 };
@@ -149,6 +152,21 @@ class Projects extends Component {
         }
     }
 
+    generateProjectInvoice = event => {
+        event.preventDefault();
+        console.log("Clicked generate invoice!");
+        
+        var invoiceProjectID;
+
+        invoiceProjectID = event.target.dataset.projectIndex;
+
+        console.log(invoiceProjectID);
+
+        var invoiceProjectInfo = this.state.projects[invoiceProjectID];
+
+        console.log(invoiceProjectInfo);
+    }
+
     render() {
         var itemOptions = [];
         itemOptions = this.state.inventory.map((inventory, index) => (
@@ -175,9 +193,6 @@ class Projects extends Component {
                         
                         {this.state.projects.map((project, index) => (
                             <ProjectList
-                               // editInventory={this.editInventory}
-                                //purchaseInventory={this.purchaseInventory}
-                                //returnInventory={this.returnInventory}
                                 projectStateIndex={index}
                                 projectID={project._id}
                                 projectName={project.name}
@@ -188,6 +203,7 @@ class Projects extends Component {
                                 projectRate={project.hourlyRate}
                                 projectItems={project.items}
                                 projectComments={project.comments}
+                                generateProjectInvoice={this.generateProjectInvoice}
                             />
                         ))
                         }
