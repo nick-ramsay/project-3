@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./style.css";
+import UnbilledProjectQueue from "../../components/UnbilledProjectQueue/UnbilledProjectQueue";
+import ProjectList from "../../components/ProjectList/ProjectList";
 
 class Billing extends Component {
     state = {
@@ -16,6 +18,9 @@ class Billing extends Component {
                         <div className="row text-center">
                             <div className="col-md-12">
                                 <h2><strong>Billing</strong></h2>
+                                <UnbilledProjectQueue />
+                                <h3><strong>Existing Bills</strong></h3>
+                                <ProjectList />
                             </div>
                         </div>
                     </div>

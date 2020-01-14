@@ -1,0 +1,12 @@
+img {
+    height: 24px;
+    width: 24px;
+}
+
+#cancelledDate {
+    color: red;
+}
+
+span:hover {
+    cursor: pointer;
+}
