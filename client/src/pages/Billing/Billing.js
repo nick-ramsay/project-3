@@ -6,7 +6,7 @@ import ProjectList from "../../components/ProjectList/ProjectList";
 
 class Billing extends Component {
     state = {
-
+        dummyData: ["Dummy Data 1","Dummy Data 2"]
     }
 
     render() {
@@ -20,7 +20,9 @@ class Billing extends Component {
                                 <h2><strong>Billing</strong></h2>
                                 <UnbilledProjectQueue />
                                 <h3><strong>Existing Bills</strong></h3>
-                                <ProjectList />
+                                <ProjectList
+                                    dummyData={this.state.dummyData}
+                                />
                             </div>
                         </div>
                     </div>

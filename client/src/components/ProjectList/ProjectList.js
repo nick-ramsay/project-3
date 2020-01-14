@@ -1,5 +1,7 @@
 import React from "react";
 import moment from "moment";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import PDFBill from "../PDFBill/PDFBill";
 import "./style.css";
 
 function ProjectList(props) {
@@ -17,7 +19,17 @@ function ProjectList(props) {
                     {!props.cancelled && <button className="btn btn-success m-1 float-left" id="purchasebillBtn" data-toggle="modal" data-target="#purchasebillModal" data-bill-state-index={props.billStateIndex} data-purchase-bill-id={props.billID} name="purchasbillBtn" onClick={props.billPayment}><strong>+</strong></button>}
                     <button className="btn btn-primary m-1 float-right" id="editBillBtn" data-toggle="modal" data-target="#editbillModal" data-bill-state-index={props.billStateIndex} onClick={props.editBill}><img src={require("../../images/edit-icon.png")} alt="Edit Bill" /></button>
                     {!props.cancelled && <button className="btn btn-danger m-1 float-right" id="deleteBillBtn" data-cancel-bill-id={props.billID} name="deleteBillBtn" onClick={props.cancelBill}><img src={require("../../images/delete-icon.png")} alt="End Date Bill" /></button>}
-                    <button className="btn btn-light m-1 float-right" id="billPDFBtn" data-bill-state-index={props.billStateIndex} onClick={props.generateBillPDF}><strong>PDF</strong></button>
+                    <button className="btn btn-light m-1 float-right" id="billPDFBtn" data-bill-state-index={props.billStateIndex}>
+                    <PDFDownloadLink
+                        document={<PDFBill data={props.dummyData[1]} />}
+                        fileName="bill.pdf"
+                        data-bill-state-index={props.billStateIndex}
+                        style={{
+                            textDecoration: "none",
+                            textColor: "black"
+                        }}
+                    ><strong>PDF</strong></PDFDownloadLink>
+                    </button>
                 </div>
             </div>
         </div>
