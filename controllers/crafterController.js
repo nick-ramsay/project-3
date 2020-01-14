@@ -136,6 +136,13 @@ module.exports = {
 
     //START:Transaction controllers...
 
+    getTransactions: function (req, res) {
+        db.Transactions
+            .find({ contextID: req.body.contextID })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+
     postTransaction: function (req, res) {
         console.log("Post transaction controller called...");
         console.log(req.body);

@@ -1,12 +1,34 @@
 import React, { Component } from "react";
 import Chart from 'chart.js';
-import Navbar from "../Navbar/Navbar"
+import Navbar from "../Navbar/Navbar";
+import API from "../../utils/API";
 import "./style.css";
+
+var client = {
+    contextID: localStorage.getItem("crafterClient")
+};
 
 class Home extends Component {
     state = {
+        transactionData: []
 
     }
+
+    componentDidMount() {
+        this.getTransactionData();
+        this.renderChart();
+    }
+
+    calculateMetrics = () => {
+        console.log("Calculate some metrics!");
+    }
+
+    getTransactionData = () => {
+        API.getTransactions(client).then(res => this.setState({ transactionData: res.data }));
+        this.calculateMetrics()
+    }
+
+    
 
     renderChart = () => {
         var ctx = document.getElementById('myChart');
@@ -42,10 +64,6 @@ class Home extends Component {
                 }
             }
         });
-    }
-
-    componentDidMount() {
-        this.renderChart();
     }
 
     render() {

@@ -57,6 +57,11 @@ export default {
 
     //START: Transaction API calls
 
+    getTransactions: function (contextID) {
+        console.log("Called get customers API");
+        return axios({method:"post", url: apiURL + "/api/crafter/get-transactions", data: contextID});
+    },
+
     postTransaction: function (transactionInfo) {
         return axios({method:"post", url: apiURL + "/api/crafter/post-transaction", data: transactionInfo})
     },

@@ -70,6 +70,10 @@ router
 //START: Transaction Routes...
 
 router
+  .route("get-transactions")
+  .post(crafterController.getTransactions)
+
+router
   .route("/post-transaction")
   .post(crafterController.postTransaction)
 
