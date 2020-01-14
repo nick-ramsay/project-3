@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./style.css";
 import UnbilledProjectQueue from "../../components/UnbilledProjectQueue/UnbilledProjectQueue";
-import ProjectList from "../../components/ProjectList/ProjectList";
+import BillList from "../../components/BillList/BillList";
 
 class Billing extends Component {
     state = {
@@ -20,7 +20,7 @@ class Billing extends Component {
                                 <h2><strong>Billing</strong></h2>
                                 <UnbilledProjectQueue />
                                 <h3><strong>Existing Bills</strong></h3>
-                                <ProjectList
+                                <BillList
                                     dummyData={this.state.dummyData}
                                 />
                             </div>
