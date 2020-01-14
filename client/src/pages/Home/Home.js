@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Chart from 'chart.js';
 import Navbar from "../Navbar/Navbar";
+import HomepageMetrics from "../../components/HomepageMetrics/HomepageMetrics";
 import API from "../../utils/API";
 import "./style.css";
 
@@ -10,27 +11,50 @@ var client = {
 
 class Home extends Component {
     state = {
-        transactionData: []
+        accountData: [{businessName: ""}],
+        transactionData: [],
+        totalRevenue: 0,
+        totalExpenses: 0,
+        totalMargin: 0
 
     }
 
     componentDidMount() {
         this.getTransactionData();
-        this.renderChart();
+        this.getAccountInfo();
     }
 
     calculateMetrics = () => {
         console.log("Calculate some metrics!");
+        console.log(this.state.transactionData);
+
+        for (var i = 0; i < this.state.transactionData.length; i++) {
+            if (this.state.transactionData[i].totalAmount >= 0) {
+                this.setState({ totalRevenue: this.state.totalRevenue += this.state.transactionData[i].totalAmount })
+                this.setState({ totalMargin: this.state.totalMargin += this.state.transactionData[i].totalAmount })
+            } if (this.state.transactionData[i].totalAmount < 0) {
+                this.setState({ totalExpenses: this.state.totalExpenses += this.state.transactionData[i].totalAmount })
+                this.setState({ totalMargin: this.state.totalMargin += this.state.transactionData[i].totalAmount })
+            }
+        }
+
+        console.log(this.state);
+        this.renderChart(this.state.totalRevenue, this.state.totalExpenses, this.state.totalMargin);
     }
 
     getTransactionData = () => {
-        API.getTransactions(client).then(res => this.setState({ transactionData: res.data }));
-        this.calculateMetrics()
+        API.getTransactions(client)
+            .then(res => this.setState({ transactionData: res.data }))
+            .then(this.calculateMetrics);
     }
 
-    
+    getAccountInfo = () => {
+        API.getAccountData(client).then(res => this.setState({ accountData: res.data }))
+    }
 
-    renderChart = () => {
+
+
+    renderChart = (totalRevenue, totalExpenses, totalMargin) => {
         var ctx = document.getElementById('myChart');
         ctx.height = 150;
         var myChart = new Chart(ctx, {
@@ -39,7 +63,7 @@ class Home extends Component {
                 labels: ['Revenue', 'Expenses', 'Profit'],
                 datasets: [{
                     label: 'Dollar Amounts ($)',
-                    data: [10000, 8000, 2000],
+                    data: [totalRevenue, totalExpenses * -1, totalMargin],
                     backgroundColor: [
                         'Green',
                         'Red',
@@ -72,28 +96,12 @@ class Home extends Component {
                 <Navbar />
                 <div className="container pt-4">
                     <div className="col-md-12 my-5 mb-4 px-5 bg-white rounded">
-                        <div className="row text-center">
-                            <div className="col-md-12">
-                                <h2><strong>Nick's Carpentry Shop</strong></h2>
-                            </div>
-                        </div>
-                        <div className="row text-center">
-                            <div className="col-md-5 bg-danger text-white rounded mb-1 mt-2">
-                                <h3>Expenses</h3>
-                                <p>-$8,000.00</p>
-                            </div>
-                            <div className="col-md-2"></div>
-                            <div className="col-md-5 bg-success text-white rounded mb-1 mt-2">
-                                <h3>Revenue</h3>
-                                <p className="">$10,000.00</p>
-                            </div>
-                        </div>
-                        <div className="row text-center bg-primary text-white rounded">
-                            <div className="col-md-12">
-                                <h3>Margin</h3>
-                                <h4>$2,000</h4>
-                            </div>
-                        </div>
+                        <HomepageMetrics
+                            accountName={this.state.accountData.businessName}
+                            totalExpenses={this.state.totalExpenses}
+                            totalRevenue={this.state.totalRevenue}
+                            totalMargin={this.state.totalMargin}
+                        />
                         <div className="row text-center">
                             <div className="col-md-12">
                                 <canvas id="myChart" width="400" height="400"></canvas>

@@ -10,8 +10,8 @@ module.exports = {
     },
     getAccountData: function (req, res) {
         db.Accounts
-            .find({ _id: req.body.contextID }).sort({ lastName: 1, firstName: 1 })
-            .then(dbModel => res.json(dbModel[0].hourlyRate))
+            .find({ _id: req.body.contextID }, { hourlyRate: 1, businessName: 1 }).sort({ lastName: 1, firstName: 1 })
+            .then(dbModel => res.json(dbModel[0]))
             .catch(err => res.status(422).json(err));
     },
     login: function (req, res) {

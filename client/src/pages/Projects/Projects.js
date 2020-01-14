@@ -5,8 +5,6 @@ import ProjectList from "../../components/ProjectList/ProjectList";
 import API from "../../utils/API";
 import "./style.css";
 
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
-
 
 var client = {
     contextID: localStorage.getItem("crafterClient")
