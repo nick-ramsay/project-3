@@ -15,13 +15,16 @@ function UnbilledProjectQueue(props) {
                 </div>
                 <div id="billingCompleteProjectQueue" class="collapse" aria-labelledby="headingOne" data-parent="#billingProjectQueueAccordion">
                     <div class="card-body">
-                        <div className="row">
-                            <div className="col-md-10 offset-md-1 p-1 border rounded">
-                                <h6><strong>[PROJECT NAME] (Completed: [COMPLETION DATE])</strong></h6>
-                                <p>Customer: [CUSTOMER]</p>
-                                <button className="btn btn-success" id="generateProjectBill">Generate Bill</button>
+                        {props.projectData && props.projectData.map((projectInfo, index) => (
+                            <div className="row">
+                                <div className="col-md-10 offset-md-1 p-1 border rounded">
+                                    <h6><strong>{projectInfo.name} (Completed: [COMPLETION DATE])</strong></h6>
+                                    <p>Customer: {projectInfo.customer}</p>
+                                    <button className="btn btn-success" id="generateProjectBill">Generate Bill</button>
+                                </div>
                             </div>
-                        </div>
+                        ))
+                        }
                     </div>
                 </div>
             </div>
