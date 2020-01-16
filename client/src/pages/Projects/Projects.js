@@ -20,7 +20,8 @@ class Projects extends Component {
         selectedProjectItem: {},
         projectItems: [],
         projectComments: [],
-        projects: []
+        projects: [],
+        editProjectData: []
     }
 
     handleFormUpdate = event => {
@@ -138,8 +139,9 @@ class Projects extends Component {
         event.preventDefault();
         console.log("Clicked edit project!")
         var projectIndex = event.currentTarget.dataset.projectStateIndex;
-
-        console.log(projectIndex);
+        var editProjectData = this.state.projects[projectIndex];
+        this.setState({editProjectData: editProjectData});
+        console.log(this.state.editProjectData);
     }
 
     handleSubmitProject = event => {
@@ -250,6 +252,7 @@ class Projects extends Component {
                     handleFormUpdate={this.handleFormUpdate}
                     handleFormUpdate={this.handleFormUpdate}
                     editProject={this.editProject}
+                    editProjectData={this.state.editProjectData}
                     handleSubmitProject={this.handleSubmitProject}
                     selectedProjectItem={this.selectedProjectItem}
                     projectItems={this.state.projectItems}

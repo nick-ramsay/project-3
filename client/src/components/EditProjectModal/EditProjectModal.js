@@ -8,7 +8,7 @@ function EditProjectModal(props) {
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">Edit Project</h5>
+                        <h5 className="modal-title" id="exampleModalLabel">{props.editProjectData.name}</h5>
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -18,13 +18,13 @@ function EditProjectModal(props) {
                             <div className="form-row">
                                 <div className="form-group col-md-12">
                                     <label for="editProjectName">Project Name</label>
-                                    <input type="text" className="form-control" id="editProjectName" placeholder="Project Name" name="editProjectName" onChange={props.handleFormUpdate} />
+                                    <input type="text" className="form-control" id="editProjectName" placeholder={props.editProjectData.name} defaultValue={props.editProjectData.name} name="editProjectName" onChange={props.handleFormUpdate} />
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="form-group col-md-12">
                                     <label for="editProjectStatus">Status</label>
-                                    <select id="editProjectStatus" className="form-control" name="editProjectStatus" onChange={props.handleFormUpdate}>
+                                    <select id="editProjectStatus" placeholder={props.editProjectData.status} defaultValue={props.editProjectData.status} className="form-control" name="editProjectStatus" onChange={props.handleFormUpdate}>
                                         <option selected>New</option>
                                         <option>In Progress</option>
                                         <option>Hold</option>
@@ -36,14 +36,14 @@ function EditProjectModal(props) {
                             <div className="form-row">
                                 <div className="form-group col-md-12">
                                     <label for="editProjectHours">Hours Logged</label>
-                                    <input type="number" step="0.1" min="0" className="form-control" id="editProjectHours" defaultValue="0.0" placeholder="0.0" name="editProjectHours" onChange={props.handleFormUpdate} />
+                                    <input type="number" step="0.1" min="0" className="form-control" id="editProjectHours" defaultValue={props.editProjectData.hours} placeholder={props.editProjectData.hours} name="editProjectHours" onChange={props.handleFormUpdate} />
                                 </div>
                             </div>
                             <div className="form-row">
                                 <div className="form-group col-md-12">
                                     <label for="editProjectCustomer">Choose a Customer</label>
                                     <select id="editProjectCustomer" className="form-control" name="editProjectCustomer" onChange={props.handleFormUpdate}>
-                                        <option selected>Choose a customer...</option>
+                                        <option selected>{props.editProjectData.customer}</option>
                                         {props.customers.map((customer, index) => (
                                             <option key={customer._id} data-customer-id={customer._id}>{customer.firstName} {customer.lastName}</option>
                                         ))
@@ -76,7 +76,7 @@ function EditProjectModal(props) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {props.projectItems.map((projectItem, index) => (
+                                        {props.editProjectData.items && props.editProjectData.items.map((projectItem, index) => (
                                             <tr id={projectItem._id} data-project-item-index={index}>
                                                 <td>
                                                     {projectItem.newItemName}
@@ -104,7 +104,7 @@ function EditProjectModal(props) {
                             </div>
                             <div className="col-md-12">
                                 <ul class="list-group">
-                                    {props.projectComments.map((projectComment, index) => (
+                                    {props.editProjectData.comments && props.editProjectData.comments.map((projectComment, index) => (
                                         <li key={index} className="list-group-item list-group-item-light">
                                             <p className="m-0 p-0 text-right" data-project-comment-index={index} onClick={props.handleRemoveComment}><small id="removeCommentBtn">x</small></p>
                                             <p className="m-0 p-0"><strong>{projectComment.comment}</strong></p>
