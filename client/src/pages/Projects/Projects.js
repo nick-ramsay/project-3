@@ -161,8 +161,17 @@ class Projects extends Component {
                 comments: this.state.projectComments
             }
 
+            for (var i = 0; i < projectInfo.items.length; i++) {
+                var inventoryTransactionData = {
+                    inventoryID: projectInfo.items[i].newItemID,
+                    quantity: (projectInfo.items[i].newItemQuantity * -1)
+                }
+                console.log(inventoryTransactionData);
+                API.inventoryTransaction(inventoryTransactionData).then(res => console.log(res));
+            }
+
             API.createProject(projectInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
-            //window.location.href = "/projects";
+            window.location.href = "/projects";
 
         }
         else {

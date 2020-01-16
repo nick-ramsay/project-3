@@ -53,6 +53,10 @@ export default {
         return axios({method:"post", url: apiURL + "/api/crafter/reactivate-inventory", data: reactivateInventoryInfo})
     },
 
+    inventoryDeduction: function (inventoryDeductionData) {
+        return axios({method:"post", url: apiURL + "/api/crafter/inventory-deduction", data: inventoryDeductionData})
+    },
+
     //END: ... Inventory API Calls
 
     //START: Transaction API calls
