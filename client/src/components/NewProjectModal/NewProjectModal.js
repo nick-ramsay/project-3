@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import "./style.css";
 
 function NewProjectModal(props) {
@@ -63,8 +64,34 @@ function NewProjectModal(props) {
                                     <input type="number" step="1" min="0" className="form-control" id="addProjectItemQuantity" defaultValue="0" placeholder="0" name="addProjectItemQuantity" onChange={props.handleFormUpdate} />
                                 </div>
                                 <div className="form-group col-md-12 text-center">
-                                    <button type="button" className="btn btn-success mt-1" onClick={props.handleAddItem}>Add Item</button>
+                                    <button type="button" className="btn btn-success mt-1" onClick={props.handleAddNewItem}>Add Item</button>
                                 </div>
+                                <table class="table text-center">
+                                    <thead>
+                                        <tr>
+
+                                            <th scope="col">Item</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {props.projectItems.map((projectItem, index) => (
+                                            <tr id={projectItem._id} data-project-item-index={index}>
+                                                <td>
+                                                    {projectItem.newItemName}
+                                                </td>
+                                                <td>
+                                                    {projectItem.newItemQuantity}
+                                                </td>
+                                                <td className="text-center">
+                                                    <button type="button" className="btn btn-danger btn-sm" id={projectItem._id} data-project-item-index={index} onClick={props.handleRemoveNewItem}><strong>X</strong></button>
+                                                </td>
+                                            </tr>
+                                        ))
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
                             <div className="form-row">
                                 <div className="form-group col-md-12">
@@ -74,6 +101,32 @@ function NewProjectModal(props) {
                             </div>
                             <div className="form-group col-md-12 text-center">
                                 <button type="button" className="btn btn-dark mt-1" onClick={props.handleAddComment}>Add Comment</button>
+                            </div>
+                            <div className="col-md-12">
+                                <ul class="list-group">
+                                    {props.projectComments.map((projectComment, index) => (
+                                        <li key={index} className="list-group-item list-group-item-light">
+                                            <p className="m-0 p-0 text-right" data-project-comment-index={index} onClick={props.handleRemoveComment}><small id="removeCommentBtn">x</small></p>
+                                            <p className="m-0 p-0"><strong>{projectComment.comment}</strong></p>
+                                            <p className="m-0 p-0"><small>{projectComment.created}</small></p>
+                                        </li>
+                                        /*
+                                        
+                                        <tr id={projectItem._id} data-project-item-index={index}>
+                                            <td>
+                                                {projectItem.newItemName}
+                                            </td>
+                                            <td>
+                                                {projectItem.newItemQuantity}
+                                            </td>
+                                            <td className="text-center">
+                                                <button type="button" className="btn btn-danger btn-sm" id={projectItem._id} data-project-item-index={index} onClick={props.handleRemoveNewItem}><strong>X</strong></button>
+                                            </td>
+                                        </tr>
+                                        */
+                                    ))
+                                    }
+                                </ul>
                             </div>
                         </form>
                     </div>

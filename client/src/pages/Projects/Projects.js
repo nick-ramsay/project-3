@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import moment from "moment";
 import Navbar from "../Navbar/Navbar";
 import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
 import ProjectList from "../../components/ProjectList/ProjectList";
@@ -26,6 +27,7 @@ class Projects extends Component {
         this.setState({
             [name]: value
         });
+        console.log(this.state);
     }
 
     componentDidMount() {
@@ -61,7 +63,7 @@ class Projects extends Component {
         // Each time item is selected for project, info is saved to state.
     }
 
-    handleAddItem = event => {
+    handleAddNewItem = event => {
         event.preventDefault();
 
         var newProjectItemInfo = {};
@@ -86,10 +88,18 @@ class Projects extends Component {
               }
     }
 
+    handleRemoveNewItem = event => {
+        event.preventDefault();
+        var currentNewItems = this.state.projectItems;
+        var removeNewItemIndex = event.currentTarget.dataset.projectItemIndex;
+        currentNewItems.splice(removeNewItemIndex);
+        this.setState({projectItems: currentNewItems});
+    }
+
     handleAddComment = event => {
         event.preventDefault();
         console.log("Add commment clicked!");
-        console.log(this.state.addProjectComment);
+        console.log(this.state.projectComments);
 
         event.preventDefault();
 
@@ -101,7 +111,7 @@ class Projects extends Component {
                 
                   newProjectComment = {
                       comment: this.state.addProjectComment,
-                      created: new Date()
+                      created: moment().format("DD/MM/YYYY hh:mm A")
                   }
       
                   currentProjectComments.push(newProjectComment);
@@ -110,6 +120,17 @@ class Projects extends Component {
               } else {
                   alert("Please complete project item info. Quantity must be greater than zero.");
               }
+    }
+
+    handleRemoveComment = event => {
+        event.preventDefault();
+        var currentComments = this.state.projectComments;
+        var removeCommentIndex = event.currentTarget.dataset.projectCommentIndex;
+        currentComments.splice(removeCommentIndex,1);
+        this.setState({projectComments: currentComments});
+
+        console.log(currentComments);
+        console.log(removeCommentIndex);
     }
 
     handleSubmitProject = event => {
@@ -135,34 +156,19 @@ class Projects extends Component {
                 customer: this.state.addProjectCustomer,
                 createdDate: new Date(),
                 hours: this.state.addProjectHours,
-                hourlyRate: this.state.accountData,
+                hourlyRate: this.state.accountData.hourlyRate,
                 items: this.state.projectItems,
                 comments: this.state.projectComments
             }
 
             API.createProject(projectInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
-            window.location.href = "/projects";
+            //window.location.href = "/projects";
 
         }
         else {
             console.log("Sorry... form not complete.");
             alert("Sorry... form not complete.");
         }
-    }
-
-    generateProjectInvoice = event => {
-        event.preventDefault();
-        console.log("Clicked generate invoice!");
-        
-        var invoiceProjectID;
-
-        invoiceProjectID = event.target.dataset.projectIndex;
-
-        console.log(invoiceProjectID);
-
-        var invoiceProjectInfo = this.state.projects[invoiceProjectID];
-
-        console.log(invoiceProjectInfo);
     }
 
     render() {
@@ -201,7 +207,6 @@ class Projects extends Component {
                                 projectRate={project.hourlyRate}
                                 projectItems={project.items}
                                 projectComments={project.comments}
-                                generateProjectInvoice={this.generateProjectInvoice}
                             />
                         ))
                         }
@@ -212,11 +217,15 @@ class Projects extends Component {
                     handleFormUpdate={this.handleFormUpdate}
                     handleSubmitProject={this.handleSubmitProject}
                     selectedProjectItem={this.selectedProjectItem}
-                    handleAddItem={this.handleAddItem}
+                    projectItems={this.state.projectItems}
+                    projectComments={this.state.projectComments}
+                    handleAddNewItem={this.handleAddNewItem}
                     handleAddComment={this.handleAddComment}
                     customers={this.state.customers}
                     inventory={this.state.inventory}
                     itemOptions={itemOptions}
+                    handleRemoveNewItem={this.handleRemoveNewItem}
+                    handleRemoveComment={this.handleRemoveComment}
                 />
             </div>
         )

@@ -6,15 +6,14 @@ function ProjectList(props) {
     return (
         <div className="col-md-12">
             <div class="card mb-2">
-                <h5 className="card-header" id="customerHeader1">
+                <h5 className="card-header" id="projectHeader1">
                     <strong><span className="projectStatus">{props.projectName}: </span><span className="projectHeaderName">{props.projectStatus}</span><span className="projectHeaderName"> for {props.projectCustomer}</span><span className="projectHeaderName"> - {moment(props.projectCreated).format("DD/MM/YYYY hh:mm a")}</span></strong>
                 </h5>
                 <div className="card-body">
-                    <button className="btn btn-dark m-1 customerDetails" type="button" data-toggle="collapse" id="customer1" data-target="#customerDetails1">Details</button>
-                    {props.projectStatus === "Complete" && <button className="btn btn-warning m-1 float-right" id="generateProjectInvoice" data-project-index={props.projectStateIndex} name="generateProjectInvoice" onClick={props.generateProjectInvoice}>$</button>}
+                    <button className="btn btn-dark m-1 projectDetails" type="button" data-toggle="collapse" id={props.projectID && "project" + props.projectID} data-target={props.projectID && "#projectDetails" + props.projectID}>Details</button>
                     <button className="btn btn-primary m-1 float-right editInventoryBtn"><img src={require("../../images/edit-icon.png")} alt="Edit Item" /></button>
                     <button className="btn btn-danger m-1 float-right deleteInventoryBtn"><img src={require("../../images/delete-icon.png")} alt="Delete Item" /></button>
-                    <div id="customerDetails1" class="collapse" aria-labelledby="headingOne" data-parent="#customer1">
+                    <div id={props.projectID && "projectDetails" + props.projectID} class="collapse" aria-labelledby="headingOne" data-parent={props.projectID && "#project" + props.projectID}>
                         <div class="card-body">
                             <p>Project: {props.projectName}</p>
                             <p>Customer: {props.projectCustomer}</p>
