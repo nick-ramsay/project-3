@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import moment from "moment";
 import Navbar from "../Navbar/Navbar";
 import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
+import EditProjectModal from "../../components/EditProjectModal/EditProjectModal";
 import ProjectList from "../../components/ProjectList/ProjectList";
 import API from "../../utils/API";
 import "./style.css";
@@ -133,6 +134,14 @@ class Projects extends Component {
         console.log(removeCommentIndex);
     }
 
+    editProject = event => {
+        event.preventDefault();
+        console.log("Clicked edit project!")
+        var projectIndex = event.currentTarget.dataset.projectStateIndex;
+
+        console.log(projectIndex);
+    }
+
     handleSubmitProject = event => {
         event.preventDefault();
         console.log("Called create project!");
@@ -216,6 +225,7 @@ class Projects extends Component {
                                 projectRate={project.hourlyRate}
                                 projectItems={project.items}
                                 projectComments={project.comments}
+                                editProject={this.editProject}
                             />
                         ))
                         }
@@ -224,6 +234,22 @@ class Projects extends Component {
                 </div>
                 <NewProjectModal
                     handleFormUpdate={this.handleFormUpdate}
+                    handleSubmitProject={this.handleSubmitProject}
+                    selectedProjectItem={this.selectedProjectItem}
+                    projectItems={this.state.projectItems}
+                    projectComments={this.state.projectComments}
+                    handleAddNewItem={this.handleAddNewItem}
+                    handleAddComment={this.handleAddComment}
+                    customers={this.state.customers}
+                    inventory={this.state.inventory}
+                    itemOptions={itemOptions}
+                    handleRemoveNewItem={this.handleRemoveNewItem}
+                    handleRemoveComment={this.handleRemoveComment}
+                />
+                <EditProjectModal
+                    handleFormUpdate={this.handleFormUpdate}
+                    handleFormUpdate={this.handleFormUpdate}
+                    editProject={this.editProject}
                     handleSubmitProject={this.handleSubmitProject}
                     selectedProjectItem={this.selectedProjectItem}
                     projectItems={this.state.projectItems}

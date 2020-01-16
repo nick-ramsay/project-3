@@ -123,6 +123,15 @@ module.exports = {
             .then(console.log(req.body))
             .catch(err => res.status(422).json(err));
     },
+    cancelInventory: function (req, res) {
+        console.log("Cancel inventory controller called...");
+        console.log(req.body);
+        db.Inventory
+            .updateOne({ _id: req.body.inventoryID }, { cancelled: req.body.cancelledDate })
+            .then(dbModel => res.json(dbModel))
+            .then(console.log(req.body))
+            .catch(err => res.status(422).json(err));
+    },
     reactivateInventory: function (req, res) {
         console.log("Reactivate inventory controller called...");
         console.log(req.body);
