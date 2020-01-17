@@ -21,7 +21,9 @@ class Projects extends Component {
         projectItems: [],
         projectComments: [],
         projects: [],
-        editProjectData: []
+        editProjectData: [],
+        addProjectCompleteDate: "",
+        editProjectCompleteDate: ""
     }
 
     handleFormUpdate = event => {
@@ -63,6 +65,17 @@ class Projects extends Component {
         this.setState({ selectedProjectItem: selectedProjectItemInfo });
 
         // Each time item is selected for project, info is saved to state.
+    }
+
+    setProjectCompleteDate = event => {
+        event.preventDefault();
+        var currentProjectStatus = this.state.addProjectStatus;
+
+        if (currentProjectStatus === "Complete") {
+            this.setState({addProjectCompleteDate: new Date()});
+        } else {
+            this.setState({addProjectCompleteDate: ""});
+        }
     }
 
     handleAddNewItem = event => {
@@ -153,6 +166,7 @@ class Projects extends Component {
             name: "",
             status: "",
             createdDate: "",
+            completedDate: "",
             hours: 0,
             customer: "",
             items: [],
@@ -166,6 +180,7 @@ class Projects extends Component {
                 status: this.state.addProjectStatus,
                 customer: this.state.addProjectCustomer,
                 createdDate: new Date(),
+                completedDate: this.state.addProjectCompleteDate,
                 hours: this.state.addProjectHours,
                 hourlyRate: this.state.accountData.hourlyRate,
                 items: this.state.projectItems,
@@ -247,6 +262,7 @@ class Projects extends Component {
                     itemOptions={itemOptions}
                     handleRemoveNewItem={this.handleRemoveNewItem}
                     handleRemoveComment={this.handleRemoveComment}
+                    setProjectCompleteDate={this.setProjectCompleteDate}
                 />
                 <EditProjectModal
                     handleFormUpdate={this.handleFormUpdate}

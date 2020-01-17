@@ -24,7 +24,7 @@ function NewProjectModal(props) {
                             <div className="row">
                                 <div className="form-group col-md-12">
                                     <label for="addProjectStatus">Status</label>
-                                    <select id="addProjectStatus" className="form-control" name="addProjectStatus" onChange={props.handleFormUpdate}>
+                                    <select id="addProjectStatus" className="form-control" name="addProjectStatus" onClick={props.setProjectCompleteDate} onChange={props.handleFormUpdate}>
                                         <option selected>New</option>
                                         <option>In Progress</option>
                                         <option>Hold</option>
@@ -110,20 +110,6 @@ function NewProjectModal(props) {
                                             <p className="m-0 p-0"><strong>{projectComment.comment}</strong></p>
                                             <p className="m-0 p-0"><small>{projectComment.created}</small></p>
                                         </li>
-                                        /*
-                                        
-                                        <tr id={projectItem._id} data-project-item-index={index}>
-                                            <td>
-                                                {projectItem.newItemName}
-                                            </td>
-                                            <td>
-                                                {projectItem.newItemQuantity}
-                                            </td>
-                                            <td className="text-center">
-                                                <button type="button" className="btn btn-danger btn-sm" id={projectItem._id} data-project-item-index={index} onClick={props.handleRemoveNewItem}><strong>X</strong></button>
-                                            </td>
-                                        </tr>
-                                        */
                                     ))
                                     }
                                 </ul>
