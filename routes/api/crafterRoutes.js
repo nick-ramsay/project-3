@@ -88,6 +88,10 @@ router
   .route("/get-projects")
   .post(crafterController.getProjects)
 
+router
+  .route("/get-complete-projects")
+  .post(crafterController.getCompleteProjects)
+
 //END: ...Project Routes
 
 module.exports = router;

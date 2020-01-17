@@ -180,7 +180,15 @@ module.exports = {
             .find({ contextID: req.body.contextID }).sort({ createdDate: 1, name: 1 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
+    },
+    getCompleteProjects: function (req, res) {
+        console.log(req.body);
+        db.Projects
+            .find({ contextID: req.body.contextID, completedDate: {$exists:true}, billID: {$exists:false} }).sort({ createdDate: 1, name: 1 })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
     }
+
 
     //END:...ProjectControllers
 };

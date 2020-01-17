@@ -7,10 +7,12 @@ const ProjectSchema = new Schema({
     status: {type: String},
     customer: {type: String},
     createdDate: {type: Date},
-    hours: {type: Number}, //inventory_purchase or project_revenue
+    completedDate: {type: Date},
+    hours: {type: Number},
     hourlyRate: {type: Number},
     items: {type: Array},
-    comments: {type: Array}
+    comments: {type: Array},
+    billID: {type: String}
 })
 
 const Projects = mongoose.model("Projects", ProjectSchema);

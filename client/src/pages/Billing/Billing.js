@@ -24,7 +24,7 @@ class Billing extends Component {
 
     componentDidMount() {
         this.getAccountData();
-        this.getProjects();
+        this.getCompleteProjects();
         this.getInventory();
         this.getCustomers();
     }
@@ -34,8 +34,8 @@ class Billing extends Component {
         API.getAccountData(client).then(res => this.setState({ accountData: res.data }))
     }
 
-    getProjects = () => {
-        API.getProjects(client).then(res => this.setState({ projects: res.data }))
+    getCompleteProjects = () => {
+        API.getCompleteProjects(client).then(res => this.setState({ projects: res.data }))
     }
 
     getInventory = () => {
