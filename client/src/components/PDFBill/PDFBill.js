@@ -7,6 +7,7 @@ import { DataTableCell, Table, TableBody, TableCell, TableHeader } from '@david.
 
 // Create styles
 
+
 Font.register({
     family: 'Quicksand',
     src: QuicksandFont
@@ -15,9 +16,9 @@ Font.register({
 const styles = StyleSheet.create({
     page: {
         backgroundColor: 'white',
-        fontFamily: 'Quicksand',
         margin: 20,
-        paddingRight: 40
+        paddingRight: 40,
+        textAlign: 'center'
 
     },
     body: {
@@ -28,26 +29,19 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 16,
         textAlign: 'left',
-        fontFamily: 'Quicksand',
         fontWeight: 'bold',
         marginBottom: 5
     },
     address: {
         fontSize: 12,
         textAlign: 'left',
-        fontFamily: 'Quicksand',
         marginBottom: 2
     },
     billTo: {
         fontSize: 14,
         textAlign: 'left',
-        fontFamily: 'Quicksand',
         marginTop: 15,
         marginBottom: 5
-    },
-
-    table: {
-        fontFamily: 'Quicksand'
     }
 });
 
@@ -59,75 +53,73 @@ function PDFBill(props) {
             <Page size="A4" style={styles.page}>
                 <View style={styles.body}>
                     <View style={styles.title}>
-                        <Text>{props.data.businessInfo.businessName}</Text>
+                        {props.data.businessInfo && <Text>{props.data.businessInfo && props.data.businessInfo.businessName}</Text>}
                     </View>
                     <View style={styles.address}>
-                        <Text>{props.data.businessInfo.address}</Text>
+                        {props.data.businessInfo && <Text>{props.data.businessInfo.address}</Text>}
                     </View>
                     {props.data.businessInfo.address2 &&
                         <View style={styles.address}>
-                            <Text>{props.data.businessInfo.address}</Text>
+                            {props.data.businessInfo && <Text>{props.data.businessInfo.address}</Text>}
                         </View>
                     }
                     <View style={styles.address}>
-                        <Text>{props.data.businessInfo.city}, {props.data.businessInfo.state} {props.data.businessInfo.postcode}</Text>
+                        {props.data.businessInfo && <Text>{props.data.businessInfo.city}, {props.data.businessInfo.state} {props.data.businessInfo.postcode}</Text>}
                     </View>
                     <View style={styles.address}>
-                        <Text>Phone: {props.data.businessInfo.phone}</Text>
+                        {props.data.businessInfo && <Text>Phone: {props.data.businessInfo.phone}</Text>}
                     </View>
                     <View style={styles.address}>
-                        <Text>Email: {props.data.businessInfo.email}</Text>
+                        {props.data.businessInfo && <Text>Email: {props.data.businessInfo.email}</Text>}
                     </View>
                     <View style={styles.billTo}>
                         <Text>Bill To:</Text>
                     </View>
                     <View style={styles.address}>
-                        <Text> {props.data.projectInfo.customer.firstName} {props.data.projectInfo.customer.lastName} </Text>
+                        {props.data.projectInfo && <Text> {props.data.projectInfo.customer.firstName} {props.data.projectInfo.customer.lastName} </Text>}
                     </View>
                     <View style={styles.address}>
-                        <Text>{props.data.projectInfo.customer.address}</Text>
+                        {props.data.projectInfo && <Text>{props.data.projectInfo.customer.address}</Text>}
                     </View>
                     {props.data.businessInfo.address2 &&
                         <View style={styles.address}>
-                            <Text>{props.data.projectInfo.customer.address}</Text>
+                            {props.data.projectInfo && <Text>{props.data.projectInfo.customer.address}</Text>}
                         </View>
                     }
                     <View style={styles.address}>
-                        <Text>{props.data.projectInfo.customer.city}, {props.data.projectInfo.customer.state} {props.data.projectInfo.customer.postcode}</Text>
+                        {props.data.projectInfo && <Text>{props.data.projectInfo.customer.city}, {props.data.projectInfo.customer.state} {props.data.projectInfo.customer.postcode}</Text>}
                     </View>
                     <View style={styles.address}>
-                        <Text>Phone: {props.data.projectInfo.customer.phone}</Text>
+                        {props.data.projectInfo && <Text>Phone: {props.data.projectInfo.customer.phone}</Text>}
                     </View>
                     <View style={styles.address}>
-                        <Text>Email: {props.data.projectInfo.customer.email}</Text>
+                        {props.data.projectInfo && <Text>Email: {props.data.projectInfo.customer.email}</Text>}
                     </View>
                 </View>
-                <View>
-                    <Table fontFamily={"Quicksand"}
-                        data={[
-                            { firstName: "John", lastName: "Smith", dob: new Date(2000, 1, 1), country: "Australia", phoneNumber: "xxx-0000-0000" }
-                        ]}
-                    >
-                        <TableHeader textAlign={"center"}>
-                            <TableCell weighting={0.3}>
-                                Item Name
-                        </TableCell>
-                            <TableCell weighting={0.3}>
-                                Quantity
-                        </TableCell>
-                            <TableCell>
-                                Price
-                        </TableCell>
-                            <TableCell>
-                                Item Total
-                        </TableCell>
-                        </TableHeader>
-
-                        <TableBody>
-
-                        </TableBody>
-                    </Table>
-                </View>
+                <Table
+                    data={props.data.projectInfo.items}
+                >
+                    <TableHeader textAlign={'center'}>
+                        <TableCell>
+                            Item Name
+                            </TableCell>
+                        <TableCell>
+                            Quantity
+                            </TableCell>
+                        <TableCell>
+                            Price
+                            </TableCell>
+                        <TableCell>
+                            Item Total
+                            </TableCell>
+                    </TableHeader>
+                    <TableBody textAlign={'center'}>
+                        <DataTableCell getContent={(r) => r.newItemName} />
+                        <DataTableCell getContent={(r) => r.newItemQuantity} />
+                        <DataTableCell getContent={(r) => "$" + r.newItemPrice} />
+                        <DataTableCell getContent={(r) => "$" + r.newItemTotal} />
+                    </TableBody>
+                </Table>
             </Page>
         </Document>
     )
