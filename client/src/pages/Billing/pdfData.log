@@ -1,0 +1,47 @@
+{dummyData: Array(2), bills: Array(1), projects: Array(1), accountData: {…}, inventory: Array(3), …}
+dummyData: Array(2)
+0: "Dummy Data 1"
+1: "Dummy Data 2"
+length: 2
+__proto__: Array(0)
+bills: Array(1)
+0:
+_id: "5e22737f0d9d091998180489"
+contextID: "5e0c11e50efee023f82abe9a"
+created: "2020-01-18T02:54:55.293Z"
+projectInfo: {items: Array(1), comments: Array(1), _id: "5e226a6f993f4940b86b53b7", contextID: "5e0c11e50efee023f82abe9a", name: "Hello World", …}
+billedAmount: 0
+revenueCollected: 0
+__v: 0
+__proto__: Object
+length: 1
+__proto__: Array(0)
+projects: Array(1)
+0: {items: Array(1), comments: Array(1), _id: "5e226b18d4a1de147c439cf7", contextID: "5e0c11e50efee023f82abe9a", name: "A completed project!", …}
+length: 1
+__proto__: Array(0)
+accountData:
+_id: "5e0c11e50efee023f82abe9a"
+businessName: "Nick's Painting Service"
+phone: 404470705
+email: "NickRamsay1989@gmail.com"
+address: "383 Kent Street"
+city: "Sydney"
+state: "New South Wales"
+postcode: 2000
+hourlyRate: 12
+specialty: "House Painting"
+__proto__: Object
+inventory: Array(3)
+0: {_id: "5e146471bdfcab27c0590312", contextID: "5e0c11e50efee023f82abe9a", itemName: "Muffler", manufacturer: "Ford", quantity: -2, …}
+1: {_id: "5e14645cbdfcab27c0590311", contextID: "5e0c11e50efee023f82abe9a", itemName: "Spark Plugs", manufacturer: "AC Delco", quantity: -13, …}
+2: {_id: "5e14647cbdfcab27c0590313", contextID: "5e0c11e50efee023f82abe9a", itemName: "Tire", manufacturer: "Goodyear", quantity: -1, …}
+length: 3
+__proto__: Array(0)
+customers: Array(5)
+0: {_id: "5e116ed3112cf926a46d6d46", contextID: "5e0c11e50efee023f82abe9a", created: "2020-01-05T05:06:27.372Z", firstName: "Tim", lastName: "Doe", …}
+1: {_id: "5e11950d1a4db916c4ba5327", contextID: "5e0c11e50efee023f82abe9a", created: "2020-01-05T07:49:33.289Z", firstName: "James", lastName: "Fisk", …}
+2: {_id: "5e102d5eb677520498ec8da6", contextID: "5e0c11e50efee023f82abe9a", created: "2020-01-04T06:14:54.791Z", firstName: "Emma", lastName: "Ramsay", …}
+3: {_id: "5e102deeb677520498ec8da7", contextID: "5e0c11e50efee023f82abe9a", created: "2020-01-04T06:17:18.025Z", firstName: "Nicholas", lastName: "Ramsay", …}
+4: {_id: "5e20295ddb949421bc58c5a1", contextID: "5e0c11e50efee023f82abe9a", created: "2020-01-16T09:14:05.529Z", firstName: "Nick", lastName: "Ramsay", …}
+length: 5

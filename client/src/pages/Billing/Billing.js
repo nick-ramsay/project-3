@@ -82,6 +82,13 @@ class Billing extends Component {
             );
     }
 
+    showState = event => {
+        event.preventDefault();
+
+        console.log(this.state);
+
+    }
+
     render() {
         return (
             <div>
@@ -99,6 +106,10 @@ class Billing extends Component {
                                 {this.state.bills.map((bill, index) => (
                                     <BillList
                                         dummyData={this.state.dummyData}
+                                        businessInfo={this.state.accountData}
+                                        projectInfo={bill.projectInfo}
+                                        billStateIndex={index}
+                                        showState={this.showState}
                                     />
                                 ))
                                 }
