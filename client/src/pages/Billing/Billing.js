@@ -24,7 +24,7 @@ class Billing extends Component {
         console.log(this.state);
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.getAccountData();
         this.getBillData();
         this.getCompleteProjects();
