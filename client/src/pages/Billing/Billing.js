@@ -24,6 +24,10 @@ class Billing extends Component {
         console.log(this.state);
     }
 
+    constructor(props) {
+        super(props);
+    }
+
     componentWillMount() {
         this.getAccountData();
         this.getBillData();
