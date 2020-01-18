@@ -101,6 +101,10 @@ router
 //START: Billing routes...
 
 router
+  .route("/get-bills")
+  .post(crafterController.getBills)
+
+router
   .route("/create-bill")
   .post(crafterController.createBill)
 

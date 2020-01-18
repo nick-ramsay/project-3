@@ -89,9 +89,12 @@ export default {
     //END: Transaction API Calls
 
     //START: Billing API Calls...
-
+    getBillData: function (contextID) {
+        console.log("Called get-bill API");
+        return axios({method:"post", url: apiURL + "/api/crafter/get-bills", data: contextID});
+    },
     createBill: function (billInfo) {
-        console.log("Called create project API");
+        console.log("Called create bill API");
         return axios({method:"post", url: apiURL + "/api/crafter/create-bill", data: billInfo})
     },
 

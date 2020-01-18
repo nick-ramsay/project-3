@@ -11,7 +11,8 @@ var client = {
 
 class Billing extends Component {
     state = {
-        dummyData: ["Dummy Data 1", "Dummy Data 2"]
+        dummyData: ["Dummy Data 1", "Dummy Data 2"],
+        bills: []
     }
 
     handleFormUpdate = event => {
@@ -23,8 +24,9 @@ class Billing extends Component {
     }
 
     componentDidMount() {
-        this.getAccountData();
+        this.getBillData();
         this.getCompleteProjects();
+        this.getAccountData();
         this.getInventory();
         this.getCustomers();
     }
@@ -32,6 +34,10 @@ class Billing extends Component {
 
     getAccountData = () => {
         API.getAccountData(client).then(res => this.setState({ accountData: res.data }))
+    }
+
+    getBillData = () => {
+        API.getBillData(client).then(res => this.setState({ bills: res.data}));
     }
 
     getCompleteProjects = () => {
@@ -90,9 +96,12 @@ class Billing extends Component {
                                     generateBill={this.generateBill}
                                 />
                                 <h3><strong>Existing Bills</strong></h3>
-                                <BillList
-                                    dummyData={this.state.dummyData}
-                                />
+                                {this.state.bills.map((bill, index) => (
+                                    <BillList
+                                        dummyData={this.state.dummyData}
+                                    />
+                                ))
+                                }
                             </div>
                         </div>
                     </div>

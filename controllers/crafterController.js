@@ -201,6 +201,13 @@ module.exports = {
     },
     //END:...ProjectControllers
     //Start: BillingControllers...
+    getBills: function (req, res) {
+        console.log(req.body);
+        db.Bills
+            .find({ contextID: req.body.contextID }).sort({ createdDate: 1 })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
     createBill: function (req, res) {
         console.log("Create bill controller called...");
         console.log(req.body);

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const BillSchema = new Schema({
     contextID: {type: String},
     created: {type: Date},
-    projectData: {type: Object},
+    projectInfo: {type: Object},
     billedAmount: {type: Number},
     revenueCollected: {type: Number}
 })
