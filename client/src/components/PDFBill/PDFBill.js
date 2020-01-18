@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 
 // Create Document Component
 function PDFBill(props) {
-    console.log(props.data);
+    console.log(props);
     return (
         <Document>
             <Page size="A4" style={styles.page}>

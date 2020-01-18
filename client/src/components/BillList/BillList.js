@@ -23,11 +23,7 @@ function BillList(props) {
                     <button className="btn btn-light m-1 float-right btn-sm" id="billPDFBtn" data-bill-state-index={props.billStateIndex}>
                     <PDFDownloadLink
                         document={<PDFBill data={props} />}
-                        fileName="bill.pdf"
-                        style={{
-                            textDecoration: "none",
-                            textColor: "black"
-                        }}
+                        fileName={"bill" + props.projectInfo._id + ".pdf"}
                     ><strong>PDF</strong></PDFDownloadLink>
                     </button>
                 </div>

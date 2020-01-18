@@ -114,7 +114,6 @@ class Billing extends Component {
                                         businessInfo={this.state.accountData}
                                         projectInfo={bill.projectInfo}
                                         billStateIndex={index}
-                                        showState={this.showState}
                                     />
                                 ))
                                 }
