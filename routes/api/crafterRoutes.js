@@ -92,6 +92,18 @@ router
   .route("/get-complete-projects")
   .post(crafterController.getCompleteProjects)
 
+router
+  .route("/mark-project-billed")
+  .post(crafterController.markProjectBilled)
+
 //END: ...Project Routes
+
+//START: Billing routes...
+
+router
+  .route("/create-bill")
+  .post(crafterController.createBill)
+
+//END: Billing routes...
 
 module.exports = router;

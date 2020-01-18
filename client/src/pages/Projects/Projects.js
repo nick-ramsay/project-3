@@ -170,7 +170,8 @@ class Projects extends Component {
             hours: 0,
             customer: "",
             items: [],
-            comments: []
+            comments: [],
+            billed: false
         }
 
         if (this.state.addProjectName && this.state.addProjectStatus) {
@@ -184,7 +185,8 @@ class Projects extends Component {
                 hours: this.state.addProjectHours,
                 hourlyRate: this.state.accountData.hourlyRate,
                 items: this.state.projectItems,
-                comments: this.state.projectComments
+                comments: this.state.projectComments,
+                billed: true
             }
 
             for (var i = 0; i < projectInfo.items.length; i++) {

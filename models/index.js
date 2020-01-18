@@ -3,6 +3,7 @@ module.exports = {
     Customers: require("./Customers"),
     Inventory: require("./Inventory"),
     Transactions: require("./Transactions"),
-    Projects: require("./Projects")
+    Projects: require("./Projects"),
+    Bills: require("./Bills")
   };
   

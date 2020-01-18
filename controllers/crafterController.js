@@ -184,11 +184,31 @@ module.exports = {
     getCompleteProjects: function (req, res) {
         console.log(req.body);
         db.Projects
-            .find({ contextID: req.body.contextID, completedDate: {$exists:true}, billID: {$exists:false} }).sort({ createdDate: 1, name: 1 })
+            .find({ contextID: req.body.contextID, completedDate: {$exists:true}, billed: false }).sort({ createdDate: 1, name: 1 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
-    }
-
-
+    },
+    markProjectBilled: function (req, res) {
+        console.log("Mark project billed controller called...");
+        console.log(req.body);
+        db.Projects
+            .updateOne({ _id: req.body.projectID }, {
+                billed: true
+            })
+            .then(dbModel => res.json(dbModel))
+            .then(console.log(req.body))
+            .catch(err => res.status(422).json(err));
+    },
     //END:...ProjectControllers
+    //Start: BillingControllers...
+    createBill: function (req, res) {
+        console.log("Create bill controller called...");
+        console.log(req.body);
+        db.Bills
+            .create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .then(console.log(req.body))
+            .catch(err => res.status(422).json(err));
+    }
+    //END: ...BillingControllers
 };

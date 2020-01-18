@@ -81,6 +81,19 @@ export default {
     getCompleteProjects: function (contextID) {
         console.log("Called get-project API");
         return axios({method:"post", url: apiURL + "/api/crafter/get-complete-projects", data: contextID});
-    }
+    },
+    markProjectBilled: function(projectBillData) {
+        console.log("Called mark-project-billed");
+        return axios({method:"post", url: apiURL + "/api/crafter/mark-project-billed", data: projectBillData});
+    },
     //END: Transaction API Calls
+
+    //START: Billing API Calls...
+
+    createBill: function (billInfo) {
+        console.log("Called create project API");
+        return axios({method:"post", url: apiURL + "/api/crafter/create-bill", data: billInfo})
+    },
+
+    //END: ... Billing API Calls
 };

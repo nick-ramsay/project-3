@@ -11,7 +11,7 @@ var client = {
 
 class Billing extends Component {
     state = {
-        dummyData: ["Dummy Data 1","Dummy Data 2"]
+        dummyData: ["Dummy Data 1", "Dummy Data 2"]
     }
 
     handleFormUpdate = event => {
@@ -29,7 +29,7 @@ class Billing extends Component {
         this.getCustomers();
     }
 
-    
+
     getAccountData = () => {
         API.getAccountData(client).then(res => this.setState({ accountData: res.data }))
     }
@@ -46,6 +46,36 @@ class Billing extends Component {
         API.getCustomers(client).then(res => this.setState({ customers: res.data }))
     }
 
+    generateBill = event => {
+        event.preventDefault();
+
+        var selectedProjectIndex = event.currentTarget.dataset.projectStateIndex;
+        console.log(selectedProjectIndex);
+
+        var selectedProjectInfo = this.state.projects[selectedProjectIndex];
+        console.log(selectedProjectInfo);
+
+        var billInfo = {
+            contextID: client.contextID,
+            created: new Date(),
+            projectInfo: selectedProjectInfo,
+            billedAmount: 0,
+            revenueCollected: 0
+        }
+
+        var markProjectBilledInfo = {
+            projectID: selectedProjectInfo._id
+        }
+
+        API.createBill(billInfo)
+            .then(res => console.log(res))
+            .then(
+                API.markProjectBilled(markProjectBilledInfo)
+                    .then(res => console.log(res))
+                    .then(document.location.reload(true))
+            );
+    }
+
     render() {
         return (
             <div>
@@ -55,8 +85,9 @@ class Billing extends Component {
                         <div className="row text-center">
                             <div className="col-md-12">
                                 <h2><strong>Billing</strong></h2>
-                                <UnbilledProjectQueue 
+                                <UnbilledProjectQueue
                                     projectData={this.state.projects}
+                                    generateBill={this.generateBill}
                                 />
                                 <h3><strong>Existing Bills</strong></h3>
                                 <BillList

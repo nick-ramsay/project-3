@@ -12,7 +12,7 @@ const ProjectSchema = new Schema({
     hourlyRate: {type: Number},
     items: {type: Array},
     comments: {type: Array},
-    billID: {type: String}
+    billed: {type: Boolean}
 })
 
 const Projects = mongoose.model("Projects", ProjectSchema);
