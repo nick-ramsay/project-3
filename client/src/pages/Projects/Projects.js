@@ -23,7 +23,8 @@ class Projects extends Component {
         projects: [],
         editProjectData: [],
         addProjectCompleteDate: "",
-        editProjectCompleteDate: ""
+        editProjectCompleteDate: "",
+        addProjectCustomer: {}
     }
 
     handleFormUpdate = event => {
@@ -76,6 +77,16 @@ class Projects extends Component {
         } else {
             this.setState({addProjectCompleteDate: ""});
         }
+    }
+
+    setAddProjectCustomer = event => {
+        event.preventDefault();
+        this.setState({addProjectCustomer: {}});
+        
+        var selectedCustomerIndex = event.target.value;
+        var selectedCustomerInfo = this.state.customers[selectedCustomerIndex];
+        
+        this.setState({addProjectCustomer: selectedCustomerInfo});
     }
 
     handleAddNewItem = event => {
@@ -168,7 +179,7 @@ class Projects extends Component {
             createdDate: "",
             completedDate: "",
             hours: 0,
-            customer: "",
+            customer: [],
             items: [],
             comments: [],
             billed: false
@@ -186,7 +197,7 @@ class Projects extends Component {
                 hourlyRate: this.state.accountData.hourlyRate,
                 items: this.state.projectItems,
                 comments: this.state.projectComments,
-                billed: true
+                billed: false
             }
 
             for (var i = 0; i < projectInfo.items.length; i++) {
@@ -265,6 +276,7 @@ class Projects extends Component {
                     handleRemoveNewItem={this.handleRemoveNewItem}
                     handleRemoveComment={this.handleRemoveComment}
                     setProjectCompleteDate={this.setProjectCompleteDate}
+                    setAddProjectCustomer={this.setAddProjectCustomer}
                 />
                 <EditProjectModal
                     handleFormUpdate={this.handleFormUpdate}

@@ -20,7 +20,7 @@ function UnbilledProjectQueue(props) {
                                 <div className="col-md-10 offset-md-1 p-1 border rounded">
                                     <h6><strong>{projectInfo.name}</strong></h6>
                                     <p className="m-0 p-0">Completed: {moment(projectInfo.completedDate).format("DD/MM/YYYY hh:mm A")}</p>
-                                    <p className="m-0">Customer: {projectInfo.customer}</p>
+                                    <p className="m-0">Customer: {projectInfo.customer.firstName} {projectInfo.customer.lastName}</p>
                                     <button className="btn btn-success btn-sm" id="generateProjectBill" data-project-state-index={index} onClick={props.generateBill}>Generate Bill</button>
                                 </div>
                             </div>

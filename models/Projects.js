@@ -5,7 +5,7 @@ const ProjectSchema = new Schema({
     contextID: {type: String},
     name: {type: String},
     status: {type: String},
-    customer: {type: String},
+    customer: {type: Object},
     createdDate: {type: Date},
     completedDate: {type: Date},
     hours: {type: Number},

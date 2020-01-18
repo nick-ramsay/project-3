@@ -42,10 +42,10 @@ function NewProjectModal(props) {
                             <div className="form-row">
                                 <div className="form-group col-md-12">
                                     <label for="addProjectCustomer">Choose a Customer</label>
-                                    <select id="addProjectCustomer" className="form-control" name="addProjectCustomer" onChange={props.handleFormUpdate}>
+                                    <select id="addProjectCustomer" className="form-control" onChange={props.setAddProjectCustomer}>
                                         <option selected>Choose a customer...</option>
                                         {props.customers.map((customer, index) => (
-                                            <option key={customer._id} data-customer-id={customer._id}>{customer.firstName} {customer.lastName}</option>
+                                            <option value={index}>{customer.firstName} {customer.lastName}</option>
                                         ))
                                         }
                                     </select>

@@ -74,7 +74,8 @@ class Customers extends Component {
                 postcode: this.state.editCustomerPostcode
             }
             API.editCustomer(editCustomerInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
-            window.location.href = "/customers";
+            //window.location.href = "/customers";
+            document.location.reload(true);
         }
         else {
             alert("Sorry... form not complete.");
