@@ -24,12 +24,12 @@ const styles = StyleSheet.create({
     body: {
         paddingTop: 35,
         paddingBottom: 65,
-        paddingHorizontal: 35,
+        paddingHorizontal: 35
     },
     title: {
         fontSize: 16,
         textAlign: 'left',
-        fontWeight: 'bold',
+        fontWeight: 'heavy',
         marginBottom: 5
     },
     address: {
@@ -42,6 +42,13 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         marginTop: 15,
         marginBottom: 5
+    },
+    footerMessage: {
+        fontSize: 14,
+        textAlign: 'center',
+        marginTop: 15,
+        color: 'green',
+        fontWeight: 'heavy'
     }
 });
 
@@ -120,6 +127,9 @@ function PDFBill(props) {
                         <DataTableCell getContent={(r) => "$" + r.newItemTotal} />
                     </TableBody>
                 </Table>
+                <View style={styles.footerMessage}>
+                    <Text>Thank you for your business!</Text>
+                </View>
             </Page>
         </Document>
     )
