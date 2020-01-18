@@ -12,7 +12,8 @@ var client = {
 class Billing extends Component {
     state = {
         dummyData: ["Dummy Data 1", "Dummy Data 2"],
-        bills: []
+        bills: [],
+        accountData: []
     }
 
     handleFormUpdate = event => {

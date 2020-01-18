@@ -3,24 +3,22 @@ import React from "react";
 import QuicksandFont from "../../fonts/quicksand-v19-latin-600.ttf";
 
 import { Page, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
+import { DataTableCell, Table, TableBody, TableCell, TableHeader } from '@david.kucsai/react-pdf-table';
 
 // Create styles
 
 Font.register({
     family: 'Quicksand',
     src: QuicksandFont
-  });
+});
 
 const styles = StyleSheet.create({
     page: {
-        flexDirection: 'row',
         backgroundColor: 'white',
-        fontFamily: 'Times-Roman'
-    },
-    section: {
-        margin: 10,
-        padding: 10,
-        flexGrow: 1
+        fontFamily: 'Quicksand',
+        margin: 20,
+        paddingRight: 40
+
     },
     body: {
         paddingTop: 35,
@@ -28,45 +26,28 @@ const styles = StyleSheet.create({
         paddingHorizontal: 35,
     },
     title: {
-        fontSize: 24,
-        textAlign: 'center',
-        paddingTop: 10,
-        fontFamily: 'Quicksand'
+        fontSize: 16,
+        textAlign: 'left',
+        fontFamily: 'Quicksand',
+        fontWeight: 'bold',
+        marginBottom: 5
     },
-    author: {
+    address: {
         fontSize: 12,
-        textAlign: 'center',
-        marginBottom: 40,
+        textAlign: 'left',
+        fontFamily: 'Quicksand',
+        marginBottom: 2
     },
-    subtitle: {
-        fontSize: 18,
-        margin: 12,
-        fontFamily: 'Times-Roman'
-    },
-    text: {
-        margin: 12,
+    billTo: {
         fontSize: 14,
-        textAlign: 'justify',
-        fontFamily: 'Times-Roman'
+        textAlign: 'left',
+        fontFamily: 'Quicksand',
+        marginTop: 15,
+        marginBottom: 5
     },
-    image: {
-        marginVertical: 15,
-        marginHorizontal: 100,
-    },
-    header: {
-        fontSize: 12,
-        marginBottom: 20,
-        textAlign: 'center',
-        color: 'grey',
-    },
-    pageNumber: {
-        position: 'absolute',
-        fontSize: 12,
-        bottom: 30,
-        left: 0,
-        right: 0,
-        textAlign: 'center',
-        color: 'grey',
+
+    table: {
+        fontFamily: 'Quicksand'
     }
 });
 
@@ -76,8 +57,76 @@ function PDFBill(props) {
     return (
         <Document>
             <Page size="A4" style={styles.page}>
-                <View style={styles.title}>
-                    <Text>{props.data.businessInfo.businessName}</Text>
+                <View style={styles.body}>
+                    <View style={styles.title}>
+                        <Text>{props.data.businessInfo.businessName}</Text>
+                    </View>
+                    <View style={styles.address}>
+                        <Text>{props.data.businessInfo.address}</Text>
+                    </View>
+                    {props.data.businessInfo.address2 &&
+                        <View style={styles.address}>
+                            <Text>{props.data.businessInfo.address}</Text>
+                        </View>
+                    }
+                    <View style={styles.address}>
+                        <Text>{props.data.businessInfo.city}, {props.data.businessInfo.state} {props.data.businessInfo.postcode}</Text>
+                    </View>
+                    <View style={styles.address}>
+                        <Text>Phone: {props.data.businessInfo.phone}</Text>
+                    </View>
+                    <View style={styles.address}>
+                        <Text>Email: {props.data.businessInfo.email}</Text>
+                    </View>
+                    <View style={styles.billTo}>
+                        <Text>Bill To:</Text>
+                    </View>
+                    <View style={styles.address}>
+                        <Text> {props.data.projectInfo.customer.firstName} {props.data.projectInfo.customer.lastName} </Text>
+                    </View>
+                    <View style={styles.address}>
+                        <Text>{props.data.projectInfo.customer.address}</Text>
+                    </View>
+                    {props.data.businessInfo.address2 &&
+                        <View style={styles.address}>
+                            <Text>{props.data.projectInfo.customer.address}</Text>
+                        </View>
+                    }
+                    <View style={styles.address}>
+                        <Text>{props.data.projectInfo.customer.city}, {props.data.projectInfo.customer.state} {props.data.projectInfo.customer.postcode}</Text>
+                    </View>
+                    <View style={styles.address}>
+                        <Text>Phone: {props.data.projectInfo.customer.phone}</Text>
+                    </View>
+                    <View style={styles.address}>
+                        <Text>Email: {props.data.projectInfo.customer.email}</Text>
+                    </View>
+                </View>
+                <View>
+                    <Table fontFamily={"Quicksand"}
+                        data={[
+                            { firstName: "John", lastName: "Smith", dob: new Date(2000, 1, 1), country: "Australia", phoneNumber: "xxx-0000-0000" }
+                        ]}
+                    >
+                        <TableHeader textAlign={"center"}>
+                            <TableCell weighting={0.3}>
+                                Item Name
+                        </TableCell>
+                            <TableCell weighting={0.3}>
+                                Quantity
+                        </TableCell>
+                            <TableCell>
+                                Price
+                        </TableCell>
+                            <TableCell>
+                                Item Total
+                        </TableCell>
+                        </TableHeader>
+
+                        <TableBody>
+
+                        </TableBody>
+                    </Table>
                 </View>
             </Page>
         </Document>
