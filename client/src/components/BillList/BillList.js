@@ -19,12 +19,14 @@ function BillList(props) {
                     {(props.quantity > 0 && !props.cancelled) && <button className="btn btn-dark m-1 float-left btn-sm" id="returnBillBtn" data-toggle="modal" data-target="#returnBillModal" data-bill-state-index={props.billStateIndex} data-return-bill-id={props.billID} name="returnbillBtn" onClick={props.refundBill}><strong>-</strong></button>}
                     {!props.cancelled && <button className="btn btn-success m-1 float-left btn-sm" id="purchasebillBtn" data-toggle="modal" data-target="#purchasebillModal" data-bill-state-index={props.billStateIndex} data-purchase-bill-id={props.billID} name="purchasbillBtn" onClick={props.billPayment}><strong>+</strong></button>}
                     <button className="btn btn-primary m-1 float-right btn-sm" id="editBillBtn" data-toggle="modal" data-target="#editbillModal" data-bill-state-index={props.billStateIndex} onClick={props.editBill}><img src={require("../../images/edit-icon.png")} alt="Edit Bill" /></button>
-                    {!props.cancelled && <button className="btn btn-danger m-1 float-right btn-sm" id="deleteBillBtn" data-cancel-bill-id={props.billID}  onClick={props.showState} name="deleteBillBtn"><img src={require("../../images/delete-icon.png")} alt="End Date Bill" /></button>}
+                    {!props.cancelled && <button className="btn btn-danger m-1 float-right btn-sm" id="deleteBillBtn" data-cancel-bill-id={props.billID} onClick={props.showState} name="deleteBillBtn"><img src={require("../../images/delete-icon.png")} alt="End Date Bill" /></button>}
                     <button className="btn btn-light m-1 float-right btn-sm" id="billPDFBtn" data-bill-state-index={props.billStateIndex}>
-                    <PDFDownloadLink
-                        document={<PDFBill data={props} />}
-                        fileName={"bill" + props.projectInfo._id + ".pdf"}
-                    ><strong>PDF</strong></PDFDownloadLink>
+                        <PDFDownloadLink
+                            document={<PDFBill data={props} />}
+                            fileName={"bill" + props.projectInfo._id + ".pdf"}
+                        >
+                            <strong>PDF</strong>
+                        </PDFDownloadLink>
                     </button>
                 </div>
             </div>
