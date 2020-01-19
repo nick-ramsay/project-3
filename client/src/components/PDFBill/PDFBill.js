@@ -7,6 +7,7 @@ import { DataTableCell, Table, TableBody, TableCell, TableHeader } from '@david.
 
 // Create styles
 
+var inventoryTotal = 0;
 
 Font.register({
     family: 'Quicksand',
@@ -70,9 +71,21 @@ const styles = StyleSheet.create({
     },
     invoiceTotals: {
         fontSize: 14,
-        textAlign: 'left',
+        textAlign: 'right',
         marginTop: 5,
         marginBottom: 5
+    },
+    totalAmountDue: {
+        fontSize: 16,
+        textAlign: 'right',
+        fontWeight: 'heavy',
+        marginTop: 5, 
+        marginBottom: 5,
+        color: 'blue',
+        borderTop: '1px solid',
+        borderLeft: '1px solid',
+        borderBottom: '1px solid',
+        borderRight: '1px solid'
     },
     footerMessage: {
         fontSize: 14,
@@ -83,8 +96,19 @@ const styles = StyleSheet.create({
     }
 });
 
+var calculateInventoryTotal = (itemsArray) => {
+    var inventoryTotal = 0;
+    for (var i = 0; i < itemsArray.length; i++) {
+        inventoryTotal += itemsArray[i].newItemTotal
+    }
+
+    return inventoryTotal;
+}
+
 // Create Document Component
 function PDFBill(props) {
+    
+    var billInventoryTotal = calculateInventoryTotal(props.data.projectInfo.items);
     console.log(props.data)
     console.log("Function PDF called for bill")
     if (props.data) {
@@ -172,8 +196,12 @@ function PDFBill(props) {
                             </TableBody>
                         </Table>
                         <View>
+                        </View>
+                        <View>
                             <Text style={styles.invoiceHeader}>Totals</Text>
-                            <Text style={styles.invoiceTotals}>Hourly Total: ${props.data.projectInfo.hours * props.data.projectInfo.hourlyRate}</Text>
+                            <Text style={styles.invoiceTotals}>Inventory Total: ${billInventoryTotal.toFixed(2)}</Text>
+                            <Text style={styles.invoiceTotals}>Hourly Total: ${(props.data.projectInfo.hours * props.data.projectInfo.hourlyRate).toFixed(2)}</Text>
+                            <Text style={styles.totalAmountDue}>Amount Due: ${((props.data.projectInfo.hours * props.data.projectInfo.hourlyRate) + billInventoryTotal).toFixed(2)}</Text>
                         </View>
                         <View style={styles.footerMessage}>
                             <Text>Thank you for your business!</Text>
