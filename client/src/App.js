@@ -10,25 +10,45 @@ import Inventory from './pages/Inventory/Inventory';
 import Home from './pages/Home/Home';
 import Customers from './pages/Customers/Customers';
 import Projects from './pages/Projects/Projects';
+import NoAccess from './pages/NoAccess/NoAccess';
+
+var client = {
+  contextID: localStorage.getItem("crafterClient")
+};
 
 function App() {
-  return (
-    <Router>
-      <div>
-        <Switch>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/create-account" component={CreateAccount} />
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/account" component={Account} />
-          <Route exact path="/settings" component={Settings} />
-          <Route exact path="/billing" component={Billing} />
-          <Route exact path="/inventory" component={Inventory} />
-          <Route exact path="/customers" component={Customers} />
-          <Route exact path="/Projects" component={Projects} />
-        </Switch>
-      </div>
-    </Router>
-  );
+  if (client.contextID) {
+    return (
+      <Router>
+        <div>
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/create-account" component={CreateAccount} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/account" component={Account} />
+            <Route exact path="/settings" component={Settings} />
+            <Route exact path="/billing" component={Billing} />
+            <Route exact path="/inventory" component={Inventory} />
+            <Route exact path="/customers" component={Customers} />
+            <Route exact path="/Projects" component={Projects} />
+            <Route component={NoAccess} />
+          </Switch>
+        </div>
+      </Router>
+    );
+  } else {
+    return (
+      <Router>
+        <div>
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/create-account" component={CreateAccount} />
+            <Route component={NoAccess} />
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
