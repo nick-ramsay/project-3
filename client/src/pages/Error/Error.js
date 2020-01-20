@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./style.css";
 
-class NoAccess extends Component {
+class Error extends Component {
     state = {
 
     }
@@ -27,9 +27,9 @@ class NoAccess extends Component {
                                         <span style={{ color: "blue" }}>¯</span>
                                     </strong>
                                 </h1>
-                                <h1 style={{ fontSize: 100, color: "indigo" }}><strong>401</strong></h1>
-                                <h1 style={{ fontSize: 50, color: "red" }}><strong>None Shall Pass</strong></h1>
-                                <h3 className="mb-5">Looks like you're not logged in. Log in and try again.</h3>
+                                <h1 style={{ fontSize: 100, color: "indigo" }}><strong>404</strong></h1>
+                                <h1 style={{ fontSize: 50, color: "red" }}><strong>Oops... we have not what you seek</strong></h1>
+                                <h3 className="mb-5">The page for which you're looking either doesn't exist, didn't load properly, or is temporarily unavailable.</h3>
                             </div>
                         </div>
                     </div>
@@ -40,4 +40,4 @@ class NoAccess extends Component {
 
 }
 
-export default NoAccess;
+export default Error;

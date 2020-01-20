@@ -11,6 +11,7 @@ import Home from './pages/Home/Home';
 import Customers from './pages/Customers/Customers';
 import Projects from './pages/Projects/Projects';
 import NoAccess from './pages/NoAccess/NoAccess';
+import Error from './pages/Error/Error';
 
 var client = {
   contextID: localStorage.getItem("crafterClient")
@@ -31,7 +32,7 @@ function App() {
             <Route exact path="/inventory" component={Inventory} />
             <Route exact path="/customers" component={Customers} />
             <Route exact path="/Projects" component={Projects} />
-            <Route component={NoAccess} />
+            <Route component={Error} />
           </Switch>
         </div>
       </Router>
