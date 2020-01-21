@@ -56,14 +56,15 @@ function EditCustomerModal(props) {
                                         </div>
                                         <div className="form-group col-md-6">
                                             <label for="editCustomerState">State</label>
-                                            <select id="editCustomerState" className="form-control" defaultValue={props.editCustomerState} name="editCustomerState" onChange={props.handleFormUpdate} >
-                                                <option>New South Wales</option>
-                                                <option>Victoria</option>
-                                                <option>Queensland</option>
-                                                <option>Tasmania</option>
-                                                <option>Northern Territory</option>
-                                                <option>South Australia</option>
-                                                <option>Western Australia</option>
+                                            <select id="editCustomerState" className="form-control" value={props.editCustomerState} name="editCustomerState" onChange={props.handleFormUpdate} >
+                                                <option value="New South Wales">New South Wales</option>
+                                                <option value="Victoria">Victoria</option>
+                                                <option value="Queensland">Queensland</option>
+                                                <option value="Australian Capital Territory">Australian Capital Territory</option>
+                                                <option value="Tasmania">Tasmania</option>
+                                                <option value="Northern Territory">Northern Territory</option>
+                                                <option value="South Australia">South Australia</option>
+                                                <option value="Western Australia">Western Australia</option>
                                             </select>
                                         </div>
                                         <div className="form-group col-md-6">

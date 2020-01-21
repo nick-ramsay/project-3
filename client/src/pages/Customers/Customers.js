@@ -62,7 +62,7 @@ class Customers extends Component {
             && this.state.editCustomerCity && this.state.editCustomerState && this.state.editCustomerPostcode)
         ) {
             editCustomerInfo = {
-                customerID: this.state.editedCustomer._id,
+                customerID: this.state.editCustomerID,
                 firstName: this.state.editCustomerFirstName,
                 lastName: this.state.editCustomerLastName,
                 phone: this.state.editCustomerPhone,
