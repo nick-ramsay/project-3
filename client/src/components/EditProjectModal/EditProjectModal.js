@@ -24,12 +24,12 @@ function EditProjectModal(props) {
                             <div className="row">
                                 <div className="form-group col-md-12">
                                     <label for="editProjectStatus">Status</label>
-                                    <select id="editProjectStatus" placeholder={props.editProjectStatus} defaultValue={props.editProjectStatus} className="form-control" name="editProjectStatus" onChange={props.handleFormUpdate}>
-                                        <option selected>New</option>
-                                        <option>In Progress</option>
-                                        <option>Hold</option>
-                                        <option>Awaiting Client Feedback</option>
-                                        <option>Complete</option>
+                                    <select id="editProjectStatus" placeholder={props.editProjectStatus} value={props.editProjectStatus} className="form-control" name="editProjectStatus" onChange={props.handleFormUpdate}>
+                                        <option value="New">New</option>
+                                        <option value="In Progress">In Progress</option>
+                                        <option value="Hold">Hold</option>
+                                        <option value="Awaiting Client Feedback">Awaiting Client Feedback</option>
+                                        <option value="Complete">Complete</option>
                                     </select>
                                 </div>
                             </div>
@@ -42,10 +42,9 @@ function EditProjectModal(props) {
                             <div className="form-row">
                                 <div className="form-group col-md-12">
                                     <label for="editProjectCustomer">Choose a Customer</label>
-                                    <select id="editProjectCustomer" className="form-control" defaultValue={props.editProjectCustomer._id} name="editProjectCustomer" onChange={props.handleFormUpdate}>
+                                    <select id="editProjectCustomer" className="form-control" value={props.editProjectCustomer._id} name="editProjectCustomer" onChange={props.handleFormUpdate}>
                                         {props.customers.map((customer, index) => (
-                                            
-                                            <option key={customer._id} data-customer-id={customer._id}>{customer.firstName} {customer.lastName}</option>
+                                            <option key={customer._id} value={customer._id} data-customer-id={customer._id}>{customer.firstName} {customer.lastName}</option>
                                         
                                         ))
                                         }
@@ -119,7 +118,7 @@ function EditProjectModal(props) {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" id="submitProjectBtn" name="submitProjectBtn" onClick={props.handleSubmitProject}>Save Project</button>
+                        <button type="button" className="btn btn-primary" id="submitProjectBtn" name="submitProjectBtn" onClick={props.handleEditProject}>Save Project</button>
                     </div>
                 </div>
             </div>

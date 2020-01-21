@@ -183,6 +183,7 @@ class Projects extends Component {
             editProjectName: editProjectData.name,
             editProjectCustomer: editProjectData.customer,
             editProjectStatus: editProjectData.status,
+            editProjectHours: editProjectData.hours,
             projectItems: editProjectData.items,
             projectComments: editProjectData.comments
         })
@@ -308,14 +309,13 @@ class Projects extends Component {
                     editProjectItems={this.state.editProjectItems}
                     editProjectComments={this.state.editProjectComments}
                     editProjectCustomer={this.state.editProjectCustomer}
+                    editProjectHours={this.state.editProjectHours}
                     handleRemoveNewItem={this.handleRemoveNewItem}
                     handleRemoveComment={this.handleRemoveComment}
                     handleAddNewItem={this.handleAddNewItem}
                     handleAddComment={this.handleAddComment}
-                    
                     editProject={this.editProject}
-                    editProjectData={this.state.editProjectData}
-                    handleSubmitProject={this.handleSubmitProject}
+                    handleEditProject={this.handleSubmitProject}
                     selectedProjectItem={this.selectedProjectItem}
                     projectItems={this.state.projectItems}
                     projectComments={this.state.projectComments}
