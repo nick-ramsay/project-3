@@ -151,10 +151,10 @@ class Projects extends Component {
 
     handleRemoveComment = event => {
         event.preventDefault();
-        var currentComments = this.state.projectComments;
+        var currentComments = this.state.editProjectComments;
         var removeCommentIndex = event.currentTarget.dataset.projectCommentIndex;
         currentComments.splice(removeCommentIndex, 1);
-        this.setState({ projectComments: currentComments });
+        this.setState({ editProjectComments: currentComments });
 
         console.log(currentComments);
         console.log(removeCommentIndex);
@@ -164,14 +164,7 @@ class Projects extends Component {
         event.preventDefault();
         console.log("Clicked edit project!");
 
-        this.setState({
-            projectItems: [],
-            projectComments: [],
-        })
-
-        var editProjectData;
-
-        editProjectData = {}
+        var editProjectData = {};
 
         console.log(this.state.projectItems);
       
@@ -184,8 +177,8 @@ class Projects extends Component {
             editProjectCustomer: editProjectData.customer,
             editProjectStatus: editProjectData.status,
             editProjectHours: editProjectData.hours,
-            projectItems: editProjectData.items,
-            projectComments: editProjectData.comments
+            editProjectItems: editProjectData.items,
+            editProjectComments: editProjectData.comments
         })
 
         console.log(editProjectData);
@@ -306,8 +299,8 @@ class Projects extends Component {
                     handleFormUpdate={this.handleFormUpdate}
                     editProjectName={this.state.editProjectName}
                     editProjectStatus={this.state.editProjectStatus}
-                    editProjectItems={this.state.editProjectItems}
-                    editProjectComments={this.state.editProjectComments}
+                    //editProjectItems={this.state.editProjectItems}
+                    //editProjectComments={this.state.editProjectComments}
                     editProjectCustomer={this.state.editProjectCustomer}
                     editProjectHours={this.state.editProjectHours}
                     handleRemoveNewItem={this.handleRemoveNewItem}
@@ -317,8 +310,8 @@ class Projects extends Component {
                     editProject={this.editProject}
                     handleEditProject={this.handleSubmitProject}
                     selectedProjectItem={this.selectedProjectItem}
-                    projectItems={this.state.projectItems}
-                    projectComments={this.state.projectComments}
+                    projectItems={this.state.editProjectItems}
+                    projectComments={this.state.editProjectComments}
                     customers={this.state.customers}
                     inventory={this.state.inventory}
                     itemOptions={itemOptions}
