@@ -22,6 +22,7 @@ class Projects extends Component {
         projectComments: [],
         projects: [],
         editProjectData: [],
+        editProjectCustomer: {},
         addProjectCompleteDate: "",
         editProjectCompleteDate: "",
         addProjectCustomer: {}
@@ -73,20 +74,20 @@ class Projects extends Component {
         var currentProjectStatus = this.state.addProjectStatus;
 
         if (currentProjectStatus === "Complete") {
-            this.setState({addProjectCompleteDate: new Date()});
+            this.setState({ addProjectCompleteDate: new Date() });
         } else {
-            this.setState({addProjectCompleteDate: ""});
+            this.setState({ addProjectCompleteDate: "" });
         }
     }
 
     setAddProjectCustomer = event => {
         event.preventDefault();
-        this.setState({addProjectCustomer: {}});
-        
+        this.setState({ addProjectCustomer: {} });
+
         var selectedCustomerIndex = event.target.value;
         var selectedCustomerInfo = this.state.customers[selectedCustomerIndex];
-        
-        this.setState({addProjectCustomer: selectedCustomerInfo});
+
+        this.setState({ addProjectCustomer: selectedCustomerInfo });
     }
 
     handleAddNewItem = event => {
@@ -95,23 +96,23 @@ class Projects extends Component {
         var newProjectItemInfo = {};
 
         var currentProjectItems = this.state.projectItems;
-        
+
         if (this.state.selectedProjectItem !== undefined && this.state.addProjectItemQuantity && this.state.addProjectItemQuantity > 0 && Object.keys(this.state.selectedProjectItem).length !== 0) {
-                
-                  newProjectItemInfo = {
-                      newItemID: this.state.selectedProjectItem._id,
-                      newItemName: this.state.selectedProjectItem.itemName,
-                      newItemQuantity: this.state.addProjectItemQuantity,
-                      newItemPrice: this.state.selectedProjectItem.price,
-                      newItemTotal: (this.state.addProjectItemQuantity * this.state.selectedProjectItem.price),
-                  }
-      
-                  currentProjectItems.push(newProjectItemInfo);
-                  this.setState({ projectItems: currentProjectItems });
-                  console.log(this.state.projectItems);
-              } else {
-                  alert("Please complete project item info. Quantity must be greater than zero.");
-              }
+
+            newProjectItemInfo = {
+                newItemID: this.state.selectedProjectItem._id,
+                newItemName: this.state.selectedProjectItem.itemName,
+                newItemQuantity: this.state.addProjectItemQuantity,
+                newItemPrice: this.state.selectedProjectItem.price,
+                newItemTotal: (this.state.addProjectItemQuantity * this.state.selectedProjectItem.price),
+            }
+
+            currentProjectItems.push(newProjectItemInfo);
+            this.setState({ projectItems: currentProjectItems });
+            console.log(this.state.projectItems);
+        } else {
+            alert("Please complete project item info. Quantity must be greater than zero.");
+        }
     }
 
     handleRemoveNewItem = event => {
@@ -119,7 +120,7 @@ class Projects extends Component {
         var currentNewItems = this.state.projectItems;
         var removeNewItemIndex = event.currentTarget.dataset.projectItemIndex;
         currentNewItems.splice(removeNewItemIndex);
-        this.setState({projectItems: currentNewItems});
+        this.setState({ projectItems: currentNewItems });
     }
 
     handleAddComment = event => {
@@ -132,28 +133,28 @@ class Projects extends Component {
         var newProjectComment = {};
 
         var currentProjectComments = this.state.projectComments;
-        
+
         if (this.state.addProjectComment && this.state.addProjectComment !== undefined) {
-                
-                  newProjectComment = {
-                      comment: this.state.addProjectComment,
-                      created: moment().format("DD/MM/YYYY hh:mm A")
-                  }
-      
-                  currentProjectComments.push(newProjectComment);
-                  this.setState({ projectComments: currentProjectComments });
-                  console.log(this.state.projectComments);
-              } else {
-                  alert("Please complete project item info. Quantity must be greater than zero.");
-              }
+
+            newProjectComment = {
+                comment: this.state.addProjectComment,
+                created: moment().format("DD/MM/YYYY hh:mm A")
+            }
+
+            currentProjectComments.push(newProjectComment);
+            this.setState({ projectComments: currentProjectComments });
+            console.log(this.state.projectComments);
+        } else {
+            alert("Please complete project item info. Quantity must be greater than zero.");
+        }
     }
 
     handleRemoveComment = event => {
         event.preventDefault();
         var currentComments = this.state.projectComments;
         var removeCommentIndex = event.currentTarget.dataset.projectCommentIndex;
-        currentComments.splice(removeCommentIndex,1);
-        this.setState({projectComments: currentComments});
+        currentComments.splice(removeCommentIndex, 1);
+        this.setState({ projectComments: currentComments });
 
         console.log(currentComments);
         console.log(removeCommentIndex);
@@ -161,11 +162,32 @@ class Projects extends Component {
 
     editProject = event => {
         event.preventDefault();
-        console.log("Clicked edit project!")
+        console.log("Clicked edit project!");
+
+        this.setState({
+            projectItems: [],
+            projectComments: [],
+        })
+
+        var editProjectData;
+
+        editProjectData = {}
+
+        console.log(this.state.projectItems);
+      
         var projectIndex = event.currentTarget.dataset.projectStateIndex;
-        var editProjectData = this.state.projects[projectIndex];
-        this.setState({editProjectData: editProjectData});
-        console.log(this.state.editProjectData);
+        editProjectData = this.state.projects[projectIndex];
+
+        this.setState({
+            editProjectID: editProjectData._id,
+            editProjectName: editProjectData.name,
+            editProjectCustomer: editProjectData.customer,
+            editProjectStatus: editProjectData.status,
+            projectItems: editProjectData.items,
+            projectComments: editProjectData.comments
+        })
+
+        console.log(editProjectData);
     }
 
     handleSubmitProject = event => {
@@ -242,7 +264,7 @@ class Projects extends Component {
                                 <td><button data-toggle="modal" data-target="#addProjectModal" className="btn btn-success" id="addProjectBtn"><span><img src={require("../../images/new-icon.jpg")} alt="New Project" /> New Project</span></button></td>
                             </div>
                         </div>
-                        
+
                         {this.state.projects.map((project, index) => (
                             <ProjectList
                                 projectStateIndex={index}
@@ -259,7 +281,7 @@ class Projects extends Component {
                             />
                         ))
                         }
-            
+
                     </div>
                 </div>
                 <NewProjectModal
@@ -281,19 +303,25 @@ class Projects extends Component {
                 <EditProjectModal
                     handleFormUpdate={this.handleFormUpdate}
                     handleFormUpdate={this.handleFormUpdate}
+                    editProjectName={this.state.editProjectName}
+                    editProjectStatus={this.state.editProjectStatus}
+                    editProjectItems={this.state.editProjectItems}
+                    editProjectComments={this.state.editProjectComments}
+                    editProjectCustomer={this.state.editProjectCustomer}
+                    handleRemoveNewItem={this.handleRemoveNewItem}
+                    handleRemoveComment={this.handleRemoveComment}
+                    handleAddNewItem={this.handleAddNewItem}
+                    handleAddComment={this.handleAddComment}
+                    
                     editProject={this.editProject}
                     editProjectData={this.state.editProjectData}
                     handleSubmitProject={this.handleSubmitProject}
                     selectedProjectItem={this.selectedProjectItem}
                     projectItems={this.state.projectItems}
                     projectComments={this.state.projectComments}
-                    handleAddNewItem={this.handleAddNewItem}
-                    handleAddComment={this.handleAddComment}
                     customers={this.state.customers}
                     inventory={this.state.inventory}
                     itemOptions={itemOptions}
-                    handleRemoveNewItem={this.handleRemoveNewItem}
-                    handleRemoveComment={this.handleRemoveComment}
                 />
             </div>
         )

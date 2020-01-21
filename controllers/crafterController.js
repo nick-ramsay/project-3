@@ -8,9 +8,30 @@ module.exports = {
             .then(console.log(req.body))
             .catch(err => res.status(422).json(err));
     },
+    editAccount: function (req, res) {
+        console.log("Edit customer controller called...");
+        console.log(req.body);
+        db.Accounts
+            .updateOne({ _id: req.body.businessID }, {
+                businessName:  req.body.businessName,
+                ownerName: req.body.ownerName,
+                phone:  req.body.phone,
+                email:  req.body.email,
+                address: req.body.address,
+                address2:  req.body.address2,
+                city:  req.body.city,
+                state:  req.body.state,
+                postcode:  req.body.postcode,
+                hourlyRate:  req.body.hourlyRate,
+                specialty:  req.body.specialty
+            })
+            .then(dbModel => res.json(dbModel))
+            .then(console.log(req.body))
+            .catch(err => res.status(422).json(err));
+    },
     getAccountData: function (req, res) {
         db.Accounts
-            .find({ _id: req.body.contextID }, { hourlyRate: 1, specialty: 1, businessName: 1, phone: 1, email: 1, address: 1, address: 1, city: 1, state: 1, postcode: 1 }).sort({ lastName: 1, firstName: 1 })
+            .find({ _id: req.body.contextID }, { hourlyRate: 1, specialty: 1, businessName: 1, phone: 1, ownerName: 1, email: 1, address: 1, address: 1, city: 1, state: 1, postcode: 1 }).sort({ lastName: 1, firstName: 1 })
             .then(dbModel => res.json(dbModel[0]))
             .catch(err => res.status(422).json(err));
     },

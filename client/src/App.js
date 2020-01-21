@@ -23,8 +23,7 @@ function App() {
       <Router>
         <div>
           <Switch>
-            <Route exact path="/" component={Login} />
-            <Route exact path="/create-account" component={CreateAccount} />
+            <Route exact path="/" component={Home} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/account" component={Account} />
             <Route exact path="/settings" component={Settings} />

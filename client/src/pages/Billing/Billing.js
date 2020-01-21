@@ -28,7 +28,7 @@ class Billing extends Component {
         super(props);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getAccountData();
         this.getBillData();
         this.getCompleteProjects();

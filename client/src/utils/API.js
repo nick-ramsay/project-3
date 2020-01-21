@@ -10,6 +10,9 @@ export default {
     createAccount: function (newAccountInfo) {
         return axios({method:"post", url: apiURL + "/api/crafter/create-account", data: newAccountInfo})
     },
+    editAccount: function (editedAccountInfo) {
+        return axios({method:"post", url: apiURL + "/api/crafter/edit-account", data: editedAccountInfo})
+    },
     login: function(credentials) {
         return axios({method:"post", url: apiURL + "/api/crafter/login", data: credentials})
     },

@@ -1,13 +1,6 @@
 const router = require("express").Router();
 const crafterController = require("../../controllers/crafterController");
 
-// Matches with "/api/crafter"
-/*router
-  .route("/")
-  .get(booksController.getSavedBooks)
-  .post(booksController.saveBook);
-*/
-
 router
   .route("/get-account-data")
   .post(crafterController.getAccountData);
@@ -15,6 +8,10 @@ router
 router
   .route("/create-account")
   .post(crafterController.createAccount);
+
+router
+  .route("/edit-account")
+  .post(crafterController.editAccount);
 
 router
   .route("/login")

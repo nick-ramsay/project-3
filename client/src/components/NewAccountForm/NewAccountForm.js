@@ -62,6 +62,7 @@ function NewAccountForm(props) {
                                     <option>Victoria</option>
                                     <option>Queensland</option>
                                     <option>Tasmania</option>
+                                    <option>Australian Capital Territory</option>
                                     <option>Northern Territory</option>
                                     <option>South Australia</option>
                                     <option>Western Australia</option>
