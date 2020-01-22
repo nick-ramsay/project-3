@@ -3,6 +3,11 @@ img {
     width: 24px;
 }
 
+p {
+    margin: 0px;
+    padding: 0px;
+}
+
 #cancelledDate {
     color: red;
 }
