@@ -1,6 +1,11 @@
 img {
-    height: 24px;
-    width: 24px;
+    height: 12px;
+    width: 12px;
+}
+
+p {
+    margin: 0px;
+    padding: 0px;
 }
 
 #cancelledDate {

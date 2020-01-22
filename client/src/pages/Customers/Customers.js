@@ -88,7 +88,7 @@ class Customers extends Component {
             cancelledDate: new Date()
         }
         API.cancelCustomer(cancelledCustomerInfo).then(res => console.log(res));
-        window.location.href = "/customers";
+        document.location.reload(true);
     }
 
     reactivateCustomer = event => {
@@ -98,7 +98,7 @@ class Customers extends Component {
         }
 
         API.reactivateCustomer(reactivateCustomerInfo).then(res => console.log(res));
-        window.location.href = "/customers";
+        document.location.reload(true);
     }
 
     handleNewCustomerSubmit = event => {
@@ -125,7 +125,7 @@ class Customers extends Component {
 
             }
             API.createCustomer(newCustomerInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
-            window.location.href = "/customers";
+            document.location.reload(true);
 
         } else if (this.state.addCustomerState === "Choose state...") {
             alert("Please choose a valid state...");
