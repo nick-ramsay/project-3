@@ -100,6 +100,9 @@ export default {
         console.log("Called create bill API");
         return axios({method:"post", url: apiURL + "/api/crafter/create-bill", data: billInfo})
     },
+    billTransaction: function (billTransactionInfo) {
+        return axios({method:"post", url: apiURL + "/api/crafter/bill-transaction", data: billTransactionInfo})
+    }
 
     //END: ... Billing API Calls
 };

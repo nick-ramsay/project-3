@@ -105,6 +105,10 @@ router
   .route("/create-bill")
   .post(crafterController.createBill)
 
+router
+  .route("/bill-transaction")
+  .post(crafterController.billTransaction)
+
 //END: Billing routes...
 
 module.exports = router;

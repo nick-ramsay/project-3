@@ -16,17 +16,12 @@ function BillList(props) {
                     <p><strong>Hours Logged: </strong>${props.projectInfo && props.projectInfo.hours}</p>
                     <p><strong>Hourly Rate: </strong>${props.projectInfo && props.projectInfo.hourlyRate}</p>
                     <p><strong>Inventory Fees: </strong>${props.price && props.price}</p>
-                    {(props.quantity > 0 && !props.cancelled) && <button className="btn btn-dark m-1 float-left btn-sm" id="returnBillBtn" data-toggle="modal" data-target="#returnBillModal" data-bill-state-index={props.billStateIndex} data-return-bill-id={props.billID} name="returnbillBtn" onClick={props.refundBill}><strong>-</strong></button>}
-                    {!props.cancelled && <button className="btn btn-success m-1 float-left btn-sm" id="purchasebillBtn" data-toggle="modal" data-target="#purchasebillModal" data-bill-state-index={props.billStateIndex} data-purchase-bill-id={props.billID} name="purchasbillBtn" onClick={props.billPayment}><strong>+</strong></button>}
+                    <button className="btn btn-dark m-1 float-left btn-sm" id="issueRefundBtn" data-toggle="modal" data-target="#issueRefundModal" data-bill-state-index={props.billStateIndex} data-refund-bill-id={props.billID} name="issueRefundModal" onClick={props.handleIssueRefund}><strong>-</strong></button>
+                    <button className="btn btn-success m-1 float-left btn-sm" id="paymentReceivedBtn" data-toggle="modal" data-target="#paymentReceivedModal" data-bill-state-index={props.billStateIndex} data-payment-bill-id={props.billID} name="purchasbillBtn" onClick={props.handlePaymentReceived}><strong>+</strong></button>
                     <button className="btn btn-primary m-1 float-right btn-sm" id="editBillBtn" data-toggle="modal" data-target="#editbillModal" data-bill-state-index={props.billStateIndex} onClick={props.editBill}><img src={require("../../images/edit-icon.png")} alt="Edit Bill" /></button>
-                    {!props.cancelled && <button className="btn btn-danger m-1 float-right btn-sm" id="deleteBillBtn" data-cancel-bill-id={props.billID} onClick={props.showState} name="deleteBillBtn"><img src={require("../../images/delete-icon.png")} alt="End Date Bill" /></button>}
+                    {!props.cancelled && <button className="btn btn-danger m-1 float-right btn-sm" id="closeBillBtn" data-close-bill-id={props.billID} onClick={props.closeBill} name="closeBillBtn"><img src={require("../../images/delete-icon.png")} alt="Close Bill" /></button>}
                     <button className="btn btn-light m-1 float-right btn-sm" id="billPDFBtn" data-bill-state-index={props.billStateIndex}>
-                        <PDFDownloadLink
-                            document={<PDFBill data={props} />}
-                            fileName={"bill.pdf"}
-                        >
-                            <strong>PDF</strong>
-                        </PDFDownloadLink>
+                        PDF Placeholder Button
                     </button>
                 </div>
             </div>
@@ -35,3 +30,14 @@ function BillList(props) {
 }
 
 export default BillList;
+
+/*
+
+<PDFDownloadLink
+                            document={<PDFBill data={props} />}
+                            fileName={"bill" + props.projectInfo._id + ".pdf"}
+                        >
+                            <strong>PDF</strong>
+                        </PDFDownloadLink>
+
+*/

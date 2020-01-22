@@ -29,10 +29,10 @@ class Home extends Component {
         console.log(this.state.transactionData);
 
         for (var i = 0; i < this.state.transactionData.length; i++) {
-            if (this.state.transactionData[i].totalAmount >= 0) {
+            if (this.state.transactionData[i].transactionType === "bill_refund" || this.state.transactionData[i].transactionType === "bill_payment") {
                 this.setState({ totalRevenue: this.state.totalRevenue += this.state.transactionData[i].totalAmount })
                 this.setState({ totalMargin: this.state.totalMargin += this.state.transactionData[i].totalAmount })
-            } if (this.state.transactionData[i].totalAmount < 0) {
+            } if (this.state.transactionData[i].transactionType === "inventory_purchase" || this.state.transactionData[i].transactionType === "inventory_return") {
                 this.setState({ totalExpenses: this.state.totalExpenses += this.state.transactionData[i].totalAmount })
                 this.setState({ totalMargin: this.state.totalMargin += this.state.transactionData[i].totalAmount })
             }

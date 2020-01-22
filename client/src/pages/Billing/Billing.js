@@ -4,6 +4,8 @@ import "./style.css";
 import API from "../../utils/API";
 import UnbilledProjectQueue from "../../components/UnbilledProjectQueue/UnbilledProjectQueue";
 import BillList from "../../components/BillList/BillList";
+import IssueRefundModal from "../../components/IssueRefundModal/IssueRefundModal";
+import PaymentReceivedModal from "../../components/PaymentReceivedModal/PaymentReceivedModal";
 
 var client = {
     contextID: localStorage.getItem("crafterClient")
@@ -42,7 +44,7 @@ class Billing extends Component {
     }
 
     getBillData = () => {
-        API.getBillData(client).then(res => this.setState({ bills: res.data}));
+        API.getBillData(client).then(res => this.setState({ bills: res.data }));
     }
 
     getCompleteProjects = () => {
@@ -87,6 +89,91 @@ class Billing extends Component {
             );
     }
 
+    handlePaymentReceived = event => {
+        event.preventDefault();
+        var paymentReceivedBillIndex = event.currentTarget.dataset.billStateIndex;
+        var paymentReceivedBillInfo = this.state.bills[paymentReceivedBillIndex];
+
+        this.setState({
+            paymentReceivedBillID: paymentReceivedBillInfo._id,
+            paymentReceivedBillInfo: paymentReceivedBillInfo
+        })
+    }
+
+    handleIssueRefund = event => {
+        event.preventDefault();
+        var refundedBillIndex = event.currentTarget.dataset.billStateIndex;
+        var refundedBillInfo = this.state.bills[refundedBillIndex]
+
+        this.setState({
+            refundedBillID: refundedBillInfo._id,
+            refundedBillInfo: refundedBillInfo
+        })
+    }
+
+    handleIssueRefundSubmit = event => {
+        event.preventDefault();
+
+        var billInfo;
+        var transactionInfo;
+
+        if (this.state.refundAmount) {
+            billInfo = {
+                billID: this.state.refundedBillID,
+                amount: this.state.refundAmount
+            }
+
+            transactionInfo = {
+                contextID: localStorage.getItem("crafterClient"),
+                inventoryID: -1,
+                projectID: this.state.refundedBillInfo.projectInfo._id,
+                transactionDate: new Date(),
+                transactionType: "bill_refund", //inventory_purchase or project_revenue
+                transactionQuantity: 1,
+                transactionUnitAmount: this.state.refundAmount,
+                totalAmount: (this.state.refundAmount * -1),
+            }
+            API.billTransaction(billInfo).then(res => console.log(res))
+            API.postTransaction(transactionInfo).then(res => console.log(res))
+            document.location.reload(true);
+        }
+        else {
+            alert("Sorry... form not complete.");
+        }
+    }
+
+    handlePaymentReceivedSubmit = event => {
+        event.preventDefault();
+
+        var billInfo;
+        var transactionInfo;
+
+        if (this.state.paymentReceivedAmount) {
+            billInfo = {
+                billID: this.state.paymentReceivedBillID,
+                amount: this.state.paymentReceivedAmount
+            }
+
+            transactionInfo = {
+                contextID: localStorage.getItem("crafterClient"),
+                inventoryID: -1,
+                projectID: this.state.paymentReceivedBillInfo.projectInfo._id,
+                transactionDate: new Date(),
+                transactionType: "bill_payment", //inventory_purchase or project_revenue
+                transactionQuantity: 1,
+                transactionUnitAmount: this.state.paymentReceivedAmount,
+                totalAmount: this.state.paymentReceivedAmount
+            }
+
+            API.billTransaction(billInfo).then(res => console.log(res))
+            API.postTransaction(transactionInfo).then(res => console.log(res))
+            document.location.reload(true);
+        }
+        else {
+            alert("Sorry... form not complete.");
+        }
+    }
+
     showState = event => {
         event.preventDefault();
 
@@ -110,9 +197,11 @@ class Billing extends Component {
                                 <h3><strong>Existing Bills</strong></h3>
                                 {this.state.bills.map((bill, index) => (
                                     <BillList
-                                        dummyData={this.state.dummyData}
                                         businessInfo={this.state.accountData}
+                                        handleFormUpdate={this.handleFormUpdate}
                                         projectInfo={bill.projectInfo}
+                                        handlePaymentReceived={this.handlePaymentReceived}
+                                        handleIssueRefund={this.handleIssueRefund}
                                         billStateIndex={index}
                                     />
                                 ))
@@ -121,6 +210,16 @@ class Billing extends Component {
                         </div>
                     </div>
                 </div>
+                <IssueRefundModal
+                    handleFormUpdate={this.handleFormUpdate}
+                    handleIssueRefundSubmit={this.handleIssueRefundSubmit}
+                    refundedBillInfo={this.state.refundedBillInfo}
+                />
+                <PaymentReceivedModal
+                    handleFormUpdate={this.handleFormUpdate}
+                    handlePaymentReceivedSubmit={this.handlePaymentReceivedSubmit}
+                    paymentReceivedBillInfo={this.state.paymentReceivedBillInfo}
+                />
             </div>
         )
     }

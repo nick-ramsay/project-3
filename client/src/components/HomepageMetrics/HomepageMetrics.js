@@ -13,7 +13,7 @@ function HomepageMetrics(props) {
             <div className="row text-center">
                 <div className="col-md-5 bg-danger text-white rounded mb-1 mt-2">
                     <h3>Expenses</h3>
-                    <h4>${props.totalExpenses}</h4>
+                    <h4>${props.totalExpenses * -1}</h4>
                 </div>
                 <div className="col-md-2"></div>
                 <div className="col-md-5 bg-success text-white rounded mb-1 mt-2">

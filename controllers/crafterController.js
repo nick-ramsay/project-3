@@ -13,17 +13,17 @@ module.exports = {
         console.log(req.body);
         db.Accounts
             .updateOne({ _id: req.body.businessID }, {
-                businessName:  req.body.businessName,
+                businessName: req.body.businessName,
                 ownerName: req.body.ownerName,
-                phone:  req.body.phone,
-                email:  req.body.email,
+                phone: req.body.phone,
+                email: req.body.email,
                 address: req.body.address,
-                address2:  req.body.address2,
-                city:  req.body.city,
-                state:  req.body.state,
-                postcode:  req.body.postcode,
-                hourlyRate:  req.body.hourlyRate,
-                specialty:  req.body.specialty
+                address2: req.body.address2,
+                city: req.body.city,
+                state: req.body.state,
+                postcode: req.body.postcode,
+                hourlyRate: req.body.hourlyRate,
+                specialty: req.body.specialty
             })
             .then(dbModel => res.json(dbModel))
             .then(console.log(req.body))
@@ -205,7 +205,7 @@ module.exports = {
     getCompleteProjects: function (req, res) {
         console.log(req.body);
         db.Projects
-            .find({ contextID: req.body.contextID, completedDate: {$exists:true}, billed: false }).sort({ createdDate: 1, name: 1 })
+            .find({ contextID: req.body.contextID, completedDate: { $exists: true }, billed: false }).sort({ createdDate: 1, name: 1 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
@@ -234,6 +234,17 @@ module.exports = {
         console.log(req.body);
         db.Bills
             .create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .then(console.log(req.body))
+            .catch(err => res.status(422).json(err));
+    },
+    billTransaction: function (req, res) {
+        console.log("Purchase inventory controller called...");
+        console.log(req.body);
+        db.Bills
+            .updateOne({ _id: req.body.billID }, {
+                $inc: { revenueCollected: req.body.amount }
+            })
             .then(dbModel => res.json(dbModel))
             .then(console.log(req.body))
             .catch(err => res.status(422).json(err));
