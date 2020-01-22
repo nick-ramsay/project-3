@@ -120,7 +120,7 @@ class Billing extends Component {
         if (this.state.refundAmount) {
             billInfo = {
                 billID: this.state.refundedBillID,
-                amount: this.state.refundAmount
+                amount: (this.state.refundAmount * -1)
             }
 
             transactionInfo = {
@@ -203,6 +203,7 @@ class Billing extends Component {
                                         handlePaymentReceived={this.handlePaymentReceived}
                                         handleIssueRefund={this.handleIssueRefund}
                                         billStateIndex={index}
+                                        billInfo={this.state.bills[index]}
                                     />
                                 ))
                                 }

@@ -5,6 +5,7 @@ import PDFBill from "../PDFBill/PDFBill";
 import "./style.css";
 
 function BillList(props) {
+    console.log(props);
     return (
         <div className="col-md-12">
             <div class="card mb-2">
@@ -13,9 +14,10 @@ function BillList(props) {
                 </h5>
                 <div className="card-body">
                     <p><strong>Completion Date: </strong>{props.projectInfo && moment(props.projectInfo.completedDate).format("DD/MM/YYYY hh:mm A")}</p>
-                    <p><strong>Hours Logged: </strong>${props.projectInfo && props.projectInfo.hours}</p>
-                    <p><strong>Hourly Rate: </strong>${props.projectInfo && props.projectInfo.hourlyRate}</p>
-                    <p><strong>Inventory Fees: </strong>${props.price && props.price}</p>
+                    <p><strong>Bill Amount:  </strong>${props.billInfo.billedAmount && props.billInfo.billedAmount}</p>
+                    <p><strong>Revenue Collected:  </strong>${props.billInfo.revenueCollected && props.billInfo.revenueCollected}</p>
+                    <p><strong>{props.billInfo.billedAmount - props.billInfo.revenueCollected < 0 ? "Refundable Amount: ": "Outstanding Amount: "}</strong>${props.billInfo.billedAmount - props.billInfo.revenueCollected}</p>
+
                     <button className="btn btn-dark m-1 float-left btn-sm" id="issueRefundBtn" data-toggle="modal" data-target="#issueRefundModal" data-bill-state-index={props.billStateIndex} data-refund-bill-id={props.billID} name="issueRefundModal" onClick={props.handleIssueRefund}><strong>-</strong></button>
                     <button className="btn btn-success m-1 float-left btn-sm" id="paymentReceivedBtn" data-toggle="modal" data-target="#paymentReceivedModal" data-bill-state-index={props.billStateIndex} data-payment-bill-id={props.billID} name="purchasbillBtn" onClick={props.handlePaymentReceived}><strong>+</strong></button>
                     <button className="btn btn-primary m-1 float-right btn-sm" id="editBillBtn" data-toggle="modal" data-target="#editbillModal" data-bill-state-index={props.billStateIndex} onClick={props.editBill}><img src={require("../../images/edit-icon.png")} alt="Edit Bill" /></button>
