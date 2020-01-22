@@ -68,25 +68,50 @@ class Billing extends Component {
         var selectedProjectInfo = this.state.projects[selectedProjectIndex];
         console.log(selectedProjectInfo);
 
-        var billInfo = {
-            contextID: client.contextID,
-            created: new Date(),
-            projectInfo: selectedProjectInfo,
-            billedAmount: 0,
-            revenueCollected: 0
+        var calculateInventoryTotal = (itemsArray) => {
+            var inventoryTotal = 0;
+            for (var i = 0; i < itemsArray.length; i++) {
+                inventoryTotal += itemsArray[i].newItemTotal
+            }
+
+            return inventoryTotal;
         }
 
+        var hourlyTotal = (hours, hourlyRate) => {
+            var hourlyTotalFees = 0;
+            hourlyTotalFees = hours * hourlyRate;
+            return hourlyTotalFees;
+        }
+
+        var totalBillableFees;
+        var billInfo;
+
+        var calculateBillableAmount = () => {
+            totalBillableFees = calculateInventoryTotal(selectedProjectInfo.items) + hourlyTotal(selectedProjectInfo.hours * selectedProjectInfo.hourlyRate)
+                .then(
+                    billInfo = {
+                        contextID: client.contextID,
+                        created: new Date(),
+                        projectInfo: selectedProjectInfo,
+                        billedAmount: totalBillableFees,
+                        revenueCollected: 0
+                    }
+                )
+        }
         var markProjectBilledInfo = {
             projectID: selectedProjectInfo._id
         }
 
-        API.createBill(billInfo)
-            .then(res => console.log(res))
-            .then(
-                API.markProjectBilled(markProjectBilledInfo)
-                    .then(res => console.log(res))
-                    .then(document.location.reload(true))
-            );
+        calculateBillableAmount.then(
+            API.createBill(billInfo)
+                .then(res => console.log(res))
+                .then(
+                    API.markProjectBilled(markProjectBilledInfo)
+                        .then(res => console.log(res))
+                        .then(document.location.reload(true))
+                )
+        )
+
     }
 
     handlePaymentReceived = event => {

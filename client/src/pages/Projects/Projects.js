@@ -226,7 +226,7 @@ class Projects extends Component {
             }
 
             API.createProject(projectInfo).then(res => console.log(res))/*res.data.items !== undefined) ? this.setState({ booksData: res.data.items }) : this.setState({ booksData: [] })*/;
-            window.location.href = "/projects";
+            document.location.reload(true);
 
         }
         else {
