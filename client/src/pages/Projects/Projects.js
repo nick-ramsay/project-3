@@ -184,6 +184,19 @@ class Projects extends Component {
         console.log(editProjectData);
     }
 
+    calculateInventoryTotal = (itemsArray) => {
+        var inventoryTotal = 0;
+        
+
+        return inventoryTotal;
+    }
+
+    hourlyTotal = (hours, hourlyRate) => {
+        var hourlyTotalFees = 0;
+        hourlyTotalFees = hours * hourlyRate;
+        return hourlyTotalFees;
+    }
+
     handleSubmitProject = event => {
         event.preventDefault();
         console.log("Called create project!");
@@ -202,6 +215,12 @@ class Projects extends Component {
         }
 
         if (this.state.addProjectName && this.state.addProjectStatus) {
+            var totalInventoryBillableAmount = 0
+
+            for (var i = 0; i < this.state.projectItems.length; i++) {
+                totalInventoryBillableAmount += this.state.projectItems[i].newItemTotal
+            }
+
             projectInfo = {
                 contextID: localStorage.getItem("crafterClient"),
                 name: this.state.addProjectName,
@@ -213,6 +232,8 @@ class Projects extends Component {
                 hourlyRate: this.state.accountData.hourlyRate,
                 items: this.state.projectItems,
                 comments: this.state.projectComments,
+                totalInventoryFees: totalInventoryBillableAmount,
+                totalHourlyFees: (this.state.addProjectHours * this.state.accountData.hourlyRate),
                 billed: false
             }
 

@@ -12,6 +12,8 @@ const ProjectSchema = new Schema({
     hourlyRate: {type: Number},
     items: {type: Array},
     comments: {type: Array},
+    totalInventoryFees: {type: Number},
+    totalHourlyFees: {type: Number},
     billed: {type: Boolean}
 })
 
