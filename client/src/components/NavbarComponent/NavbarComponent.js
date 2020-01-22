@@ -5,7 +5,7 @@ function NavbarComponent(props) {
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <a className="navbar-brand" href="/home"><span><img src={require("../../images/home.png")} alt="Home" /><strong> crafter</strong></span></a>
+            <a className="navbar-brand" href="/home"><span><img src={require("../../images/home.png")} alt="Home" /><strong>  CRAFTER</strong></span></a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>

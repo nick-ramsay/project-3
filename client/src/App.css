@@ -2,6 +2,10 @@ body {
   font-family: 'Quicksand', sans-serif;
 }
 
+.navbar-brand {
+  font-family: 'Permanent Marker', cursive;
+}
+
 .App {
   text-align: center;
 }

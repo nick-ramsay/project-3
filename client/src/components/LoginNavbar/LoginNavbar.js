@@ -3,10 +3,9 @@ import "./style.css";
 
 function LoginNavbar(props) {
     return (
-        <nav class="navbar navbar-dark bg-dark">
+        <nav class="navbar navbar-dark bg-dark justify-content-center">
             <a class="navbar-brand" href="/">
-                <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="" />
-                <strong>crafter</strong>
+                <strong>CRAFTER</strong>
             </a>
         </nav>
     )
