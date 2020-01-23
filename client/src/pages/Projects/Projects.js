@@ -83,7 +83,6 @@ class Projects extends Component {
 
     setAddProjectCustomer = event => {
         event.preventDefault();
-        this.setState({ addProjectCustomer: {} });
 
         var selectedCustomerIndex = event.target.value;
         var selectedCustomerInfo = this.state.customers[selectedCustomerIndex];
