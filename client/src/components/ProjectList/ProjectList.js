@@ -7,7 +7,7 @@ function ProjectList(props) {
         <div className="col-md-12">
             <div class="card mb-2">
                 <h5 className="card-header" id="projectHeader1">
-                    <strong><span className="projectStatus">{props.projectName}: </span><span className="projectHeaderName">{props.projectStatus}</span><span className="projectHeaderName"> for {props.projectCustomer.firstName} {props.projectCustomer.lastName}</span><span className="projectHeaderName"> - {moment(props.projectCreated).format("DD/MM/YYYY hh:mm a")}</span></strong>
+                    <strong><span className="projectStatus">"{props.projectName}" - </span><span className="projectHeaderName">{props.projectStatus}</span><span className="projectHeaderName"> for {props.projectCustomer.firstName} {props.projectCustomer.lastName}</span><span className="projectHeaderName"> - {moment(props.projectCreated).format("DD/MM/YYYY hh:mm a")}</span></strong>
                 </h5>
                 <div className="card-body">
                     <button className="btn btn-dark m-1 projectDetails btn-sm" type="button" data-toggle="collapse" id={props.projectID && "project" + props.projectID} data-target={props.projectID && "#projectDetails" + props.projectID}>Details</button>

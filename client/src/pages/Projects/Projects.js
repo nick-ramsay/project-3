@@ -152,13 +152,10 @@ class Projects extends Component {
 
     handleRemoveComment = event => {
         event.preventDefault();
-        var currentComments = this.state.editProjectComments;
+        var currentComments = this.state.projectComments;
         var removeCommentIndex = event.currentTarget.dataset.projectCommentIndex;
         currentComments.splice(removeCommentIndex, 1);
-        this.setState({ editProjectComments: currentComments });
-
-        console.log(currentComments);
-        console.log(removeCommentIndex);
+        this.setState({ projectComments: currentComments });
     }
 
     editProject = event => {
