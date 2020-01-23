@@ -14,8 +14,8 @@ function BillList(props) {
                 </h5>
                 <div className="card-body">
                     <p><strong>Completion Date: </strong>{props.projectInfo && moment(props.projectInfo.completedDate).format("DD/MM/YYYY hh:mm A")}</p>
-                    <p><strong>Bill Amount:  </strong>${props.billInfo.billedAmount && props.billInfo.billedAmount}</p>
-                    <p><strong>Revenue Collected:  </strong>${props.billInfo.revenueCollected && props.billInfo.revenueCollected}</p>
+                    <p><strong>Bill Amount:  </strong>${props.billInfo.billedAmount && (Math.round(props.billInfo.billedAmount * 100)/100)}</p>
+                    <p><strong>Revenue Collected:  </strong>${props.billInfo.revenueCollected && (Math.round(props.billInfo.revenueCollected * 100)/100)}</p>
                     <p><strong>{props.billInfo.billedAmount - props.billInfo.revenueCollected < 0 ? "Refundable Amount: " : "Outstanding Amount: "}</strong>${Math.round((props.billInfo.billedAmount - props.billInfo.revenueCollected) * 100) / 100}</p>
                     <button className="btn btn-dark m-1 float-left btn-sm" id="issueRefundBtn" data-toggle="modal" data-target="#issueRefundModal" data-bill-state-index={props.billStateIndex} data-refund-bill-id={props.billID} name="issueRefundModal" onClick={props.handleIssueRefund}><strong>-</strong></button>
                     <button className="btn btn-success m-1 float-left btn-sm" id="paymentReceivedBtn" data-toggle="modal" data-target="#paymentReceivedModal" data-bill-state-index={props.billStateIndex} data-payment-bill-id={props.billID} name="purchasbillBtn" onClick={props.handlePaymentReceived}><strong>+</strong></button>

@@ -11,10 +11,10 @@ function NavbarComponent(props) {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav ml-auto">
-                    <a className="nav-item nav-link" href="/projects"><img src={require("../../images/projects.jpg")} alt="Projects" /> Projects</a>
                     <a className="nav-item nav-link" href="/customers"><img src={require("../../images/customers.jpg")} alt="Customers" /> Customers</a>
-                    <a className="nav-item nav-link" href="/billing"><img src={require("../../images/billing.jpg")} alt="Billing" /> Billing</a>
                     <a className="nav-item nav-link" href="/inventory"><img src={require("../../images/inventory.jpg")} alt="Inventory" /> Inventory</a>
+                    <a className="nav-item nav-link" href="/projects"><img src={require("../../images/projects.jpg")} alt="Projects" /> Projects</a>
+                    <a className="nav-item nav-link" href="/billing"><img src={require("../../images/billing.jpg")} alt="Billing" /> Billing</a>
                     <a className="nav-item nav-link" href="/account"><img src={require("../../images/profile.jpg")} alt="Account" /> Account</a>
                     <span className="nav-item nav-link" id="logout" name="logout" onClick={props.handleLogout}><img src={require("../../images/logout_icon.jpg")} alt="Logout" /> Log Out</span>
                 </div>
