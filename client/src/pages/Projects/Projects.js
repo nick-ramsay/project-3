@@ -429,6 +429,7 @@ class Projects extends Component {
                                 projectItems={project.items}
                                 projectComments={project.comments}
                                 editProject={this.editProject}
+                                projectCompleted={project.completedDate}
                             />
                         ))
                         }

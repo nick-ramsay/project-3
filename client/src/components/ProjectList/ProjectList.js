@@ -7,7 +7,7 @@ function ProjectList(props) {
         <div className="col-md-12">
             <div class="card mb-2">
                 <h5 className="card-header" id="projectHeader1">
-                    <strong><span className="projectStatus">"{props.projectName}" - </span><span className="projectHeaderName">{props.projectStatus}</span><span className="projectHeaderName"> for {props.projectCustomer.firstName} {props.projectCustomer.lastName}</span><span className="projectHeaderName"> - {moment(props.projectCreated).format("DD/MM/YYYY hh:mm a")}</span></strong>
+                    <strong><span className="projectStatus">"{props.projectName}" - </span><span className="projectHeaderName">{props.projectStatus}</span><span className="projectHeaderName"> for {props.projectCustomer.firstName} {props.projectCustomer.lastName}</span></strong>
                 </h5>
                 <div className="card-body">
                     <button className="btn btn-dark m-1 projectDetails btn-sm" type="button" data-toggle="collapse" id={props.projectID && "project" + props.projectID} data-target={props.projectID && "#projectDetails" + props.projectID}>Details</button>
@@ -19,10 +19,7 @@ function ProjectList(props) {
                             <p>Customer: {props.projectCustomer.firstName} {props.projectCustomer.lastName}</p>
                             <p>Project Status: {props.projectStatus}</p>
                             <p>Project Start Date: {moment(props.projectCreated).format("DD/MM/YYYY hh:mm a")}</p>
-                            <p>Project Completion Date: [DD/MM/YYYY]</p>
-                            <p>Project Expenses: [DOLLAR AMOUNT]</p>
-                            <p>Project Revenue: [DOLLAR AMOUNT]</p>
-                            <p>Project Gain/Loss: [DOLLAR AMOUNT]</p>
+                            <p>{props.projectCompleted && "Project Complete Date: " + moment(props.projectCompleted).format("DD/MM/YYYY hh:mm a")}</p>
                         </div>
                     </div>
                 </div>

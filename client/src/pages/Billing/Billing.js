@@ -13,7 +13,6 @@ var client = {
 
 class Billing extends Component {
     state = {
-        dummyData: ["Dummy Data 1", "Dummy Data 2"],
         bills: [],
         accountData: []
     }
@@ -23,7 +22,6 @@ class Billing extends Component {
         this.setState({
             [name]: value
         });
-        console.log(this.state);
     }
 
     constructor(props) {
