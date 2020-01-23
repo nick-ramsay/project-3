@@ -23,7 +23,7 @@ function HomepageMetrics(props) {
             </div>
             <div className="row text-center bg-primary text-white rounded">
                 <div className="col-md-12">
-                    <h3>Margin</h3>
+                    <h3>{props.totalMargin < 0 ? "Loss":"Profit"}</h3>
                     <h3>${props.totalMargin}</h3>
                 </div>
             </div>

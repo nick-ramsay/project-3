@@ -33,7 +33,7 @@ function NewInventoryModal(props) {
                                         <div className="form-row">
                                             <div className="form-group col-md-12">
                                                 <label for="addInventoryPrice">Add Inventory Price</label>
-                                                <input type="number" className="form-control" id="addInventoryPrice" step="0.01" min="0" defaultValue={props.addInventoryPrice} name="addInventoryPrice" onChange={props.handleFormUpdate}/>
+                                                <input type="number" className="form-control" id="addInventoryPrice" step="0.01" min="0" placeholder="0.00" name="addInventoryPrice" onChange={props.handleFormUpdate}/>
                                             </div>
                                         </div>
                                     </form>

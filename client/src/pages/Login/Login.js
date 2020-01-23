@@ -32,7 +32,6 @@ class Login extends Component {
                 loginEmail: this.state.loginEmail,
                 loginPassword: sha256(this.state.loginPassword)
             }
-            alert("You completed the form...");
             API.login(credentials).then(res => (res.data[0] !== undefined) ? this.loginSuccess(res.data[0]._id, res.data[0].password) : alert("Sorry... not a valid account, password combination"))
         } else {
             alert("Please enter both a username and a password.");

@@ -60,7 +60,7 @@ class Home extends Component {
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Revenue', 'Expenses', 'Profit'],
+                labels: ['Revenue', 'Expenses', 'Margin'],
                 datasets: [{
                     label: 'Dollar Amounts ($)',
                     data: [totalRevenue, totalExpenses * -1, totalMargin],

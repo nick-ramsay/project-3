@@ -38,7 +38,7 @@ class Inventory extends Component {
 
         var newInventoryItemInfo;
 
-        if (this.state.addInventoryName && this.state.addManufacturerName) {
+        if (this.state.addInventoryName && this.state.addManufacturerName && this.state.addInventoryPrice) {
             newInventoryItemInfo = {
                 contextID: localStorage.getItem("crafterClient"),
                 itemName: this.state.addInventoryName,
@@ -231,7 +231,6 @@ class Inventory extends Component {
                 <NewInventoryModal
                     handleFormUpdate={this.handleFormUpdate}
                     handleNewInventoryItemSubmit={this.handleNewInventoryItemSubmit}
-                    addInventoryPrice={"5.00"}
                 />
                 <EditInventoryModal
                     handleFormUpdate={this.handleFormUpdate}
