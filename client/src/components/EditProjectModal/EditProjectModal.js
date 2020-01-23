@@ -24,7 +24,7 @@ function EditProjectModal(props) {
                             <div className="row">
                                 <div className="form-group col-md-12">
                                     <label for="editProjectStatus">Status</label>
-                                    <select id="editProjectStatus" placeholder={props.editProjectStatus} value={props.editProjectStatus} className="form-control" name="editProjectStatus" onChange={props.handleFormUpdate}>
+                                    <select id="editProjectStatus" placeholder={props.editProjectStatus} value={props.editProjectStatus} className="form-control" name="editProjectStatus" onChange={props.handleFormUpdate} onClick={props.setProjectCompleteDateEdit}>
                                         <option value="New">New</option>
                                         <option value="In Progress">In Progress</option>
                                         <option value="Hold">Hold</option>

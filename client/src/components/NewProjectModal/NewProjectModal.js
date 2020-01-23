@@ -24,12 +24,12 @@ function NewProjectModal(props) {
                             <div className="row">
                                 <div className="form-group col-md-12">
                                     <label for="addProjectStatus">Status</label>
-                                    <select id="addProjectStatus" className="form-control" name="addProjectStatus" onClick={props.setProjectCompleteDate} onChange={props.handleFormUpdate}>
-                                        <option selected>New</option>
-                                        <option>In Progress</option>
-                                        <option>Hold</option>
-                                        <option>Awaiting Client Feedback</option>
-                                        <option>Complete</option>
+                                    <select id="addProjectStatus" className="form-control" value="New" name="addProjectStatus" onClick={props.setProjectCompleteDate} onChange={props.handleFormUpdate}>
+                                        <option value="New">New</option>
+                                        <option value="In Progress">In Progress</option>
+                                        <option value="Hold">Hold</option>
+                                        <option value="Awaiting Client Feedback">Awaiting Client Feedback</option>
+                                        <option value="Complete">Complete</option>
                                     </select>
                                 </div>
                             </div>

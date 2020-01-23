@@ -15,6 +15,7 @@ var client = {
 class Projects extends Component {
 
     state = {
+        addProjectStatus: "New",
         customers: [],
         inventory: [],
         selectedProjectItem: {},
@@ -78,6 +79,17 @@ class Projects extends Component {
             this.setState({ addProjectCompleteDate: new Date() });
         } else {
             this.setState({ addProjectCompleteDate: "" });
+        }
+    }
+
+    setProjectCompleteDateEdit = event => {
+        event.preventDefault();
+        var currentProjectStatus = this.state.editProjectStatus;
+
+        if (currentProjectStatus === "Complete") {
+            this.setState({ editProjectCompleteDate: new Date() });
+        } else {
+            this.setState({ editProjectCompleteDate: "" });
         }
     }
 
@@ -447,6 +459,7 @@ class Projects extends Component {
                     editProjectComments={this.state.editProjectComments}
                     editProjectCustomer={this.state.editProjectCustomer}
                     editProjectHours={this.state.editProjectHours}
+                    setProjectCompleteDateEdit={this.setProjectCompleteDateEdit}
                     handleRemoveNewItem={this.handleRemoveNewItem}
                     handleRemoveComment={this.handleRemoveComment}
                     handleEditAddNewItem={this.handleEditAddNewItem}

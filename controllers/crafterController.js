@@ -226,7 +226,7 @@ module.exports = {
     getCompleteProjects: function (req, res) {
         console.log(req.body);
         db.Projects
-            .find({ contextID: req.body.contextID, completedDate: { $exists: true }, billed: false }).sort({ createdDate: 1, name: 1 })
+            .find({ contextID: req.body.contextID, completedDate: { $exists: true }, completedDate: {$ne:null}, billed: false }).sort({ createdDate: 1, name: 1 })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
