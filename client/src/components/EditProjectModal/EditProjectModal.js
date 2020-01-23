@@ -64,7 +64,7 @@ function EditProjectModal(props) {
                                     <input type="number" step="1" min="0" className="form-control" id="editProjectItemQuantity" defaultValue="0" placeholder="0" name="editProjectItemQuantity" onChange={props.handleFormUpdate} />
                                 </div>
                                 <div className="form-group col-md-12 text-center">
-                                    <button type="button" className="btn btn-success mt-1" onClick={props.handleEditItems}>Add Item</button>
+                                    <button type="button" className="btn btn-success mt-1" onClick={props.handleEditAddNewItem}>Add Item</button>
                                 </div>
                                 <table class="table text-center">
                                     <thead>
@@ -76,7 +76,7 @@ function EditProjectModal(props) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {props.projectItems && props.projectItems.map((projectItem, index) => (
+                                        {props.editProjectItems && props.editProjectItems.map((projectItem, index) => (
                                             <tr id={projectItem._id} data-project-item-index={index}>
                                                 <td>
                                                     {projectItem.newItemName}
@@ -85,7 +85,7 @@ function EditProjectModal(props) {
                                                     {projectItem.newItemQuantity}
                                                 </td>
                                                 <td className="text-center">
-                                                    <button type="button" className="btn btn-danger btn-sm" id={projectItem._id} data-project-item-index={index} onClick={props.handleRemoveNewItem}><strong>X</strong></button>
+                                                    <button type="button" className="btn btn-danger btn-sm" id={projectItem._id} data-project-item-index={index} onClick={props.handleEditRemoveNewItem}><strong>X</strong></button>
                                                 </td>
                                             </tr>
                                         ))
@@ -100,13 +100,13 @@ function EditProjectModal(props) {
                                 </div>
                             </div>
                             <div className="form-group col-md-12 text-center">
-                                <button type="button" className="btn btn-dark mt-1" onClick={props.handleEditComment}>Add Comment</button>
+                                <button type="button" className="btn btn-dark mt-1" onClick={props.handleEditAddComment}>Add Comment</button>
                             </div>
                             <div className="col-md-12">
                                 <ul class="list-group">
-                                    {props.projectComments && props.projectComments.map((projectComment, index) => (
+                                    {props.editProjectComments && props.editProjectComments.map((projectComment, index) => (
                                         <li key={index} className="list-group-item list-group-item-light">
-                                            <p className="m-0 p-0 text-right" data-project-comment-index={index} onClick={props.handleRemoveComment}><small id="removeCommentBtn">x</small></p>
+                                            <p className="m-0 p-0 text-right" data-project-comment-index={index} onClick={props.handleEditRemoveComment}><small id="removeCommentBtn">x</small></p>
                                             <p className="m-0 p-0"><strong>{projectComment.comment}</strong></p>
                                             <p className="m-0 p-0"><small>{projectComment.created}</small></p>
                                         </li>

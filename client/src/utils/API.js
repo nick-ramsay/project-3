@@ -81,6 +81,10 @@ export default {
         console.log("Called get-project API");
         return axios({method:"post", url: apiURL + "/api/crafter/get-projects", data: contextID});
     },
+    editProject: function (editProjectInfo) {
+        console.log("Called create project API");
+        return axios({method:"post", url: apiURL + "/api/crafter/edit-project", data: editProjectInfo})
+    },
     getCompleteProjects: function (contextID) {
         console.log("Called get-project API");
         return axios({method:"post", url: apiURL + "/api/crafter/get-complete-projects", data: contextID});

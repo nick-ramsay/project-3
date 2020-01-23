@@ -82,6 +82,10 @@ router
   .post(crafterController.createProject)
 
 router
+  .route("/edit-project")
+  .post(crafterController.editProject)
+
+router
   .route("/get-projects")
   .post(crafterController.getProjects)
 

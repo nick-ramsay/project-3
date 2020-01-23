@@ -195,6 +195,27 @@ module.exports = {
             .then(console.log(req.body))
             .catch(err => res.status(422).json(err));
     },
+    editProject: function (req, res) {
+        console.log("Edit project controller called...");
+        console.log(req.body);
+        db.Projects
+            .updateOne({ _id: req.body.projectID }, {
+                name: req.body.name,
+                status: req.body.status,
+                customer: req.body.customer,
+                completedDate: req.body.completedDate,
+                hours: req.body.hours,
+                hourlyRate: req.body.hourlyRate,
+                items: req.body.items,
+                comments: req.body.comments,
+                totalInventoryFees: req.body.totalInventoryFees,
+                totalHourlyFees: req.body.totalHourlyFees,
+                billed: req.body.billed
+            })
+            .then(dbModel => res.json(dbModel))
+            .then(console.log(req.body))
+            .catch(err => res.status(422).json(err));
+    },
     getProjects: function (req, res) {
         console.log(req.body);
         db.Projects
