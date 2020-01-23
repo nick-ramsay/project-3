@@ -1,8 +1,4 @@
 .navbar-brand {
-    animation: shuffle 1s infinite;
-}
-
-.navbar-brand:hover {
     animation: shuffle 1s;
 }
 

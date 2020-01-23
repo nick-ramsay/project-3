@@ -11,9 +11,6 @@ span:hover {
     animation: shuffle 3s;
 }
 
-.navbar-brand:hover {
-    animation: shuffle 1s;
-}
 
 @keyframes shuffle {
     0% { transform: translate(5px, 0px) rotate(0deg); }
