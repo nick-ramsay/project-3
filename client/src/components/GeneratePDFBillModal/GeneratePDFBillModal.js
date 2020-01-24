@@ -19,8 +19,6 @@ function GeneratePDFBillModal(props) {
                         <div className="row h-70 justify-content-center align-items-center">
                             <div className="col-md-12">
                                 <PDFDownloadLink
-                                    document={<PDFBill data={props.PDFBillData} />}
-                                    fileName={"bill.pdf"}
                                 >
                                     <strong>PDF</strong>
                                 </PDFDownloadLink>

@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import PDFBill from "../../components/PDFBill/PDFBill";
 import Navbar from "../Navbar/Navbar";
 import "./style.css";
 import API from "../../utils/API";
@@ -6,6 +9,7 @@ import UnbilledProjectQueue from "../../components/UnbilledProjectQueue/Unbilled
 import BillList from "../../components/BillList/BillList";
 import IssueRefundModal from "../../components/IssueRefundModal/IssueRefundModal";
 import PaymentReceivedModal from "../../components/PaymentReceivedModal/PaymentReceivedModal";
+import GeneratePDFBillModal from "../../components/GeneratePDFBillModal/GeneratePDFBillModal";
 
 var client = {
     contextID: localStorage.getItem("crafterClient")
@@ -14,7 +18,35 @@ var client = {
 class Billing extends Component {
     state = {
         bills: [],
-        accountData: []
+        accountData: [],
+        PDFBillData: {
+            businessInfo: {
+                businessName: "",
+                address: "",
+                address2: "",
+                city: "",
+                state: "",
+                postcode: 0,
+                phone: 0,
+                email: ""
+            },
+            projectInfo: {
+                items: [{ newItemName: "", newItemQuantity: 0, newItemPrice: 0, newItemTotal: 0 }],
+                hours: 0,
+                hourlyRate: 0,
+                customer: {
+                    firstName: "",
+                    lastName: "",
+                    address: "",
+                    address2: "",
+                    city: "",
+                    state: "",
+                    postcode: "",
+                    phone: 0,
+                    email: ""
+                }
+            }
+        }
     }
 
     handleFormUpdate = event => {
@@ -181,6 +213,36 @@ class Billing extends Component {
 
     }
 
+    generatePDFBill = event => {
+        event.preventDefault();
+
+        var billStateIndex = event.currentTarget.dataset.billStateIndex;
+
+        var PDFBillData = {
+            businessInfo: this.state.accountData,
+            projectInfo: {
+                items: [],
+                customer: {
+                    firstName: "Testing!",
+                    lastName: ""
+                }
+            }
+        }
+
+        this.render(
+            <PDFDownloadLink
+                document={<PDFBill data={PDFBillData} />}
+                fileName={"bill.pdf"}
+            >
+                <strong>PDF</strong>
+            </PDFDownloadLink>
+        )
+
+        console.log(PDFBillData);
+        console.log(billStateIndex);
+        this.setState({ PDFBillData: PDFBillData })
+    }
+
     render() {
         return (
             <div>
@@ -204,6 +266,7 @@ class Billing extends Component {
                                         handleIssueRefund={this.handleIssueRefund}
                                         billStateIndex={index}
                                         billInfo={this.state.bills[index]}
+                                        generatePDFBill={this.generatePDFBill}
                                     />
                                 ))
                                 }
@@ -220,6 +283,9 @@ class Billing extends Component {
                     handleFormUpdate={this.handleFormUpdate}
                     handlePaymentReceivedSubmit={this.handlePaymentReceivedSubmit}
                     paymentReceivedBillInfo={this.state.paymentReceivedBillInfo}
+                />
+                <GeneratePDFBillModal
+                    PDFBillData={this.state.PDFBillData}
                 />
             </div>
         )

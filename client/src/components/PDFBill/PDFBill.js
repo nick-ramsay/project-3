@@ -124,7 +124,7 @@ function PDFBill(props) {
                         </View>
                         {props.data.businessInfo.address2 &&
                             <View style={styles.address}>
-                                {props.data.businessInfo && <Text>{props.data.businessInfo.address}</Text>}
+                                {props.data.businessInfo && <Text>{props.data.businessInfo.address2}</Text>}
                             </View>
                         }
                         <View style={styles.address}>
@@ -145,9 +145,9 @@ function PDFBill(props) {
                         <View style={styles.address}>
                             {props.data.projectInfo && <Text>{props.data.projectInfo.customer.address}</Text>}
                         </View>
-                        {props.data.businessInfo.address2 &&
+                        {props.data.projectInfo.customer.address2 &&
                             <View style={styles.address}>
-                                {props.data.projectInfo && <Text>{props.data.projectInfo.customer.address}</Text>}
+                                {props.data.projectInfo && <Text>{props.data.projectInfo.customer.address2}</Text>}
                             </View>
                         }
                         <View style={styles.address}>
