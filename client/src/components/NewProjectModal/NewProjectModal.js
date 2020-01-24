@@ -24,7 +24,7 @@ function NewProjectModal(props) {
                             <div className="row">
                                 <div className="form-group col-md-12">
                                     <label for="addProjectStatus">Status</label>
-                                    <select id="addProjectStatus" className="form-control" value="New" name="addProjectStatus" onClick={props.setProjectCompleteDate} onChange={props.handleFormUpdate}>
+                                    <select id="addProjectStatus" className="form-control" defaultValue="New" name="addProjectStatus" onClick={props.setProjectCompleteDate} onChange={props.handleFormUpdate}>
                                         <option value="New">New</option>
                                         <option value="In Progress">In Progress</option>
                                         <option value="Hold">Hold</option>
