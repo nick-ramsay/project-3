@@ -12,7 +12,10 @@ As users follow this workflow, crafter tracks the credit and debit transactions 
 
 ## Installation & Prerequisites
 
+React Packages:
 ![Dependent Packages](https://github.com/nick-ramsay/readme-images/blob/master/crafter/dependent-react-packages.jpg?raw=true)
+
+Node Packages:
 ![Dependent Packages](https://github.com/nick-ramsay/readme-images/blob/master/crafter/dependent-packages.jpg?raw=true)
 
 - The Crafter application is dependent upon four packages...
@@ -33,9 +36,10 @@ As users follow this workflow, crafter tracks the credit and debit transactions 
 
 Crafter is deployed on Heroku for usage [here](https://crafter-app.herokuapp.com).
 
+Users will first land on a homepage showing them a dashboard with a chart and metrics evaluating their financial performance based upon transactions recorded throughout the workflows.
 ![Crafter Homepage](https://github.com/nick-ramsay/readme-images/blob/master/crafter/homepage-metrics.jpg?raw=true)
 
-Users will first land on a homepage showing them a dashboard with a chart and metrics evaluating their financial performance.
+
 
 ## Built With
 - Crafter application was built using React.js, MongoDB, Bootstrap, Node.js and the following Node Package Manage modules:
