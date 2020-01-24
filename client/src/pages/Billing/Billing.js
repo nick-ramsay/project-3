@@ -133,7 +133,8 @@ class Billing extends Component {
             }
             API.billTransaction(billInfo).then(res => console.log(res))
             API.postTransaction(transactionInfo).then(res => console.log(res))
-            document.location.reload(true);
+            //document.location.reload(true);
+            this.getBillData();
         }
         else {
             alert("Sorry... form not complete.");
@@ -165,7 +166,8 @@ class Billing extends Component {
 
             API.billTransaction(billInfo).then(res => console.log(res))
             API.postTransaction(transactionInfo).then(res => console.log(res))
-            document.location.reload(true);
+            //document.location.reload(true);
+            this.getBillData();
         }
         else {
             alert("Sorry... form not complete.");

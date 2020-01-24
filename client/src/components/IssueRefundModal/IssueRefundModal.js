@@ -30,7 +30,7 @@ function IssueRefundModal(props) {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" id="issueRefundBtn" name="issueRefundBtn" onClick={props.handleIssueRefundSubmit}>Issue Refund</button>
+                        <button type="button" className="btn btn-primary" data-dismiss="modal" id="issueRefundBtn" name="issueRefundBtn" onClick={props.handleIssueRefundSubmit}>Issue Refund</button>
                     </div>
                 </div>
             </div>

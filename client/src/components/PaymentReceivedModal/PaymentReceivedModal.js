@@ -30,7 +30,7 @@ function PaymentReceivedModal(props) {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" id="paymentReceivedBtn" name="paymentReceivedBtn" onClick={props.handlePaymentReceivedSubmit}>Purchase</button>
+                        <button type="button" className="btn btn-primary" data-dismiss="modal" id="paymentReceivedBtn" name="paymentReceivedBtn" onClick={props.handlePaymentReceivedSubmit}>Post Payment</button>
                     </div>
                 </div>
             </div>
