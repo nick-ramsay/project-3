@@ -4,7 +4,7 @@ import "./style.css";
 function NavbarComponent(props) {
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav className="navbar navbar-custom navbar-expand-lg fixed-top">
             <a className="navbar-brand" href="/home"><span><strong>CRAFTER</strong></span></a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>

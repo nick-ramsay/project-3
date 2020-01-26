@@ -7,7 +7,7 @@ function LoginForm(props) {
         <div className="container">
             <div className="row h-70 justify-content-center align-items-center">
                 <div className="col-md-6 mt-4">
-                    <form class="my-5 mb-4 py-5 px-5 bg-white rounded">
+                    <form class="my-5 mb-4 py-5 px-5 bg-white rounded content-container">
                         <div className="form-group">
                             <h1 class="mb-3"><strong>Account Login</strong></h1>
                             <label for="exampleInputEmail1">Email address</label>

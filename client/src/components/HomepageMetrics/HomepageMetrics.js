@@ -21,7 +21,7 @@ function HomepageMetrics(props) {
                     <h4>${Math.round(props.totalRevenue * 100)/100}</h4>
                 </div>
             </div>
-            <div className="row text-center bg-primary text-white rounded">
+            <div className="row text-center bg-crafter text-white rounded">
                 <div className="col-md-12">
                     <h3>{props.totalMargin < 0 ? "Loss":"Profit"}</h3>
                     <h3>${Math.round(props.totalMargin * 100)/100}</h3>

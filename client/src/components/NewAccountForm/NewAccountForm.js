@@ -5,8 +5,8 @@ function NewAccountForm(props) {
     return (
         <div className="container">
             <div className="row h-70 justify-content-center align-items-center">
-                <div className="col-md-12">
-                    <form className="my-5 mb-4 py-5 px-5 bg-white rounded">
+                <div className="col-md-12 mt-4">
+                    <form className="my-5 mb-4 py-5 px-5 bg-white rounded  content-container">
                         <h2 className="text-center"><strong>Create an Account</strong></h2>
                         <h5 className="text-left">Contact Details</h5>
                         <div className="form-row">

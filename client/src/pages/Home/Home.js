@@ -67,12 +67,12 @@ class Home extends Component {
                     backgroundColor: [
                         'Green',
                         'Red',
-                        'Blue'
+                        'Indigo'
                     ],
                     borderColor: [
                         'Green',
                         'Red',
-                        'Blue'
+                        'Indigo'
                     ],
                     borderWidth: 1
                 }]
@@ -95,7 +95,7 @@ class Home extends Component {
             <div>
                 <Navbar />
                 <div className="container pt-4">
-                    <div className="col-md-12 my-5 mb-4 px-5 bg-white rounded content-container">
+                    <div className="col-md-12 my-5 mb-4 px-5 rounded content-container">
                         <HomepageMetrics
                             accountName={this.state.accountData.businessName}
                             totalExpenses={this.state.totalExpenses}

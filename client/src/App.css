@@ -2,16 +2,16 @@ body {
   font-family: 'Quicksand', sans-serif;
   background-image: url("../src/images/background-pattern.png");
   background-repeat: repeat;
-  background-color: rgba(0, 0, 0, 0.09);
-  background-blend-mode: darken;
 }
 
 .content-container {
   box-shadow: 5px 5px 10px grey;
+  background-color: white;
 }
 
-.navbar-brand {
+.navbar-brand, .navbar-brand:hover {
   font-family: 'Permanent Marker', cursive;
+  color: indigo;
 }
 
 .App {
