@@ -11,7 +11,7 @@ class NoAccess extends Component {
         return (
             <div>
                 <div className="container pt-4">
-                    <div className="col-md-12 my-5 px-5 bg-white rounded">
+                    <div className="col-md-12 my-5 px-5 bg-white rounded content-container">
                         <div className="row text-center">
                             <div className="col-md-12">
                                 <h1 className="mt-5" style={{ fontSize: 50 }}>

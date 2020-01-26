@@ -78,7 +78,7 @@ class Account extends Component {
             <div>
                 <Navbar />
                 <div className="container pt-4">
-                    <div className="col-md-12 my-5 mb-4 px-5 bg-white rounded">
+                    <div className="col-md-12 my-5 mb-4 px-5 bg-white rounded content-container">
                         <div className="row text-center">
                             <div className="col-md-12">
                                 <h2><strong>Account</strong></h2>

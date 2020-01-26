@@ -95,7 +95,7 @@ class Home extends Component {
             <div>
                 <Navbar />
                 <div className="container pt-4">
-                    <div className="col-md-12 my-5 mb-4 px-5 bg-white rounded">
+                    <div className="col-md-12 my-5 mb-4 px-5 bg-white rounded content-container">
                         <HomepageMetrics
                             accountName={this.state.accountData.businessName}
                             totalExpenses={this.state.totalExpenses}
