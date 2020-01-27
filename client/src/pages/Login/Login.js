@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { sha256 } from 'js-sha256';
 import LoginNavbar from "../../components/LoginNavbar/LoginNavbar";
 import LoginForm from "../../components/LoginForm/LoginForm";
-import API from "../../utils/API"
+import API from "../../utils/API";
 import "./style.css";
 
 class Login extends Component {

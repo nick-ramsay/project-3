@@ -4,6 +4,10 @@ body {
   background-repeat: repeat;
 }
 
+.navbar-custom {
+  background-color: white;
+}
+
 .navbar-toggler-icon {
   color: indigo;
 }
