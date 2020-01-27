@@ -1,15 +1,5 @@
 body {
   font-family: 'Quicksand', sans-serif;
-  background-image: url("../src/images/background-pattern.png");
-  background-repeat: repeat;
-}
-
-.navbar-custom {
-  background-color: white;
-}
-
-.navbar-toggler-icon {
-  color: indigo;
 }
 
 .content-container {

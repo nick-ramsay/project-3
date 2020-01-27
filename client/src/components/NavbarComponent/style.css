@@ -5,7 +5,7 @@ img {
 }
 
 nav {
-    background-color: whitesmoke;
+    background-color: white;
 }
 
 .navbar {
@@ -14,7 +14,6 @@ nav {
   
 .navbar-custom .navbar-nav .nav-link {
     color: indigo;
-    background-color: white;
     font-weight: 900;
 }
 
