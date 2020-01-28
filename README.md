@@ -5,6 +5,7 @@ Heroku Deployment: https://crafter-app.herokuapp.com
 Guest Login Credentials:
 
 Username: NickRamsay1989@gmail.com
+
 Password: asdf1234
 
 ## Problem Summary 
