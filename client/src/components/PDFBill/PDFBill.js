@@ -202,7 +202,7 @@ function PDFBill(props) {
                             <Text style={styles.invoiceTotals}>Inventory Total: ${parseFloat(billInventoryTotal).toFixed(2)}</Text>
                             <Text style={styles.invoiceTotals}>Hourly Total: ${(parseFloat(props.data.projectInfo.hours) * parseFloat(props.data.projectInfo.hourlyRate)).toFixed(2)}</Text>
                             <Text style={styles.invoiceTotals}>Payments Received: ${parseFloat(props.data.billInfo.revenueCollected).toFixed(2)}</Text>
-                            <Text style={styles.totalAmountDue}>{((parseFloat(props.data.projectInfo.hours) * parseFloat(props.data.projectInfo.hourlyRate)) + parseFloat(billInventoryTotal)).toFixed(2) - parseFloat(props.data.billInfo.revenueCollected).toFixed(2) > 0 ? "Amount Due: " : "Refund Amount: "} ${(((parseFloat(props.data.projectInfo.hours) * parseFloat(props.data.projectInfo.hourlyRate)) + parseFloat(billInventoryTotal)) - parseFloat(props.data.billInfo.revenueCollected)).toFixed(2)}</Text>
+                            <Text style={styles.totalAmountDue}>{((parseFloat(props.data.projectInfo.hours) * parseFloat(props.data.projectInfo.hourlyRate)) + parseFloat(billInventoryTotal)).toFixed(2) - parseFloat(props.data.billInfo.revenueCollected).toFixed(2) >= 0 ? "Amount Due: " : "Refund Amount: "} ${(((parseFloat(props.data.projectInfo.hours) * parseFloat(props.data.projectInfo.hourlyRate)) + parseFloat(billInventoryTotal)) - parseFloat(props.data.billInfo.revenueCollected)).toFixed(2)}</Text>
                         </View>
                         <View style={styles.footerMessage}>
                             <Text>Thank you for your business!</Text>
