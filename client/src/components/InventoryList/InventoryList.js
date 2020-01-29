@@ -12,7 +12,7 @@ function InventoryList(props) {
                 <div className="card-body">
                     <p><strong>Manufacturer: </strong>{props.manufacturer && props.manufacturer}</p>
                     <p><strong>Current Stock: </strong>{props.quantity && props.quantity}</p>
-                    <p><strong>Price: </strong>${props.price && props.price}</p>
+                    <p><strong>Price: </strong>${props.price && props.price.toFixed(2)}</p>
                     <div className="row justify-content-center">
                         {(props.quantity > 0 && !props.cancelled) && <button className="btn btn-dark m-1" id="returnInventoryBtn" data-toggle="modal" data-target="#returnInventoryModal" data-inventory-state-index={props.inventoryStateIndex} data-return-inventory-id={props.inventoryID} name="returnInventoryBtn" onClick={props.returnInventory}>-</button>}
                         {!props.cancelled && <button className="btn btn-success m-1" id="purchaseInventoryBtn" data-toggle="modal" data-target="#purchaseInventoryModal" data-inventory-state-index={props.inventoryStateIndex} data-purchase-inventory-id={props.inventoryID} name="purchaseInventoryBtn" onClick={props.purchaseInventory}>+</button>}

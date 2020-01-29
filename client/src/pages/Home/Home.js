@@ -52,8 +52,6 @@ class Home extends Component {
         API.getAccountData(client).then(res => this.setState({ accountData: res.data }))
     }
 
-
-
     renderChart = (totalRevenue, totalExpenses, totalMargin) => {
         var ctx = document.getElementById('myChart');
         ctx.height = 150;
@@ -63,7 +61,7 @@ class Home extends Component {
                 labels: ['Revenue', 'Expenses', 'Margin'],
                 datasets: [{
                     label: 'Dollar Amounts ($)',
-                    data: [totalRevenue, totalExpenses * -1, totalMargin],
+                    data: [totalRevenue.toFixed(2), (totalExpenses.toFixed(2) * -1), totalMargin.toFixed(2)],
                     backgroundColor: [
                         'Green',
                         'Red',

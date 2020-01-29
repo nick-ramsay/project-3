@@ -32,7 +32,7 @@ function EditInventoryModal(props) {
                                         </div>
                                         <div className="form-group col-md-12">
                                             <label for="editInventoryPrice">Price</label>
-                                            <input type="number" min="0" step="0.01" className="form-control" id="editInventoryPrice" defaultValue={props.editInventoryPrice} name="editInventoryPrice" onChange={props.handleFormUpdate} />
+                                            <input type="number" min="0" step="0.01" className="form-control" id="editInventoryPrice" defaultValue={props.editInventoryPrice && parseFloat(props.editInventoryPrice).toFixed(2)} name="editInventoryPrice" onChange={props.handleFormUpdate} />
                                         </div>
                                     </div>
                                 </form>

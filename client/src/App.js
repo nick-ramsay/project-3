@@ -18,6 +18,7 @@ var client = {
 };
 
 function App() {
+
   if (client.contextID) {
     return (
       <Router>
