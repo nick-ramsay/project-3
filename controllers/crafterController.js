@@ -1,6 +1,19 @@
 const db = require("../models");
+require('dotenv').config();
+const keys = require("../keys");
+
+const accountSid = keys.twilio_credentials.accountSid;
+const authToken = keys.twilio_credentials.authToken;
+
+const client = require('twilio')(accountSid, authToken);
 
 module.exports = {
+    sendTwilioSMS: function(req,res) {
+    console.log(req.body);
+    client.messages
+      .create({body: req.body.text, from: '+61404470705', to: '+61' + req.body.customerPhone})
+      .then(message => console.log(message.sid));
+    },
     createAccount: function (req, res) {
         db.Accounts
             .create(req.body)

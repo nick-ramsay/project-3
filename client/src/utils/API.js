@@ -3,6 +3,10 @@ import axios from "axios";
 const apiURL = process.env.NODE_ENV === 'production'? '' : '//localhost:3001'
 
 export default {
+    sendTwilioSMS: function(messageInfo) {
+        console.log("Called send Twilio SMS");
+        return axios({method:"post", url: apiURL + "/api/crafter/send-sms", data: messageInfo});
+    },
     getAccountData: function (contextID) {
         console.log("Called get customers API");
         return axios({method:"post", url: apiURL + "/api/crafter/get-account-data", data: contextID});

@@ -2,6 +2,10 @@ const router = require("express").Router();
 const crafterController = require("../../controllers/crafterController");
 
 router
+  .route("/send-sms")
+  .post(crafterController.sendTwilioSMS);
+
+router
   .route("/get-account-data")
   .post(crafterController.getAccountData);
 

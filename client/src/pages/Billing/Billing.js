@@ -74,6 +74,11 @@ class Billing extends Component {
             revenueCollected: 0
         };
 
+        var messageInfo = {
+            text: "Good news, " + selectedProjectInfo.customer.firstName + ". Your project is complete. You will receive a bill shortly. Thank you!",
+            customerPhone: selectedProjectInfo.customer.phone
+        }
+
         var markProjectBilledInfo = {
             projectID: selectedProjectInfo._id
         }
@@ -81,10 +86,14 @@ class Billing extends Component {
         API.createBill(billInfo)
             .then(res => console.log(res))
             .then(
+                API.sendTwilioSMS(messageInfo).then(res => console.log(res))
+            )
+            .then(
                 API.markProjectBilled(markProjectBilledInfo)
                     .then(res => console.log(res))
                     .then(document.location.reload(true))
             )
+            
     }
 
     handlePaymentReceived = event => {
