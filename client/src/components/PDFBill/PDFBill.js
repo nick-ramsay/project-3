@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'heavy',
         marginBottom: 5,
-        color: 'blue'
+        color: 'indigo'
     },
     invoiceHeader: {
         fontWeight: 900,
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         fontWeight: 'heavy',
         marginTop: 5, 
         marginBottom: 5,
-        color: 'blue',
+        color: 'indigo',
         borderTop: '1px solid',
         borderLeft: '1px solid',
         borderBottom: '1px solid',
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         textAlign: 'center',
         marginTop: 15,
-        color: 'blue',
+        color: 'indigo',
         fontWeight: 'heavy'
     }
 });
@@ -166,7 +166,7 @@ function PDFBill(props) {
                             <Text style={styles.invoiceHeader}>Hourly Fees</Text>
                         </View>
                         <View>
-                            <Text style={styles.hourlyDetails}>{props.data.projectInfo.hours} hours were billed for this project at a rate of ${props.data.projectInfo.hourlyRate} per hour.</Text>
+                            <Text style={styles.hourlyDetails}>{parseFloat(props.data.projectInfo.hours).toFixed(2)} hours were billed for this project at a rate of ${parseFloat(props.data.projectInfo.hourlyRate).toFixed(2)} per hour.</Text>
                         </View>
                         <View>
                             <Text style={styles.invoiceHeader}>Inventory Fees</Text>
@@ -191,17 +191,18 @@ function PDFBill(props) {
                             <TableBody textAlign={'center'}>
                                 <DataTableCell getContent={(r) => r.newItemName} />
                                 <DataTableCell getContent={(r) => r.newItemQuantity} />
-                                <DataTableCell getContent={(r) => "$" + r.newItemPrice} />
-                                <DataTableCell getContent={(r) => "$" + r.newItemTotal} />
+                                <DataTableCell getContent={(r) => "$" + parseFloat(r.newItemPrice).toFixed(2)} />
+                                <DataTableCell getContent={(r) => "$" + parseFloat(r.newItemTotal).toFixed(2)} />
                             </TableBody>
                         </Table>
                         <View>
                         </View>
                         <View>
                             <Text style={styles.invoiceHeader}>Totals</Text>
-                            <Text style={styles.invoiceTotals}>Inventory Total: ${billInventoryTotal.toFixed(2)}</Text>
-                            <Text style={styles.invoiceTotals}>Hourly Total: ${(props.data.projectInfo.hours * props.data.projectInfo.hourlyRate).toFixed(2)}</Text>
-                            <Text style={styles.totalAmountDue}>Amount Due: ${((props.data.projectInfo.hours * props.data.projectInfo.hourlyRate) + billInventoryTotal).toFixed(2)}</Text>
+                            <Text style={styles.invoiceTotals}>Inventory Total: ${parseFloat(billInventoryTotal).toFixed(2)}</Text>
+                            <Text style={styles.invoiceTotals}>Hourly Total: ${(parseFloat(props.data.projectInfo.hours) * parseFloat(props.data.projectInfo.hourlyRate)).toFixed(2)}</Text>
+                            <Text style={styles.invoiceTotals}>Payments Received: ${parseFloat(props.data.billInfo.revenueCollected).toFixed(2)}</Text>
+                            <Text style={styles.totalAmountDue}>{((parseFloat(props.data.projectInfo.hours) * parseFloat(props.data.projectInfo.hourlyRate)) + parseFloat(billInventoryTotal)).toFixed(2) - parseFloat(props.data.billInfo.revenueCollected).toFixed(2) > 0 ? "Amount Due: " : "Refund Amount: "} ${(((parseFloat(props.data.projectInfo.hours) * parseFloat(props.data.projectInfo.hourlyRate)) + parseFloat(billInventoryTotal)) - parseFloat(props.data.billInfo.revenueCollected)).toFixed(2)}</Text>
                         </View>
                         <View style={styles.footerMessage}>
                             <Text>Thank you for your business!</Text>

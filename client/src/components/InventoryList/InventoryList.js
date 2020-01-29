@@ -4,7 +4,7 @@ import moment from "moment";
 
 function InventoryList(props) {
     return (
-        <div className="col-md-12">
+        <div className="col-md-12 pb-2">
             <div class="card mb-2 text-center">
                 <h5 className="card-header" id="inventoryHeader1">
                     <span><strong>{props.itemName && props.itemName}<span id="cancelledDate">{props.cancelled && " [Cancelled: " + moment(props.cancelled).format("DD/MM/YYYY hh:mm a") + "]"}</span></strong></span>

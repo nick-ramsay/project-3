@@ -63,7 +63,7 @@ function UpdateAccountForm(props) {
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <label for="businessRate">Standard Hourly Rate</label>
-                        <input type="number" placeholder="10.00" step="0.01" min="0" className="form-control" id="businessRate" name="hourlyRate" defaultValue={props.hourlyRate} onChange={props.handleFormUpdate} />
+                        <input type="number" placeholder="10.00" step="0.01" min="0" className="form-control" id="businessRate" name="hourlyRate" defaultValue={props.hourlyRate && parseFloat(props.hourlyRate).toFixed(2)} onChange={props.handleFormUpdate} />
                     </div>
                     <div className="form-group col-md-6">
                         <label for="editBusinessSpecialty">Specialty</label>

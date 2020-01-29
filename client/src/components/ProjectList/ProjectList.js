@@ -4,7 +4,7 @@ import "./style.css";
 
 function ProjectList(props) {
     return (
-        <div className="col-md-12">
+        <div className="col-md-12 pb-2">
             <div class="card mb-2">
                 <h5 className="card-header" id="projectHeader1">
                     <strong><span className="projectStatus">"{props.projectName}" - </span><span className="projectHeaderName">{props.projectStatus}</span><span className="projectHeaderName"> for {props.projectCustomer.firstName} {props.projectCustomer.lastName}</span></strong>

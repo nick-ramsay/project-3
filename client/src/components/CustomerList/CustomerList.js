@@ -4,7 +4,7 @@ import moment from "moment";
 
 function CustomerList(props) {
     return (
-        <div className="col-md-12">
+        <div className="col-md-12 pb-2">
             <div class="card mb-2 justify-content-center text-center">
                 <h5 className="card-header" id="customerHeader1">
                     <span><strong>{props.firstName && props.firstName} {props.lastName && props.lastName}<span id="cancelledDate">{props.cancelled && " [Cancelled: " + props.cancelled + "]"}</span></strong></span>
