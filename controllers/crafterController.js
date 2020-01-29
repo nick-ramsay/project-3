@@ -11,7 +11,7 @@ module.exports = {
     sendTwilioSMS: function(req,res) {
     console.log(req.body);
     client.messages
-      .create({body: req.body.text, from: '+61404470705', to: '+61' + req.body.customerPhone})
+      .create({body: req.body.text, from: '+61488839145', to: '+61' + req.body.customerPhone})
       .then(message => console.log(message.sid));
     },
     createAccount: function (req, res) {

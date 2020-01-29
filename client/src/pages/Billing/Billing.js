@@ -82,7 +82,7 @@ class Billing extends Component {
         };
 
         var messageInfo = {
-            text: "Good news, " + selectedProjectInfo.customer.firstName + ". Your project is complete. You will receive a bill shortly. Thank you!",
+            text: "Good news, " + selectedProjectInfo.customer.firstName + ". Your project with "+ this.state.accountData.businessName + " is complete. You will receive a bill shortly. Thank you for your business!",
             customerPhone: selectedProjectInfo.customer.phone
         }
 
