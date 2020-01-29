@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { css } from "@emotion/core";
+import { ClipLoader } from "react-spinners";
 import moment from "moment";
 import Navbar from "../Navbar/Navbar";
 import CustomerList from "../../components/CustomerList/CustomerList";
@@ -7,6 +9,12 @@ import EditCustomerModal from "../../components/EditCustomerModal/EditCustomerMo
 import API from "../../utils/API"
 import "./style.css";
 
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: indigo;
+`;
+
 var client = {
     contextID: localStorage.getItem("crafterClient")
 };
@@ -14,7 +22,8 @@ var client = {
 class Customers extends Component {
     state = {
         customers: [],
-        editedCustomer: {}
+        editedCustomer: {},
+        loading: true
     }
 
     componentDidMount() {
@@ -30,7 +39,7 @@ class Customers extends Component {
     }
 
     getCustomers = () => {
-        API.getCustomers(client).then(res => this.setState({ customers: res.data }))
+        API.getCustomers(client).then(res => this.setState({ customers: res.data, loading: false }))
     }
 
     editCustomer = event => {
@@ -152,6 +161,13 @@ class Customers extends Component {
                                 <td><button className="btn btn-success" id="addCustomerBtn" data-toggle="modal" data-target="#newCustomerModal"><span><img src={require("../../images/new-icon.jpg")} alt="Add a Customer" /> Add a Customer</span></button></td>
                             </div>
                         </div>
+                        <ClipLoader
+                            css={override}
+                            size={150}
+                            //size={"150px"} this also works
+                            color={"#123abc"}
+                            loading={this.state.loading}
+                        />
                         {this.state.customers.map((customer,index) => (
                             <CustomerList
                                 customerID={customer._id}

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { css } from "@emotion/core";
+import { ClipLoader } from "react-spinners";
 import Navbar from "../Navbar/Navbar";
 import InventoryList from "../../components/InventoryList/InventoryList";
 import EditInventoryModal from "../../components/EditInventoryModal/EditInventoryModal";
@@ -8,13 +10,20 @@ import NewInventoryModal from "../../components/NewInventoryModal/NewInventoryMo
 import API from "../../utils/API";
 import "./style.css";
 
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: indigo;
+`;
+
 var client = {
     contextID: localStorage.getItem("crafterClient")
 };
 
 class Inventory extends Component {
     state = {
-        inventory: []
+        inventory: [],
+        loading: true
     }
 
     componentDidMount() {
@@ -30,7 +39,7 @@ class Inventory extends Component {
     }
 
     getInventory = () => {
-        API.getInventory(client).then(res => this.setState({ inventory: res.data }))
+        API.getInventory(client).then(res => this.setState({ inventory: res.data, loading: false }))
     }
 
     handleNewInventoryItemSubmit = event => {
@@ -210,6 +219,13 @@ class Inventory extends Component {
                                 <td><button className="btn btn-success addInventoryBtn" data-toggle="modal" data-target="#newInventoryModal"><span><img src={require("../../images/new-icon.jpg")} alt="Add New Item" /> Add Item</span></button></td>
                             </div>
                         </div>
+                        <ClipLoader
+                            css={override}
+                            size={150}
+                            //size={"150px"} this also works
+                            color={"#123abc"}
+                            loading={this.state.loading}
+                        />
                         {this.state.inventory.map((inventory, index) => (
                             <InventoryList
                                 editInventory={this.editInventory}

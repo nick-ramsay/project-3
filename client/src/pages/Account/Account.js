@@ -1,8 +1,16 @@
 import React, { Component } from "react";
+import { css } from "@emotion/core";
+import { ClipLoader } from "react-spinners";
 import Navbar from "../Navbar/Navbar";
 import UpdateAccountForm from "../../components/UpdateAccountForm/UpdateAccountForm";
 import API from "../../utils/API";
 import "./style.css";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: indigo;
+`;
 
 var client = {
     contextID: localStorage.getItem("crafterClient")
@@ -10,7 +18,7 @@ var client = {
 
 class Account extends Component {
     state = {
-        
+        loading: true
     }
 
     componentWillMount() {
@@ -28,19 +36,20 @@ class Account extends Component {
     getAccountData = () => {
         var accountData;
         API.getAccountData(client)
-            .then(res => this.setState({ 
+            .then(res => this.setState({
                 businessID: res.data._id,
-                businessName:  res.data.businessName,
+                businessName: res.data.businessName,
                 ownerName: res.data.ownerName,
-                phone:  res.data.phone,
-                email:  res.data.email,
+                phone: res.data.phone,
+                email: res.data.email,
                 address: res.data.address,
-                address2:  res.data.address2,
-                city:  res.data.city,
-                state:  res.data.state,
-                postcode:  res.data.postcode,
-                hourlyRate:  res.data.hourlyRate,
-                specialty:  res.data.specialty
+                address2: res.data.address2,
+                city: res.data.city,
+                state: res.data.state,
+                postcode: res.data.postcode,
+                hourlyRate: res.data.hourlyRate,
+                specialty: res.data.specialty,
+                loading: false
             }))
     }
 
@@ -53,17 +62,17 @@ class Account extends Component {
             && this.state.address && this.state.city && this.state.postcode && this.state.hourlyRate && this.state.specialty) {
             editAccountInfo = {
                 businessID: this.state.businessID,
-                businessName:  this.state.businessName,
+                businessName: this.state.businessName,
                 ownerName: this.state.ownerName,
-                phone:  this.state.phone,
-                email:  this.state.email,
+                phone: this.state.phone,
+                email: this.state.email,
                 address: this.state.address,
-                address2:  this.state.address2,
-                city:  this.state.city,
-                state:  this.state.state,
-                postcode:  this.state.postcode,
-                hourlyRate:  this.state.hourlyRate,
-                specialty:  this.state.specialty
+                address2: this.state.address2,
+                city: this.state.city,
+                state: this.state.state,
+                postcode: this.state.postcode,
+                hourlyRate: this.state.hourlyRate,
+                specialty: this.state.specialty
             }
             API.editAccount(editAccountInfo).then(res => console.log(res));
             window.location.href = "/account";
@@ -82,22 +91,31 @@ class Account extends Component {
                         <div className="row text-center">
                             <div className="col-md-12">
                                 <h2><strong>Account</strong></h2>
-                                <UpdateAccountForm
-                                    handleUpdateAccount={this.handleUpdateAccount}
-                                    handleFormUpdate={this.handleFormUpdate}
-                                    businessID={this.state.businessID}
-                                    businessName={this.state.businessName}
-                                    ownerName={this.state.ownerName}
-                                    phone={this.state.phone}
-                                    email={this.state.email}
-                                    address={this.state.address}
-                                    address2={this.state.address2}
-                                    city={this.state.city}
-                                    state={this.state.state}
-                                    postcode={this.state.postcode}
-                                    hourlyRate={this.state.hourlyRate}
-                                    specialty={this.state.specialty}
+                                <ClipLoader
+                                    css={override}
+                                    size={150}
+                                    //size={"150px"} this also works
+                                    color={"#123abc"}
+                                    loading={this.state.loading}
                                 />
+                                {this.state.businessName &&
+                                    <UpdateAccountForm
+                                        handleUpdateAccount={this.handleUpdateAccount}
+                                        handleFormUpdate={this.handleFormUpdate}
+                                        businessID={this.state.businessID}
+                                        businessName={this.state.businessName}
+                                        ownerName={this.state.ownerName}
+                                        phone={this.state.phone}
+                                        email={this.state.email}
+                                        address={this.state.address}
+                                        address2={this.state.address2}
+                                        city={this.state.city}
+                                        state={this.state.state}
+                                        postcode={this.state.postcode}
+                                        hourlyRate={this.state.hourlyRate}
+                                        specialty={this.state.specialty}
+                                    />
+                                }
                             </div>
                         </div>
                     </div>

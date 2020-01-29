@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { css } from "@emotion/core";
+import { ClipLoader } from "react-spinners";
 import moment from "moment";
 import Navbar from "../Navbar/Navbar";
 import NewProjectModal from "../../components/NewProjectModal/NewProjectModal";
@@ -7,6 +9,11 @@ import ProjectList from "../../components/ProjectList/ProjectList";
 import API from "../../utils/API";
 import "./style.css";
 
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: indigo;
+`;
 
 var client = {
     contextID: localStorage.getItem("crafterClient")
@@ -27,7 +34,8 @@ class Projects extends Component {
         addProjectCompleteDate: "",
         editProjectCompleteDate: "",
         addProjectCustomer: {},
-        editInventoryTransactions: []
+        editInventoryTransactions: [],
+        loading: true
     }
 
     handleFormUpdate = event => {
@@ -50,7 +58,7 @@ class Projects extends Component {
     }
 
     getProjects = () => {
-        API.getProjects(client).then(res => this.setState({ projects: res.data }))
+        API.getProjects(client).then(res => this.setState({ projects: res.data, loading: false }))
     }
 
     getInventory = () => {
@@ -415,7 +423,13 @@ class Projects extends Component {
                                 <td><button data-toggle="modal" data-target="#addProjectModal" className="btn btn-success" id="addProjectBtn"><span><img src={require("../../images/new-icon.jpg")} alt="New Project" /> New Project</span></button></td>
                             </div>
                         </div>
-
+                        <ClipLoader
+                            css={override}
+                            size={150}
+                            //size={"150px"} this also works
+                            color={"#123abc"}
+                            loading={this.state.loading}
+                        />
                         {this.state.projects.map((project, index) => (
                             <ProjectList
                                 projectStateIndex={index}

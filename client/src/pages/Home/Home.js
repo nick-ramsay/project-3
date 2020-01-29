@@ -1,9 +1,17 @@
 import React, { Component } from "react";
+import { css } from "@emotion/core";
+import { ClipLoader } from "react-spinners";
 import Chart from 'chart.js';
 import Navbar from "../Navbar/Navbar";
 import HomepageMetrics from "../../components/HomepageMetrics/HomepageMetrics";
 import API from "../../utils/API";
 import "./style.css";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: indigo;
+`;
 
 var client = {
     contextID: localStorage.getItem("crafterClient")
@@ -11,11 +19,12 @@ var client = {
 
 class Home extends Component {
     state = {
-        accountData: [{businessName: ""}],
+        accountData: [{ businessName: "" }],
         transactionData: [],
         totalRevenue: 0,
         totalExpenses: 0,
-        totalMargin: 0
+        totalMargin: 0,
+        loading: true
 
     }
 
@@ -44,7 +53,7 @@ class Home extends Component {
 
     getTransactionData = () => {
         API.getTransactions(client)
-            .then(res => this.setState({ transactionData: res.data }))
+            .then(res => this.setState({ transactionData: res.data, loading: false }))
             .then(this.calculateMetrics);
     }
 
@@ -94,17 +103,28 @@ class Home extends Component {
                 <Navbar />
                 <div className="container pt-4">
                     <div className="col-md-12 my-5 mb-4 px-5 rounded content-container">
-                        <HomepageMetrics
-                            accountName={this.state.accountData.businessName}
-                            totalExpenses={this.state.totalExpenses}
-                            totalRevenue={this.state.totalRevenue}
-                            totalMargin={this.state.totalMargin}
+                        <ClipLoader
+                            css={override}
+                            size={150}
+                            //size={"150px"} this also works
+                            color={"#123abc"}
+                            loading={this.state.loading}
                         />
-                        <div className="row text-center">
-                            <div className="col-md-12">
-                                <canvas id="myChart" width="400" height="400"></canvas>
+                        {this.state.loading === false &&
+                            <div>
+                                <HomepageMetrics
+                                    accountName={this.state.accountData.businessName}
+                                    totalExpenses={this.state.totalExpenses}
+                                    totalRevenue={this.state.totalRevenue}
+                                    totalMargin={this.state.totalMargin}
+                                />
+                                <div className="row text-center">
+                                    <div className="col-md-12">
+                                        <canvas id="myChart" width="400" height="400"></canvas>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
