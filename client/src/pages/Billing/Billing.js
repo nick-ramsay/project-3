@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { css } from "@emotion/core";
+import { ClipLoader } from "react-spinners";
 import Navbar from "../Navbar/Navbar";
 import "./style.css";
 import API from "../../utils/API";
@@ -11,21 +13,26 @@ var client = {
     contextID: localStorage.getItem("crafterClient")
 };
 
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: indigo;
+`;
+
 class Billing extends Component {
+
     state = {
         bills: [],
-        accountData: []
+        accountData: [],
+        loading: true
     }
+
 
     handleFormUpdate = event => {
         const { name, value } = event.target;
         this.setState({
             [name]: value
         });
-    }
-
-    constructor(props) {
-        super(props);
     }
 
     componentDidMount() {
@@ -42,7 +49,7 @@ class Billing extends Component {
     }
 
     getBillData = () => {
-        API.getBillData(client).then(res => this.setState({ bills: res.data }));
+        API.getBillData(client).then(res => this.setState({ bills: res.data, loading: false }));
     }
 
     getCompleteProjects = () => {
@@ -93,7 +100,7 @@ class Billing extends Component {
                     .then(res => console.log(res))
                     .then(document.location.reload(true))
             )
-            
+
     }
 
     handlePaymentReceived = event => {
@@ -204,6 +211,13 @@ class Billing extends Component {
                                     generateBill={this.generateBill}
                                 />
                                 <h3><strong>Existing Bills</strong></h3>
+                                <ClipLoader
+                                    css={override}
+                                    size={150}
+                                    //size={"150px"} this also works
+                                    color={"#123abc"}
+                                    loading={this.state.loading}
+                                />
                                 {this.state.bills.map((bill, index) => (
                                     <BillList
                                         businessInfo={this.state.accountData}
