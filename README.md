@@ -2,6 +2,12 @@
 
 Heroku Deployment: https://crafter-app.herokuapp.com
 
+**Guest Login Credentials**
+
+**Username:** ```demo@crafter.com```
+
+**Password:** ```asdf1234```
+
 ## Problem Summary 
 As someone who runs a small personal business, I would like an application that could help me organize my inventory, customer details, projects, and billing in one easy-to-use tool.
 
