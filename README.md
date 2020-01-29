@@ -12,7 +12,7 @@ Heroku Deployment: https://crafter-app.herokuapp.com
 As someone who runs a small personal business, I would like an application that could help me organize my inventory, customer details, projects, and billing in one easy-to-use tool.
 
 ## Overview
-The Crafter application provides a simple, foundational tool for managing a small business. Users can enter inventory, track inventory purchases and returns, and store customer information. They can use this information to create projects for customers using the inventory they've logged. In the projects, users can keep track of the project status, add and update inventory used for the project, and add comments regarding the projects progress. Once a project is marked as complete, it will automatically appear in the "Unbilled Project" queue on the "Billing" page where users can decide whether to generate a bill for the project. Once a bill is generated, users can track money received from the customer and money refunded to the customer. Users can also generate a PDF version of the bill to provide to the customers. 
+The Crafter application provides a simple, foundational tool for managing a small business. Users can enter inventory, track inventory purchases and returns, and store customer information. They can use this information to create projects for customers using the inventory they've logged. In the projects, users can keep track of the project status, add and update inventory used for the project, and add comments regarding the projects progress. Once a project is marked as complete, it will automatically appear in the "Unbilled Project" queue on the "Billing" page where users can decide whether to generate a bill for the project. Once a bill is generated, users can track money received from the customer and money refunded to the customer. Furthermore, at the moment of generating the bill, an SMS message will be sent to the customer via Twilio notifying them of the completion of their project. Users can also generate a PDF version of the bill to provide to the customers. 
 
 As users follow this workflow, crafter tracks the credit and debit transactions that take place from buying inventory, returning inventory, receiving payments, and refunding customers. This enables the dashboard, seen on the homepage, to visualize the customers overall financial performance by giving them an outline of revenue, expenses, and profit margin in both numerical form and via bar chart.
 
@@ -34,6 +34,8 @@ The Crafter application is dependent upon ten packages...
  8. JS-SHA256
  9. Moment.js
  10. if-env
+ 11. Twilio
+ 12. React-Spinners
  
 If you have cloned the repository with the package.json file, these packages can be installed using the ```npm-install``` command.
 
@@ -85,6 +87,10 @@ Once a project reaches complete status, it will be added to the "Unbilled Projec
 
 The Billing menu allows users to manage bills and revenue collection from clients. Completed but unbilled projects will be added to the "Unbilled Queue" at the top of the screen where a user can select the "Generate Bill" button to create a bill for the project.
 
+When the bill is generated, an SMS message via Twilio will be sent to the customer notifying them of the completion of their project.
+
+![Crafter Billing](https://github.com/nick-ramsay/readme-images/blob/master/crafter/sms_message.jpg?raw=true)
+
 Once the bill is created, it will be added to the "Existing Bill" list. Users can select the green "+" button or the black "-" button to record payments received and record refunds issued to customers. These will also be recorded as transactions to count toward the user's total revenue. Finally, users can also generate a PDF version of their bill to be sent to customers by selecting the "PDF" link.
 
 ![Crafter Billing](https://github.com/nick-ramsay/readme-images/blob/master/crafter/billing.jpg?raw=true)
@@ -110,6 +116,8 @@ On the "Account" menu, users can update their account info.
  7. JS-SHA256
  8. Moment.js
  9. if-env
+10. Twilio
+11. React-Spinners
 
 ## Authors 
 - Developer: Nick Ramsay (@nick-ramsay)
