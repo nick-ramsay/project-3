@@ -24,7 +24,11 @@ class Billing extends Component {
     state = {
         bills: [],
         accountData: [],
-        loading: true
+        billsLoading: true,
+        accountLoading: true,
+        projectsLoading: true,
+        inventoryLoading: true,
+        customersLoading: true
     }
 
 
@@ -45,23 +49,23 @@ class Billing extends Component {
 
 
     getAccountData = () => {
-        API.getAccountData(client).then(res => this.setState({ accountData: res.data }))
+        API.getAccountData(client).then(res => this.setState({ accountData: res.data, accountLoading: false }))
     }
 
     getBillData = () => {
-        API.getBillData(client).then(res => this.setState({ bills: res.data, loading: false }));
+        API.getBillData(client).then(res => this.setState({ bills: res.data, billsLoading: false }));
     }
 
     getCompleteProjects = () => {
-        API.getCompleteProjects(client).then(res => this.setState({ projects: res.data }))
+        API.getCompleteProjects(client).then(res => this.setState({ projects: res.data, projectsLoading: false }))
     }
 
     getInventory = () => {
-        API.getInventory(client).then(res => this.setState({ inventory: res.data }))
+        API.getInventory(client).then(res => this.setState({ inventory: res.data, inventoryLoading: false }))
     }
 
     getCustomers = () => {
-        API.getCustomers(client).then(res => this.setState({ customers: res.data }))
+        API.getCustomers(client).then(res => this.setState({ customers: res.data, customersLoading: false }))
     }
 
     generateBill = event => {
@@ -82,7 +86,7 @@ class Billing extends Component {
         };
 
         var messageInfo = {
-            text: "Good news, " + selectedProjectInfo.customer.firstName + ". Your project with "+ this.state.accountData.businessName + " is complete. You will receive a bill shortly. Thank you for your business!",
+            text: "Good news, " + selectedProjectInfo.customer.firstName + ". Your project with " + this.state.accountData.businessName + " is complete. You will receive a bill shortly. Thank you for your business!",
             customerPhone: selectedProjectInfo.customer.phone
         }
 
@@ -216,19 +220,22 @@ class Billing extends Component {
                                     size={150}
                                     //size={"150px"} this also works
                                     color={"#123abc"}
-                                    loading={this.state.loading}
+                                    loading={this.state.accountLoading || this.state.billsLoading || this.state.customersLoading ||
+                                    this.state.inventoryLoading || this.state.projectsLoading}
                                 />
-                                {this.state.bills.map((bill, index) => (
-                                    <BillList
-                                        businessInfo={this.state.accountData}
-                                        handleFormUpdate={this.handleFormUpdate}
-                                        projectInfo={bill.projectInfo}
-                                        handlePaymentReceived={this.handlePaymentReceived}
-                                        handleIssueRefund={this.handleIssueRefund}
-                                        billStateIndex={index}
-                                        billInfo={this.state.bills[index]}
-                                    />
-                                ))
+                                {!this.state.accountLoading && !this.state.billsLoading && !this.state.customersLoading &&
+                                    !this.state.inventoryLoading && !this.state.projectsLoading &&
+                                    this.state.bills.map((bill, index) => (
+                                        <BillList
+                                            businessInfo={this.state.accountData}
+                                            handleFormUpdate={this.handleFormUpdate}
+                                            projectInfo={bill.projectInfo}
+                                            handlePaymentReceived={this.handlePaymentReceived}
+                                            handleIssueRefund={this.handleIssueRefund}
+                                            billStateIndex={index}
+                                            billInfo={this.state.bills[index]}
+                                        />
+                                    ))
                                 }
                             </div>
                         </div>
