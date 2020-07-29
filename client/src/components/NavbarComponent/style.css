@@ -4,17 +4,8 @@ img {
     color: indigo;
 }
 
-nav {
-    background-color: white;
-}
-
 .navbar {
     box-shadow: 0px 0.5px 4px grey;
-}
-  
-.navbar-custom .navbar-nav .nav-link {
-    color: indigo;
-    font-weight: 900;
 }
 
 .navbar-toggler-icon {
@@ -33,23 +24,3 @@ nav {
 span:hover {
     cursor: pointer;
 }
-
-.navbar-brand {
-    animation: shuffle 3s;
-    color: indigo;
-}
-
-
-@keyframes shuffle {
-    0% { transform: translate(5px, 0px) rotate(0deg); }
-    10% { transform: translate(-5px, 0px) rotate(0deg); }
-    20% { transform: translate(4px, 0px) rotate(0deg); }
-    30% { transform: translate(-4px, 0px) rotate(0deg); }
-    40% { transform: translate(3px, 0px) rotate(0deg); }
-    50% { transform: translate(-3px, 0px) rotate(0deg); }
-    60% { transform: translate(2px, 0px) rotate(0deg); }
-    70% { transform: translate(-2px, 0px) rotate(0deg); }
-    80% { transform: translate(1px, 0px) rotate(0deg); }
-    90% { transform: translate(-1px, 0px) rotate(0deg); }
-    100% { transform: translate(0px, 0px) rotate(0deg); }
-  }

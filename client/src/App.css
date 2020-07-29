@@ -1,6 +1,19 @@
 body {
   font-family: 'Quicksand', sans-serif;
-  background: linear-gradient(rgba(0, 0, 0, 0.0025), rgba(0, 0, 0, 0.0025)), url("./images/background-pattern.png");
+  background-color: whitesmoke;
+  /*background: linear-gradient(rgba(0, 0, 0, 0.0025), rgba(0, 0, 0, 0.0025)), url("./images/background-pattern.png");*/
+}
+
+.navbar {
+  background-color: indigo;
+}
+
+.nav-item {
+  color: white;
+}
+
+.nav-item:hover {
+  color: gold;
 }
 
 .btn {
@@ -17,11 +30,11 @@ body {
   color: indigo;
   background-color: #ffffff;
   border-color: #ffffff;
-  box-shadow: 0 0 0 0.1rem rgba(75, 0, 130, 0.6);
+  box-shadow: 0 0 0 0.1rem rgba(255, 215, 0, 0.6);
 }
 
 .form-control:focus {
-  box-shadow: 0 0 0 0.1rem rgba(75, 0, 130, 0.6);
+  box-shadow: 0 0 0 0.1rem rgba(255, 215, 0, 0.6);
   border: none;
 }
 
@@ -30,9 +43,13 @@ body {
   background-color: white;
 }
 
-.navbar-brand, .navbar-brand:hover {
+.navbar-brand {
   font-family: 'Permanent Marker', cursive;
-  color: indigo;
+  color: #ffffff;
+}
+
+.navbar-brand:hover {
+  color: gold;
 }
 
 .App {
@@ -72,4 +89,18 @@ body {
   to {
     transform: rotate(360deg);
   }
+}
+
+@keyframes shuffle {
+  0% { transform: translate(5px, 0px) rotate(0deg); }
+  10% { transform: translate(-5px, 0px) rotate(0deg); }
+  20% { transform: translate(4px, 0px) rotate(0deg); }
+  30% { transform: translate(-4px, 0px) rotate(0deg); }
+  40% { transform: translate(3px, 0px) rotate(0deg); }
+  50% { transform: translate(-3px, 0px) rotate(0deg); }
+  60% { transform: translate(2px, 0px) rotate(0deg); }
+  70% { transform: translate(-2px, 0px) rotate(0deg); }
+  80% { transform: translate(1px, 0px) rotate(0deg); }
+  90% { transform: translate(-1px, 0px) rotate(0deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
 }
