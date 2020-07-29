@@ -28,8 +28,8 @@ function GeneratePDFBillModal(props) {
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" id="generatePDFBillBtn" name="generatePDFBillBtn" onClick={props.handleEditInventorySubmit}>Save Changes</button>
+                        <button type="button" className="btn btn-sm" id="generatePDFBillBtn" name="generatePDFBillBtn" onClick={props.handleEditInventorySubmit}>Save Changes</button>
+                        <button type="button" className="btn btn-sm red-btn" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

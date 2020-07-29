@@ -64,7 +64,7 @@ function EditProjectModal(props) {
                                     <input type="number" step="1" min="0" className="form-control" id="editProjectItemQuantity" defaultValue="0" placeholder="0" name="editProjectItemQuantity" onChange={props.handleFormUpdate} />
                                 </div>
                                 <div className="form-group col-md-12 text-center">
-                                    <button type="button" className="btn btn-success mt-1" onClick={props.handleEditAddNewItem}>Add Item</button>
+                                    <button type="button" className="btn btn-sm mt-1" onClick={props.handleEditAddNewItem}>Add Item</button>
                                 </div>
                                 <table class="table text-center">
                                     <thead>
@@ -85,7 +85,7 @@ function EditProjectModal(props) {
                                                     {projectItem.newItemQuantity}
                                                 </td>
                                                 <td className="text-center">
-                                                    <button type="button" className="btn btn-danger btn-sm" id={projectItem._id} data-project-item-index={index} onClick={props.handleEditRemoveNewItem}><strong>X</strong></button>
+                                                    <button type="button" className="btn btn-sm btn-red" id={projectItem._id} data-project-item-index={index} onClick={props.handleEditRemoveNewItem}><strong>X</strong></button>
                                                 </td>
                                             </tr>
                                         ))
@@ -117,8 +117,8 @@ function EditProjectModal(props) {
                         </form>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" id="submitProjectBtn" name="submitProjectBtn" onClick={props.handleEditProject}>Save Project</button>
+                        <button type="button" className="btn btn-sm" id="submitProjectBtn" name="submitProjectBtn" onClick={props.handleEditProject}>Save Project</button>
+                        <button type="button" className="btn btn-sm red-btn" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

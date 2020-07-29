@@ -216,7 +216,7 @@ class Inventory extends Component {
                         </div>
                         <div className="row text-center">
                             <div className="col-md-12 p-2 d-flex justify-content-center">
-                                <td><button className="btn btn-success addInventoryBtn" data-toggle="modal" data-target="#newInventoryModal"><span><img src={require("../../images/new-icon.jpg")} alt="Add New Item" /> Add Item</span></button></td>
+                                <td><button className="btn btn-sm addInventoryBtn" data-toggle="modal" data-target="#newInventoryModal"><span>Add Item</span></button></td>
                             </div>
                         </div>
                         <ClipLoader

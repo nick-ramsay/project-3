@@ -13,11 +13,11 @@ function CustomerList(props) {
                     <p><strong>Phone: </strong>{props.phone && props.phone}</p>
                     <p><strong>Location: </strong>{props.city && props.city}, {props.state} </p>
                     <div className="row m-0 p-0 justify-content-center">
-                        <button className="btn btn-primary btn-sm m-1" id="editCustomerBtn" data-toggle="modal" data-target="#editCustomerModal" data-customer-state-index={props.customerStateIndex} onClick={props.editCustomer}><img src={require("../../images/edit-icon.png")} alt="Edit Customer" /></button>
-                        {!props.cancelled && <button className="btn btn-danger btn-sm m-1" id="deleteCustomerBtn" data-cancel-customer-id={props.customerID} name="deleteCustomerBtn" onClick={props.cancelCustomer}><img src={require("../../images/delete-icon.png")} alt="End Date Customer" /></button>}
+                        <button className="btn btn-sm m-1" id="editCustomerBtn" data-toggle="modal" data-target="#editCustomerModal" data-customer-state-index={props.customerStateIndex} onClick={props.editCustomer}>Edit</button>
+                        {!props.cancelled && <button className="btn btn-sm m-1" id="deleteCustomerBtn" data-cancel-customer-id={props.customerID} name="deleteCustomerBtn" onClick={props.cancelCustomer}>Cancel</button>}
                     </div>
                     <div className="row m-0 p-0 justify-content-center">
-                        <button className="btn btn-dark btn-sm m-1 customerDetails" type="button" data-toggle="collapse" id={props.customerID && "customer" + props.customerID} data-target={props.customerID && "#customerDetails" + props.customerID}>Details</button>
+                        <button className="btn btn-sm m-1 customerDetails" type="button" data-toggle="collapse" id={props.customerID && "customer" + props.customerID} data-target={props.customerID && "#customerDetails" + props.customerID}>Details</button>
                     </div>
                     <div id={props.customerID && "customerDetails" + props.customerID} class="collapse" aria-labelledby="headingOne" data-parent={props.customerID && "#customer" + props.customerID}>
                         <div class="card-body">

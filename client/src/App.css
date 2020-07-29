@@ -34,6 +34,17 @@ body {
   box-shadow: none;
 }
 
+.red-btn {
+  color: #ffffff;
+  background-color: #e0115f;
+}
+
+.red-btn:hover {
+  color: #e0115f;
+  background-color: #ffffff;
+  border: 1px #e0115f solid;
+}
+
 .form-control:focus {
   box-shadow: 0 0 0 0.1rem rgba(255, 215, 0, 0.6);
   border: none;
@@ -50,7 +61,7 @@ body {
 }
 
 .navbar-brand:hover {
-  color: white;
+  color: gold;
 }
 
 .App {

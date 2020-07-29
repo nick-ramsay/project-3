@@ -18,7 +18,7 @@ function EditCustomerModal(props) {
                             <div className="col-md-12">
                                 <form>
                                     <div className="form-row d-flex justify-content-center mb-1">
-                                        {props.editCustomerCancelled && <button type="button" className="btn btn-success" id="reactivateCustomerBtn" data-reactivate-customer-id={props.editCustomerID} name="reactivateCustomerBtn" onClick={props.reactivateCustomer}>Reactivate Customer</button>}
+                                        {props.editCustomerCancelled && <button type="button" className="btn btn-sm" id="reactivateCustomerBtn" data-reactivate-customer-id={props.editCustomerID} name="reactivateCustomerBtn" onClick={props.reactivateCustomer}>Reactivate Customer</button>}
                                     </div>
                                     <h5 className="text-left">Customer Details</h5>
                                     <div className="form-row">
@@ -77,8 +77,8 @@ function EditCustomerModal(props) {
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" id="editCustomerSubmitBtn" name="editCustomerSubmitBtn" onClick={props.handleEditCustomerSubmit}>Save Changes</button>
+                        <button type="button" className="btn btn-sm" id="editCustomerSubmitBtn" name="editCustomerSubmitBtn" onClick={props.handleEditCustomerSubmit}>Save Changes</button>
+                        <button type="button" className="btn btn-sm red-btn" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

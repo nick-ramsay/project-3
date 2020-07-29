@@ -35,8 +35,8 @@ function ReturnInventoryModal(props) {
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" id="returnInventorySubmitBtn" name="returnInventorySubmitBtn" onClick={props.handleReturnInventorySubmit}>Return</button>
+                        <button type="button" className="btn btn-sm" id="returnInventorySubmitBtn" name="returnInventorySubmitBtn" onClick={props.handleReturnInventorySubmit}>Return</button>
+                        <button type="button" className="btn btn-sm red-btn" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

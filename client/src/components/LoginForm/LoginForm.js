@@ -18,7 +18,7 @@ function LoginForm(props) {
                             <label for="exampleInputPassword1">Password</label>
                             <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"  name="loginPassword" onChange={props.handleFormUpdate} />
                         </div>
-                        <button type="button" className="btn btn-primary mb-5" name="loginBtn" onClick={props.handleLoginAttempt}>Log In</button>
+                        <button type="button" className="btn btn-sm mb-5" name="loginBtn" onClick={props.handleLoginAttempt}>Log In</button>
                         <p>New to Crafter? <a href="/create-account"><strong>Create an account here!</strong></a></p>
                     </form>
                 </div>

@@ -18,7 +18,7 @@ function EditInventoryModal(props) {
                             <div className="col-md-12">
                                 <form>
                                     <div className="form-row d-flex justify-content-center mb-1">
-                                        {props.editInventoryCancelled && <button type="button" className="btn btn-success" id="reactivateInventoryBtn" data-reactivate-inventory-id={props.editInventoryID} name="reactivateInventoryBtn" onClick={props.reactivateInventory}>Reactivate Inventory</button>}
+                                        {props.editInventoryCancelled && <button type="button" className="btn btn-sm" id="reactivateInventoryBtn" data-reactivate-inventory-id={props.editInventoryID} name="reactivateInventoryBtn" onClick={props.reactivateInventory}>Reactivate Inventory</button>}
                                     </div>
                                     <h5 className="text-left">Inventory Details</h5>
                                     <div className="form-row">
@@ -40,8 +40,8 @@ function EditInventoryModal(props) {
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" id="editInventorySubmitBtn" name="editInventorySubmitBtn" onClick={props.handleEditInventorySubmit}>Save Changes</button>
+                        <button type="button" className="btn btn-sm" id="editInventorySubmitBtn" name="editInventorySubmitBtn" onClick={props.handleEditInventorySubmit}>Save Changes</button>
+                        <button type="button" className="btn btn-sm red-btn" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

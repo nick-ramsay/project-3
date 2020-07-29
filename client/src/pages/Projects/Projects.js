@@ -420,7 +420,7 @@ class Projects extends Component {
                         </div>
                         <div className="row text-center">
                             <div className="col-md-12 p-2 d-flex justify-content-center">
-                                <td><button data-toggle="modal" data-target="#addProjectModal" className="btn btn-success" id="addProjectBtn"><span><img src={require("../../images/new-icon.jpg")} alt="New Project" /> New Project</span></button></td>
+                                <td><button data-toggle="modal" data-target="#addProjectModal" className="btn btn-sm" id="addProjectBtn"><span>New Project</span></button></td>
                             </div>
                         </div>
                         <ClipLoader

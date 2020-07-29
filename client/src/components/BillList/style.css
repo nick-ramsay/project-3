@@ -3,6 +3,11 @@ img {
     width: 24px;
 }
 
+#billPDFBtn {
+    text-decoration: none;
+    color: white;
+}
+
 #cancelledDate {
     color: red;
 }

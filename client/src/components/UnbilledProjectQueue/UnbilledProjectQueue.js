@@ -8,7 +8,7 @@ function UnbilledProjectQueue(props) {
             <div class="card">
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
-                        <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#billingCompleteProjectQueue" aria-expanded="true" aria-controls="billingCompleteProjectQueue">
+                        <button class="btn btn-sm" type="button" data-toggle="collapse" data-target="#billingCompleteProjectQueue" aria-expanded="true" aria-controls="billingCompleteProjectQueue">
                             Unbilled Projects
                                                 </button>
                     </h2>
@@ -21,7 +21,7 @@ function UnbilledProjectQueue(props) {
                                     <h6><strong>{projectInfo.name}</strong></h6>
                                     <p className="m-0 p-0">Completed: {moment(projectInfo.completedDate).format("DD/MM/YYYY hh:mm A")}</p>
                                     <p className="m-0">Customer: {projectInfo.customer.firstName} {projectInfo.customer.lastName}</p>
-                                    <button className="btn btn-success btn-sm" id="generateProjectBill" data-project-state-index={index} onClick={props.generateBill}>Generate Bill</button>
+                                    <button className="btn btn-sm" id="generateProjectBill" data-project-state-index={index} onClick={props.generateBill}>Generate Bill</button>
                                 </div>
                             </div>
                         ))

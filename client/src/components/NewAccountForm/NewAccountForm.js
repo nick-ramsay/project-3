@@ -91,7 +91,7 @@ function NewAccountForm(props) {
                                 </select>
                             </div>
                         </div>
-                        <button type="button" className="btn btn-primary mb-1 float-right" id="createAccountBtn" name="createAccountBtn" onClick={props.handleNewAccountSubmit}>Create Account</button>
+                        <button type="button" className="btn btn-sm mb-1 float-right" id="createAccountBtn" name="createAccountBtn" onClick={props.handleNewAccountSubmit}>Create Account</button>
                     </form>
                 </div>
             </div>

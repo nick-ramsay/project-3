@@ -73,8 +73,8 @@ function NewCustomerModal(props) {
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" id="addCustomerBtn" name="addCustomerBtn" onClick={props.handleNewCustomerSubmit}>Add Customer</button>
+                        <button type="button" className="btn btn-sm" id="addCustomerBtn" name="addCustomerBtn" onClick={props.handleNewCustomerSubmit}>Add Customer</button>
+                        <button type="button" className="btn btn-sm red-btn" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
