@@ -76,7 +76,7 @@ function UpdateAccountForm(props) {
                         </select>
                     </div>
                 </div>
-                <button type="button" className="btn btn-primary mb-1 float-right" id="updateAccountBtn" onClick={props.handleUpdateAccount}>Update Account</button>
+                <button type="button" className="btn btn-sm mb-1 float-right" id="updateAccountBtn" onClick={props.handleUpdateAccount}>Update Account</button>
             </form>
         </div>
     )

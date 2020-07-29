@@ -3,6 +3,28 @@ body {
   background: linear-gradient(rgba(0, 0, 0, 0.0025), rgba(0, 0, 0, 0.0025)), url("./images/background-pattern.png");
 }
 
+.btn {
+  color: #ffffff;
+  background-color: indigo;
+}
+
+.btn:hover {
+  color: indigo;
+  background-color: #ffffff;
+  border: 1px indigo solid;
+}
+.btn:focus {
+  color: indigo;
+  background-color: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 0 0 0 0.1rem rgba(75, 0, 130, 0.6);
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.1rem rgba(75, 0, 130, 0.6);
+  border: none;
+}
+
 .content-container {
   box-shadow: 5px 5px 10px grey;
   background-color: white;
