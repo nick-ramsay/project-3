@@ -14,6 +14,7 @@ body {
 
 .nav-item:hover {
   color: gold;
+  font-weight: bold;
 }
 
 .btn {
@@ -27,10 +28,10 @@ body {
   border: 1px indigo solid;
 }
 .btn:focus {
-  color: indigo;
-  background-color: #ffffff;
-  border-color: #ffffff;
-  box-shadow: 0 0 0 0.1rem rgba(255, 215, 0, 0.6);
+  color: black;
+  background-color: gold;
+  border-color: gold;
+  box-shadow: none;
 }
 
 .form-control:focus {
@@ -45,11 +46,11 @@ body {
 
 .navbar-brand {
   font-family: 'Permanent Marker', cursive;
-  color: #ffffff;
+  color: gold;
 }
 
 .navbar-brand:hover {
-  color: gold;
+  color: white;
 }
 
 .App {

@@ -12,9 +12,12 @@ img {
     background-image: url("../../images/menu.jpg");
 }
 
-.custom-toggler.navbar-toggler {
+.custom-toggler, .navbar-toggler {
     border: 1px solid black;
 }
+
+
+
 
 .nav-link:hover .nav-item:hover {
     font-weight: bold;

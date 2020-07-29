@@ -15,8 +15,7 @@ function HomepageMetrics(props) {
                     <h3>Expenses</h3>
                     <h4>${(props.totalExpenses * -1).toFixed(2)}</h4>
                 </div>
-                <div className="col-md-2"></div>
-                <div className="col-md-5 bg-success text-white rounded mb-1 mt-2">
+                <div className="col-md-5 offset-md-2 bg-success text-white rounded mb-1 mt-2">
                     <h3>Revenue</h3>
                     <h4>${props.totalRevenue.toFixed(2)}</h4>
                 </div>

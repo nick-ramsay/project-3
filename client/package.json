@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@david.kucsai/react-pdf-table": "^0.1.1",
-    "@react-pdf/renderer": "^1.6.9",
+    "@react-pdf/renderer": "^1.6.10",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -26,7 +26,7 @@
     "react-scripts": "3.3.0",
     "react-spinners": "^0.8.3",
     "three": "^0.112.1",
-    "twilio": "^3.48.0",
+    "twilio": "^3.48.1",
     "vanta": "^0.5.16"
   },
   "scripts": {
