@@ -3,7 +3,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
+
+require("dotenv").config();
+const keys = require('./keys');
+
 const PORT = process.env.PORT || 3001;
+
+
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -28,7 +34,17 @@ app.use(routes);
 
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/crafter", {useNewUrlParser: true, useUnifiedTopology: true});
+//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/crafter", {useNewUrlParser: true, useUnifiedTopology: true});
+
+const connection = (process.env.NODE_ENV === "production" ? process.env.MONGO_URI : keys.mongodb.mongo_uri);
+
+if (process.env.NODE_ENV === "production") {
+  mongoose.connect(connection, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+    .then(() => console.log("Database Connected Successfully"))
+    .catch(err => console.log(err));
+} else {
+  mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/crafter", { useNewUrlParser: true, useUnifiedTopology: true });
+}
 
 // Start the API server
 app.listen(PORT, function() {
